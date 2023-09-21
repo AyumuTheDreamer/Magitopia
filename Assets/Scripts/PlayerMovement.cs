@@ -50,12 +50,20 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         if (grounded)
+        {
             rb.drag = groundDrag;
+            animator.SetBool("Grounded", true);
+        }
         else
-            rb.drag = 0;
+        {   
+             rb.drag = 0;
+            animator.SetBool("Grounded", false);
+        }
 
         float speed = rb.velocity.magnitude;
         animator.SetFloat("Speed", speed);
+
+      
     }
 
     private void FixedUpdate()
@@ -73,6 +81,8 @@ public class PlayerMovement : MonoBehaviour
             readyToJump = false;
 
             Jump();
+
+            animator.SetTrigger("Jump");
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
