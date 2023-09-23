@@ -4,69 +4,52 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement")]
-    public float moveSpeed;
+public float moveSpeed;
+public Transform orientation;
+float horizontalInput;
+float verticalInput;
+Vector3 moveDirection;
+Rigidbody rb;
+public float playerHeight;
+public LayerMask whatIsGround;
+bool grounded;
+public float groundDrag;
+public Transform groundCheck;
+public float groundDistance = 0.4f;
 
-    public float groundDrag;
+public float jumpForce;
+public float jumpCooldown;
+public float airMultiplier;
+public bool readyToJump;
 
-    public float jumpForce;
-    public float jumpCooldown;
-    public float airMultiplier;
-    bool readyToJump;
+public KeyCode jumpKey = KeyCode.Space;
 
-    [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
 
-    [Header("Ground Check")]
-    public float playerHeight;
-    public LayerMask whatIsGround;
-    bool grounded;
 
-    public Transform orientation;
-    float horizontalInput;
-    float verticalInput;
-    Vector3 moveDirection;
-    Rigidbody rb;
-
-    [Header("Animation")]
-    public Animator animator;
-
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        readyToJump = true;
-
-       animator = GetComponent<Animator>();
-       
 
     }
 
-    private void Update()
+
+
+    // Update is called once per frame
+    void Update()
     {
         MyInput();
         SpeedControl();
-
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
 
         if (grounded)
-        {
-            rb.drag = groundDrag;
-            animator.SetBool("Grounded", true);
-        }
+        rb.drag = groundDrag;
         else
-        {   
-             rb.drag = 0;
-            animator.SetBool("Grounded", false);
-        }
+        rb.drag = 0;
 
-        float speed = rb.velocity.magnitude;
-        animator.SetFloat("Speed", speed);
-
-      
     }
-
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         MovePlayer();
     }
@@ -79,13 +62,10 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
-
             Jump();
-
-            animator.SetTrigger("Jump");
-
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+    
     }
 
     private void MovePlayer()
@@ -95,8 +75,9 @@ public class PlayerMovement : MonoBehaviour
         if(grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
-        else if(!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+            else if(!grounded)
+                rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+
     }
 
     private void SpeedControl()
@@ -121,4 +102,6 @@ public class PlayerMovement : MonoBehaviour
     {
         readyToJump = true;
     }
+
+
 }
