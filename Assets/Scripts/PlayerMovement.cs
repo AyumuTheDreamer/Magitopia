@@ -12,7 +12,7 @@ Vector3 moveDirection;
 Rigidbody rb;
 public float playerHeight;
 public LayerMask whatIsGround;
-bool grounded;
+public bool grounded;
 public float groundDrag;
 public Transform groundCheck;
 public float groundDistance = 0.4f;
@@ -24,6 +24,8 @@ public bool readyToJump;
 
 public KeyCode jumpKey = KeyCode.Space;
 
+    private Animator animator;
+
 
 
     // Start is called before the first frame update
@@ -32,6 +34,7 @@ public KeyCode jumpKey = KeyCode.Space;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
+        animator = GetComponent<Animator>();
     }
 
 
@@ -44,10 +47,24 @@ public KeyCode jumpKey = KeyCode.Space;
         grounded = Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
 
         if (grounded)
-        rb.drag = groundDrag;
-        else
-        rb.drag = 0;
+        {
+         rb.drag = groundDrag;
+        }
 
+        else
+            rb.drag = 0;
+            
+          
+        animator.SetBool("Grounded", grounded);
+        float speed = rb.velocity.magnitude;
+        animator.SetFloat("Speed", speed);
+        
+         
+
+            
+
+        
+       
     }
     void FixedUpdate()
     {
@@ -63,7 +80,9 @@ public KeyCode jumpKey = KeyCode.Space;
         {
             readyToJump = false;
             Jump();
+            animator.SetTrigger("Jump");
             Invoke(nameof(ResetJump), jumpCooldown);
+             Invoke(nameof(ResetJumpTrigger), jumpCooldown + 0.2f);
         }
     
     }
@@ -96,12 +115,17 @@ public KeyCode jumpKey = KeyCode.Space;
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        
     }
 
     private void ResetJump()
     {
         readyToJump = true;
     }
+    private void ResetJumpTrigger()
+{
+    animator.ResetTrigger("Jump");
+}
 
 
 }
