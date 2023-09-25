@@ -11,6 +11,8 @@ public Rigidbody rigidbody;
 
 public float rotationSpeed;
 
+public Animator animator;
+
 public Transform combatLookAt;
 
 public CameraStyle currentStyle;
@@ -43,6 +45,8 @@ private void Update()
         if(inputDir != Vector3.zero)
         playerObject.forward = Vector3.Slerp(playerObject.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
 
+        animator.SetBool("IsInCombat", false);
+
         
     }
 
@@ -52,6 +56,21 @@ private void Update()
         orientation.forward = dirToCombatLookAt.normalized;
 
         playerObject.forward = dirToCombatLookAt.normalized;
+
+        //Detect player's input for left and right
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        //Check if the player is moving left or right
+        bool isMovingLeft = horizontalInput < 0f;
+        bool isMovingRight = horizontalInput > 0f;
+
+        //Set the combatmoving parameter in the animator
+        animator.SetBool("IsCombatMovingLeft", isMovingLeft);
+        animator.SetBool("IsCombatMovingRight", isMovingRight);
+        animator.SetBool("IsInCombat", true);
+
     }
     //different camera styles
     void SwitchCameraStyle(CameraStyle newStyle)
