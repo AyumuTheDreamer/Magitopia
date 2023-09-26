@@ -55,15 +55,10 @@ public KeyCode jumpKey = KeyCode.Space;
             rb.drag = 0;
             
           
-        animator.SetBool("Grounded", grounded);
+      //  animator.SetBool("Grounded", grounded);
         float speed = rb.velocity.magnitude;
         animator.SetFloat("Speed", speed);
-        
-         
-
-            
-
-        
+     
        
     }
     void FixedUpdate()
@@ -76,56 +71,60 @@ public KeyCode jumpKey = KeyCode.Space;
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
-        {
-            readyToJump = false;
-            Jump();
-            animator.SetTrigger("Jump");
-            Invoke(nameof(ResetJump), jumpCooldown);
-             Invoke(nameof(ResetJumpTrigger), jumpCooldown + 0.2f);
-        }
+        //if(Input.GetKey(jumpKey) && readyToJump && grounded)
+       // {
+      //      readyToJump = false;
+     //       Jump();
+      //      animator.SetTrigger("Jump");
+      //      Invoke(nameof(ResetJump), jumpCooldown);
+      //       Invoke(nameof(ResetJumpTrigger), jumpCooldown + 0.2f);
+        
     
     }
-
-    private void MovePlayer()
-    {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-        if(grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-
-            else if(!grounded)
-                rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-
-    }
+    
+   
 
     private void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
+     Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+       
         if(flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
-
-    private void Jump()
+   private void MovePlayer()
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        if(grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
+        //    else if(!grounded)
+        //        rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+
+    }
+}
+
+    
+
+   // private void Jump()
+    //{
+   //     rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+   //     rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         
-    }
+  //  }
 
-    private void ResetJump()
-    {
-        readyToJump = true;
-    }
-    private void ResetJumpTrigger()
-{
-    animator.ResetTrigger("Jump");
-}
+  //  private void ResetJump()
+  //  {
+    //    readyToJump = true;
+   // }
+   // private void ResetJumpTrigger()
+//{
+ //   animator.ResetTrigger("Jump");
+//}
 
 
-}
+
