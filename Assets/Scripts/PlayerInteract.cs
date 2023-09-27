@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-   
     public float interactionDistance = 2f;
-    private InteractableObject[] interactableObjects;
+    private GameObject[] interactableObjects;
 
     private void Update()
     {
@@ -17,35 +16,49 @@ public class PlayerInteract : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             // Perform interaction with the nearest object
-            InteractableObject nearestObject = GetNearestObject();
+            GameObject nearestObject = GetNearestObject();
             if (nearestObject != null)
             {
-                nearestObject.Interact();
+                // Check if the nearest object has the "Interactable" tag
+                if (nearestObject.CompareTag("Interactable"))
+                {
+                    // Call the Interact method on the object, which will invoke
+                    // the appropriate interaction logic based on its type.
+                    InteractableObject interactableObject = nearestObject.GetComponent<InteractableObject>();
+                    if (interactableObject != null)
+                    {
+                        interactableObject.Interact();
+                    }
+                }
             }
         }
     }
 
-    private InteractableObject[] GetInteractableObjects()
+    private GameObject[] GetInteractableObjects()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, interactionDistance);
-        InteractableObject[] interactableObjects = new InteractableObject[colliders.Length];
+        List<GameObject> interactableObjectList = new List<GameObject>();
 
-        for (int i = 0; i < colliders.Length; i++)
+        foreach (Collider col in colliders)
         {
-            interactableObjects[i] = colliders[i].GetComponentInChildren<InteractableObject>();
+            // Check if the collider's GameObject has the "Interactable" tag
+            if (col.CompareTag("Interactable"))
+            {
+                interactableObjectList.Add(col.gameObject);
+            }
         }
 
-        return interactableObjects;
+        return interactableObjectList.ToArray();
     }
 
-    private InteractableObject GetNearestObject()
+    private GameObject GetNearestObject()
     {
-        InteractableObject nearestObject = null;
+        GameObject nearestObject = null;
         float nearestDistance = float.MaxValue;
 
-        foreach (InteractableObject obj in interactableObjects)
+        foreach (GameObject obj in interactableObjects)
         {
-            if (obj != null)  // Add a null check
+            if (obj != null)
             {
                 float distance = Vector3.Distance(transform.position, obj.transform.position);
                 if (distance < nearestDistance)
@@ -58,5 +71,4 @@ public class PlayerInteract : MonoBehaviour
 
         return nearestObject;
     }
-
 }
