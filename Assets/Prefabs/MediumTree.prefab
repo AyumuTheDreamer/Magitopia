@@ -4884,7 +4884,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: MediumTree
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7511558181221131132, guid: dc9f0c3c7f514304c8c68a577100e381, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: dc9f0c3c7f514304c8c68a577100e381, type: 3}
@@ -4894,6 +4895,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dc9f0c3c7f514304c8c68a577100e381, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6110033481401554884}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dc9f0c3c7f514304c8c68a577100e381, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7336909990372810981}
   m_SourcePrefab: {fileID: 100100000, guid: dc9f0c3c7f514304c8c68a577100e381, type: 3}
 --- !u!1 &1420681959496798006 stripped
 GameObject:
@@ -4922,6 +4926,48 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8908299743826163017, guid: dc9f0c3c7f514304c8c68a577100e381, type: 3}
+--- !u!23 &-7336909990372810981
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420681959496798006}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2723792694758965118, guid: dc9f0c3c7f514304c8c68a577100e381, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &1800478996235589004 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: dc9f0c3c7f514304c8c68a577100e381, type: 3}
