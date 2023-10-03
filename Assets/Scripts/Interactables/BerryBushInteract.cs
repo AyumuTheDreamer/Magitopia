@@ -9,6 +9,7 @@ public class BerryBushInteract : InteractableObject
     {
         Debug.Log("Interacting with " + gameObject.name);
         animator.SetTrigger("Interact");
+        
 
     }
    

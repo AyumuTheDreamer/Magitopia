@@ -22,9 +22,10 @@ public float jumpCooldown;
 public float airMultiplier;
 public bool readyToJump;
 
-public KeyCode jumpKey = KeyCode.Space;
+public bool isInventoryOpen = false;
 
-    private Animator animator;
+public KeyCode jumpKey = KeyCode.Space;
+private Animator animator;
 
 
 
@@ -35,16 +36,36 @@ public KeyCode jumpKey = KeyCode.Space;
         rb.freezeRotation = true;
 
         animator = GetComponent<Animator>();
-    }
+
+   }
 
 
 
     // Update is called once per frame
     void Update()
     {
+
+         if (isInventoryOpen)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            
+            // Disable player movement and rotation when the inventory is open
+            horizontalInput = 0f;
+            verticalInput = 0f;
+            orientation.rotation = Quaternion.identity;
+        }
+        else
+        {
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         MyInput();
         SpeedControl();
         grounded = Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
+
+       
+        
 
         if (grounded)
         {
@@ -53,12 +74,12 @@ public KeyCode jumpKey = KeyCode.Space;
 
         else
             rb.drag = 0;
-            
+        
           
       //  animator.SetBool("Grounded", grounded);
         float speed = rb.velocity.magnitude;
         animator.SetFloat("Speed", speed);
-     
+        }
        
     }
     void FixedUpdate()
