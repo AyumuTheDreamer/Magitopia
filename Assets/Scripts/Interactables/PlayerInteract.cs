@@ -21,19 +21,20 @@ public class PlayerInteract : MonoBehaviour
             GameObject nearestObject = GetNearestObject();
             if (nearestObject != null)
             {
-                // Check if the nearest object has the "Interactable" tag
                 if (nearestObject.CompareTag("Interactable"))
                 {
-                    // Call the Interact method on the object, which will invoke
-                    // the appropriate interaction logic based on its type.
-                    InteractableObject interactableObject = nearestObject.GetComponent<InteractableObject>();
-                    if (interactableObject != null)
-                    {
-                        interactableObject.Interact();
-                                           
-
-                    }
-
+                    // Handle interaction with objects tagged as "Interactable"
+                    HandleInteractableInteraction(nearestObject);
+                }
+                else if (nearestObject.CompareTag("CropForPickup"))
+                {
+                    // Handle interaction with objects tagged as "CropForPickup"
+                    HandleCropInteraction(nearestObject);
+                }
+                else if (nearestObject.CompareTag("DirtPlot"))
+                {
+                    
+                    HandleDirtPlotInteraction(nearestObject);
                 }
             }
         }
@@ -46,8 +47,7 @@ public class PlayerInteract : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            // Check if the collider's GameObject has the "Interactable" tag
-            if (col.CompareTag("Interactable"))
+            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable"))
             {
                 interactableObjectList.Add(col.gameObject);
             }
@@ -75,5 +75,35 @@ public class PlayerInteract : MonoBehaviour
         }
 
         return nearestObject;
+    }
+
+    private void HandleInteractableInteraction(GameObject interactableObject)
+    {
+        Debug.Log("Interacting with an object");
+    }
+
+    private void HandleCropInteraction(GameObject cropObject)
+    {
+         // Check if the cropObject has the CropInteraction script attached
+    CropInteraction cropInteraction = cropObject.GetComponent<CropInteraction>();
+
+         // Check if the script component was found
+         if (cropInteraction != null)
+          {
+             // Call the Harvest method from CropInteraction
+              cropInteraction.Harvest();
+           }
+    }
+
+    private void HandleDirtPlotInteraction(GameObject dirtPlotObject)
+    {
+       DirtPlotInteraction dirtPlotInteraction = dirtPlotObject.GetComponent<DirtPlotInteraction>();
+        
+    if (dirtPlotInteraction != null)
+    {
+        // Call the appropriate method from DirtPlotInteraction
+        dirtPlotInteraction.InteractWithDirtPlot();
+        Debug.Log("Interacting with " + dirtPlotObject.name);
+    }
     }
 }

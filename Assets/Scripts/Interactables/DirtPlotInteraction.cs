@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public class DirtPlotInteract : InteractableObject
+public class DirtPlotInteraction : InteractableObject
 {
    public Animator animator;
-    public override void Interact()
+    public void InteractWithDirtPlot()
     {
         Debug.Log("Interacting with " + gameObject.name);
         animator.SetTrigger("Plant");
