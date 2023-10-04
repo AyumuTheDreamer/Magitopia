@@ -31,11 +31,11 @@ public class PlayerInteract : MonoBehaviour
                     // Handle interaction with objects tagged as "CropForPickup"
                     HandleCropInteraction(nearestObject);
                 }
-                else if (nearestObject.CompareTag("DirtPlot"))
+                else if (nearestObject.CompareTag("Plantable"))
                 {
-                    
                     HandleDirtPlotInteraction(nearestObject);
                 }
+               
             }
         }
     }
@@ -94,16 +94,23 @@ public class PlayerInteract : MonoBehaviour
               cropInteraction.Harvest();
            }
     }
-
     private void HandleDirtPlotInteraction(GameObject dirtPlotObject)
-    {
-       DirtPlotInteraction dirtPlotInteraction = dirtPlotObject.GetComponent<DirtPlotInteraction>();
-        
-    if (dirtPlotInteraction != null)
+{
+    DirtPlotInteraction dirtPlotInteraction = dirtPlotObject.GetComponent<DirtPlotInteraction>();
+
+    // Check if the script component and tag are found
+    if (dirtPlotInteraction != null && dirtPlotObject.CompareTag("Plantable") && dirtPlotInteraction.isPlantable)
     {
         // Call the appropriate method from DirtPlotInteraction
         dirtPlotInteraction.InteractWithDirtPlot();
         Debug.Log("Interacting with " + dirtPlotObject.name);
     }
+    else
+    {
+        // Handle cases where the dirt plot is not plantable or doesn't have the script/tag
+        Debug.LogWarning("Dirt plot cannot be planted or is missing components.");
     }
+}
+
+    
 }
