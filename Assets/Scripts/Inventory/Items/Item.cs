@@ -12,4 +12,9 @@ public class Item : ScriptableObject
 
     public Sprite icon;
 
+    public bool isStackable;
+    public int maxStackCount;
+
+    public int quantity = 1;
+
 }

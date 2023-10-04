@@ -9,6 +9,8 @@ public class InventoryUI : MonoBehaviour
     // Reference to the PlayerMovement script
     public PlayerMovement playerMovement;
 
+    public InventoryManager inventoryManager;
+
     // Update is called once per frame
     void Update()
     {
@@ -33,6 +35,8 @@ public class InventoryUI : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
+
+            inventoryManager.ToggleInventory(inventoryPanel.activeSelf);
         }
     }
 }
