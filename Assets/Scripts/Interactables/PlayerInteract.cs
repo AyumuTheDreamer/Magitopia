@@ -83,17 +83,22 @@ public class PlayerInteract : MonoBehaviour
     }
 
     private void HandleCropInteraction(GameObject cropObject)
-    {
-         // Check if the cropObject has the CropInteraction script attached
+{
     CropInteraction cropInteraction = cropObject.GetComponent<CropInteraction>();
 
-         // Check if the script component was found
-         if (cropInteraction != null)
-          {
-             // Call the Harvest method from CropInteraction
-              cropInteraction.Harvest();
-           }
+    if (cropInteraction != null)
+    {
+        if (cropInteraction.IsFullyGrown())
+        {
+            // Crop is fully grown and can be harvested
+            cropInteraction.Harvest();
+        }
+        else
+        {
+            Debug.Log("Crop is not fully grown yet.");
+        }
     }
+}
     private void HandleDirtPlotInteraction(GameObject dirtPlotObject)
 {
     DirtPlotInteraction dirtPlotInteraction = dirtPlotObject.GetComponent<DirtPlotInteraction>();

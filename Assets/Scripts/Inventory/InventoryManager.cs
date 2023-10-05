@@ -7,7 +7,6 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
     public List<Item> Items = new List<Item>();
-    
 
     public Transform ItemContent;
     public GameObject InventoryItem;
@@ -19,7 +18,6 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
     }
 
     private void Update()
@@ -30,7 +28,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void Add(Item item)
+   public void Add(Item item)
 {
     if (item.isStackable)
     {
@@ -39,17 +37,30 @@ public class InventoryManager : MonoBehaviour
         {
             if (existingItem.id == item.id && existingItem.quantity < existingItem.maxStackCount)
             {
+                // Calculate the remaining space in the existing stack.
+                int spaceLeftInStack = existingItem.maxStackCount - existingItem.quantity;
+                
+                // Calculate how much can be added to the stack.
+                int quantityToAdd = Mathf.Min(spaceLeftInStack, item.quantity);
+
                 // Increment the quantity of the existing stack.
-                existingItem.quantity++;
-                return; // Exit the method after stacking.
+                existingItem.quantity += quantityToAdd;
+                
+                // Reduce the quantity to be added.
+                item.quantity -= quantityToAdd;
+
+                // Exit the method if the item quantity is now 0.
+                if (item.quantity == 0)
+                {
+                    return;
+                }
             }
         }
     }
 
-    // If the item is not stackable or no stack was found, add it as a new item.
+    // If the item is not stackable or no stack was found, add the remaining quantity as a new item.
     Items.Add(item);
 }
-
 
     public void Remove(Item item)
     {
@@ -57,83 +68,93 @@ public class InventoryManager : MonoBehaviour
     }
 
     public void ListItems()
-{
-    foreach (Transform item in ItemContent)
     {
-        Destroy(item.gameObject);
+        foreach (Transform item in ItemContent)
+        {
+            Destroy(item.gameObject);
+        }
+
+        foreach (var item in Items)
+        {
+            GameObject obj = Instantiate(InventoryItem, ItemContent);
+            var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
+            var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
+
+            itemName.text = item.itemName;
+
+            if (item.isStackable)
+            {
+                // Check if it's a stackable item and set the item count text.
+                var itemCountText = obj.transform.Find("ItemCount").GetComponent<Text>();
+                itemCountText.text = "x" + item.quantity.ToString();
+            }
+            else
+            {
+                // If it's not stackable, hide the item count text (if it exists).
+                var itemCountText = obj.transform.Find("ItemCount").GetComponent<Text>();
+                if (itemCountText != null)
+                {
+                    itemCountText.text = "";
+                }
+            }
+
+            if (EnableRemove.isOn)
+                removeButton.gameObject.SetActive(true);
+        }
     }
 
-    foreach (var item in Items)
+    public void EnableItemsRemove()
     {
-        GameObject obj = Instantiate(InventoryItem, ItemContent);
-        var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
-        var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
-
-        itemName.text = item.itemName;
-
-        if (item.isStackable)
+        if (EnableRemove.isOn)
         {
-            // Check if it's a stackable item and set the item count text.
-            var itemCountText = obj.transform.Find("ItemCount").GetComponent<Text>();
-            itemCountText.text = "x" + item.quantity.ToString();
+            Debug.Log("EnableRemove is ON");
+            foreach (Transform item in ItemContent)
+            {
+                Transform removeButton = item.Find("RemoveButton");
+                if (removeButton != null)
+                {
+                    Debug.Log("Setting RemoveButton active");
+                    removeButton.gameObject.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogWarning("RemoveButton not found in item.");
+                }
+            }
         }
         else
         {
-            // If it's not stackable, hide the item count text (if it exists).
-            var itemCountText = obj.transform.Find("ItemCount").GetComponent<Text>();
-            if (itemCountText != null)
+            Debug.Log("EnableRemove is OFF");
+            foreach (Transform item in ItemContent)
             {
-                itemCountText.text = "";
+                Transform removeButton = item.Find("RemoveButton");
+                if (removeButton != null)
+                {
+                    Debug.Log("Setting RemoveButton inactive");
+                    removeButton.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Debug.LogWarning("RemoveButton not found in item.");
+                }
             }
         }
-
-        if (EnableRemove.isOn)
-            removeButton.gameObject.SetActive(true);
     }
-}
 
-
-    public void EnableItemsRemove()
-{
-    if (EnableRemove.isOn)
+    public Item GetItemByID(string id)
     {
-        Debug.Log("EnableRemove is ON");
-        foreach (Transform item in ItemContent)
+        foreach (var item in Items)
         {
-            Transform removeButton = item.Find("RemoveButton");
-            if (removeButton != null)
+            if (item.id == id)
             {
-                Debug.Log("Setting RemoveButton active");
-                removeButton.gameObject.SetActive(true);
-            }
-            else
-            {
-                Debug.LogWarning("RemoveButton not found in item.");
+                return item;
             }
         }
+        return null;
     }
-    else
-    {
-        Debug.Log("EnableRemove is OFF");
-        foreach (Transform item in ItemContent)
-        {
-            Transform removeButton = item.Find("RemoveButton");
-            if (removeButton != null)
-            {
-                Debug.Log("Setting RemoveButton inactive");
-                removeButton.gameObject.SetActive(false);
-            }
-            else
-            {
-                Debug.LogWarning("RemoveButton not found in item.");
-            }
-        }
-    }
-}
+
     public void ToggleInventory(bool isOpen)
     {
         isInventoryOpen = isOpen;
     }
-
-
 }
