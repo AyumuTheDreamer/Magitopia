@@ -41,7 +41,6 @@ public bool IsFullyGrown()
     {
         // Create a new instance of the Item Scriptable Object
         Item cropItem = ScriptableObject.CreateInstance<Item>();
-        cropItem.id = crop.cropName;
         cropItem.itemName = crop.cropName;
 
         // Determine the harvested quantity based on growth status
@@ -72,6 +71,3 @@ public bool IsFullyGrown()
     }
 }
 }
-
-
-

@@ -17,14 +17,10 @@ public float groundDrag;
 public Transform groundCheck;
 public float groundDistance = 0.4f;
 
-public float jumpForce;
-public float jumpCooldown;
-public float airMultiplier;
-public bool readyToJump;
+
 
 public bool isInventoryOpen = false;
 
-public KeyCode jumpKey = KeyCode.Space;
 private Animator animator;
 
 
@@ -92,13 +88,7 @@ private Animator animator;
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        //if(Input.GetKey(jumpKey) && readyToJump && grounded)
-       // {
-      //      readyToJump = false;
-     //       Jump();
-      //      animator.SetTrigger("Jump");
-      //      Invoke(nameof(ResetJump), jumpCooldown);
-      //       Invoke(nameof(ResetJumpTrigger), jumpCooldown + 0.2f);
+
         
     
     }
@@ -122,30 +112,13 @@ private Animator animator;
         if(grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
-        //    else if(!grounded)
-        //        rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-
+       
     }
 }
 
     
 
-   // private void Jump()
-    //{
-   //     rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-   //     rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        
-  //  }
-
-  //  private void ResetJump()
-  //  {
-    //    readyToJump = true;
-   // }
-   // private void ResetJumpTrigger()
-//{
- //   animator.ResetTrigger("Jump");
-//}
+  
 
 
 

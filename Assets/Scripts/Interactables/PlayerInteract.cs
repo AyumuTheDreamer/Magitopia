@@ -1,44 +1,86 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
     public float interactionDistance = 2f;
     private GameObject[] interactableObjects;
-
+    public AlchemyStationCrafting alchemyStation;
+    public Dropdown recipeDropdown;
+    private List<AlchemyRecipe> availableRecipes = new List<AlchemyRecipe>();
+    public List<AlchemyRecipe> individualRecipes;
+    private int selectedRecipeIndex = 0;
+    public Button craftingButton;
+    public InventoryManager inventoryManager;
+    private AlchemyRecipe selectedRecipe;
     public Animator animator;
 
-    private void Update()
-    {
-        // Check for nearby objects
-        interactableObjects = GetInteractableObjects();
+   private void Start()
+{
+    // Copy the individual recipes to the availableRecipes list.
+    availableRecipes = new List<AlchemyRecipe>(individualRecipes);
 
-        // Check for player input to interact with objects
-        if (Input.GetKeyDown(KeyCode.E))
+    // Populate the UI dropdown with recipe names.
+    PopulateRecipeDropdown();
+}
+    
+private void PopulateRecipeDropdown()
+    {
+        recipeDropdown.ClearOptions();
+
+        List<string> recipeNames = new List<string>();
+        foreach (AlchemyRecipe recipe in availableRecipes)
         {
-            // Perform interaction with the nearest object
-            GameObject nearestObject = GetNearestObject();
-            if (nearestObject != null)
+            recipeNames.Add(recipe.name);
+        }
+
+        recipeDropdown.AddOptions(recipeNames);
+    }
+
+    private void UpdateSelectedRecipe()
+    {
+        // Update the selected recipe based on the dropdown's value.
+        selectedRecipeIndex = recipeDropdown.value;
+    }
+
+    private void Update()
+{
+    // Check for nearby objects
+    interactableObjects = GetInteractableObjects();
+
+    // Check for player input to interact with objects
+    if (Input.GetKeyDown(KeyCode.E))
+    {
+        // Perform interaction with the nearest object
+        GameObject nearestObject = GetNearestObject();
+        if (nearestObject != null)
+        {
+            if (nearestObject.CompareTag("Interactable"))
             {
-                if (nearestObject.CompareTag("Interactable"))
-                {
-                    // Handle interaction with objects tagged as "Interactable"
-                    HandleInteractableInteraction(nearestObject);
-                }
-                else if (nearestObject.CompareTag("CropForPickup"))
-                {
-                    // Handle interaction with objects tagged as "CropForPickup"
-                    HandleCropInteraction(nearestObject);
-                }
-                else if (nearestObject.CompareTag("Plantable"))
-                {
-                    HandleDirtPlotInteraction(nearestObject);
-                }
-               
+                // Handle interaction with objects tagged as "Interactable"
+                HandleInteractableInteraction(nearestObject);
             }
+            else if (nearestObject.CompareTag("CropForPickup"))
+            {
+                // Handle interaction with objects tagged as "CropForPickup"
+                HandleCropInteraction(nearestObject);
+            }
+            else if (nearestObject.CompareTag("Plantable"))
+            {
+                HandleDirtPlotInteraction(nearestObject);
+            }
+            else if (nearestObject.CompareTag("AlchemyStation"))
+            {
+            // Handle interaction with objects tagged as "AlchemyStation"
+                HandleAlchemyStationInteraction(nearestObject);
+             }
+           
         }
     }
+}
+
 
     private GameObject[] GetInteractableObjects()
     {
@@ -47,7 +89,7 @@ public class PlayerInteract : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable"))
+            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation"))
             {
                 interactableObjectList.Add(col.gameObject);
             }
@@ -79,7 +121,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void HandleInteractableInteraction(GameObject interactableObject)
     {
-        Debug.Log("Interacting with an object");
+       Debug.Log("Interacting with " + gameObject.name);
     }
 
     private void HandleCropInteraction(GameObject cropObject)
@@ -117,5 +159,55 @@ public class PlayerInteract : MonoBehaviour
     }
 }
 
-    
+private void HandleAlchemyStationInteraction(GameObject alchemyStationObject)
+    {
+        if (alchemyStationObject != null)
+        {
+            // Open the UI for alchemy station
+            alchemyStation.Interact();
+            inventoryManager.ListItems();
+            // You can also close the UI if it's open by calling alchemyStation.Interact() again.
+        }
+        else
+        {
+            Debug.LogWarning("AlchemyStationCrafting component not found.");
+        }
+    }
+
+private void InteractWithAlchemyStation()
+{
+    // Set the recipe to craft in the AlchemyStationCrafting script.
+    alchemyStation.recipeToCraft = selectedRecipe;
+
+    // Call the AlchemyStationCrafting's CraftItem method using the button click handler.
+
+    // Now, call the HandleAlchemyStationInteraction method with only one argument.
+    HandleAlchemyStationInteraction(alchemyStation.gameObject);
 }
+
+public void CraftButtonClicked()
+{
+    // Call the InitiateCrafting method when the UI button is clicked.
+    InitiateCrafting();
+}
+
+public void InitiateCrafting()
+{
+    if (selectedRecipeIndex >= 0 && selectedRecipeIndex < availableRecipes.Count)
+    {
+        // Get the selected recipe based on the index.
+        AlchemyRecipe selectedRecipe = availableRecipes[selectedRecipeIndex];
+
+        // Call the CraftItem method in InventoryManager with the selected recipe.
+        if (selectedRecipe != null)
+        {
+            inventoryManager.CraftItem(selectedRecipe);
+        }
+        else
+        {
+            Debug.LogWarning("Selected recipe is null.");
+        }
+    }
+}
+}
+

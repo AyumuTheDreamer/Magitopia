@@ -7,6 +7,7 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
     public List<Item> Items = new List<Item>();
+    public List<Item> inventoryItems = new List<Item>();
 
     public Transform ItemContent;
     public GameObject InventoryItem;
@@ -152,6 +153,56 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
     }
+
+    
+   public bool CraftItem(AlchemyRecipe recipe)
+{
+    if (recipe == null)
+    {
+        Debug.LogError("CraftItem called with a null recipe.");
+        return false;
+    }
+
+    foreach (HarvestableCrop requiredIngredient in recipe.requiredIngredients)
+    {
+        string requiredItemName = requiredIngredient.itemName;
+        int requiredQuantity = requiredIngredient.quantity;
+
+        // Find the item in the player's inventory that matches the required ingredient
+        Item matchingItem = Items.Find(item => item.itemName == requiredItemName);
+
+        if (matchingItem == null)
+        {
+            Debug.LogWarning("Player doesn't have the required ingredient: " + requiredItemName);
+            return false; // Exit early because the required item is missing.
+        }
+
+        // Check if there's enough quantity of the required ingredient.
+        if (matchingItem.quantity < requiredQuantity)
+        {
+            Debug.LogWarning("Player doesn't have enough of the required ingredient: " + requiredItemName);
+            return false; // Exit early because there's not enough of the required item.
+        }
+
+        // Deduct the required quantity from the matching item.
+        matchingItem.quantity -= requiredQuantity;
+
+        // If the item is no longer stackable, remove it from the inventory if its quantity reaches 0.
+        if (!matchingItem.isStackable && matchingItem.quantity <= 0)
+        {
+            Items.Remove(matchingItem);
+        }
+    }
+
+    // Now that the crafting is successful, add the crafted item to the inventory
+    Item craftedItem = recipe.resultingPotion;
+    craftedItem.quantity = 1; // Assuming crafting always results in 1 item, adjust as needed
+
+    Items.Add(craftedItem);
+    ListItems();
+
+    return true;
+}
 
     public void ToggleInventory(bool isOpen)
     {
