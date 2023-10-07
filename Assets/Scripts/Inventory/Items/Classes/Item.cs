@@ -5,12 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item",menuName ="Item/Create New Item")]
 public class Item : ScriptableObject
 {
-    
+    public string id; // Match this with your actual ID variable.
     public string itemName;
     public int value;
     public Sprite icon;
     public int maxStackCount;
-    public string id; // Match this with your actual ID variable.
     public int quantity; // Match this with your actual quantity variable.
     public bool isStackable; // Match this with your actual isStackable variable.
 

@@ -2506,7 +2506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8789801983484957438, guid: d4194ce1c50f9d54f9e56f3257401a76, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8789801983484957438, guid: d4194ce1c50f9d54f9e56f3257401a76, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5235,6 +5235,79 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1019384159}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1021219932
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400196142014972170, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 87901165}
+    - target: {fileID: 400196142014972170, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1190667871}
+    - target: {fileID: 2920221728660204318, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_Name
+      value: Drake Claw Plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920221728660204318, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_TagString
+      value: CropForPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752714108862856037, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752714108862856037, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.320876
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752714108862856037, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.893258
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752714108862856037, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.439204
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752714108862856037, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752714108862856037, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752714108862856037, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752714108862856037, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752714108862856037, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752714108862856037, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752714108862856037, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ff06c38767b45c24f88c7d71721031af, type: 3}
 --- !u!1 &1031421891
 GameObject:
   m_ObjectHideFlags: 0
@@ -6112,7 +6185,9 @@ MonoBehaviour:
   inventoryManager: {fileID: 1190667871}
   recipes:
   - {fileID: 11400000, guid: 3ee12d6286bf80e48b68442c9605593d, type: 2}
-  recipeToCraft: {fileID: 11400000, guid: 3ee12d6286bf80e48b68442c9605593d, type: 2}
+  - {fileID: 11400000, guid: 5a519d6167bd47e44af9e970256c9168, type: 2}
+  dropdown: {fileID: 326596378}
+  recipeToCraft: {fileID: 0}
 --- !u!1 &1190667870
 GameObject:
   m_ObjectHideFlags: 0
@@ -6143,10 +6218,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Items: []
-  inventoryItems: []
   ItemContent: {fileID: 605680313}
   InventoryItem: {fileID: 8703885765495941419, guid: a6e2d6cacfa078142a9b9643a7d42ab3, type: 3}
+  recipeToCraft: {fileID: 0}
   EnableRemove: {fileID: 454281382}
+  playerInteract: {fileID: 4439883926245626492}
 --- !u!4 &1190667872
 Transform:
   m_ObjectHideFlags: 0
@@ -13823,7 +13899,6 @@ GameObject:
   - component: {fileID: 1962310714}
   - component: {fileID: 1962310713}
   - component: {fileID: 1962310712}
-  - component: {fileID: 1962310715}
   m_Layer: 5
   m_Name: CraftingButton
   m_TagString: Untagged
@@ -13896,9 +13971,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1962310715}
-        m_TargetAssemblyTypeName: CraftButtonHandler, Assembly-CSharp
-        m_MethodName: OnCraftButtonClick
+      - m_Target: {fileID: 4439883926245626492}
+        m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
+        m_MethodName: CraftButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13946,20 +14021,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962310710}
   m_CullTransparentMesh: 1
---- !u!114 &1962310715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962310710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eecb34ed24011343a9b5e163bbd24bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryManager: {fileID: 1190667871}
-  recipeToCraft: {fileID: 11400000, guid: 3ee12d6286bf80e48b68442c9605593d, type: 2}
 --- !u!1 &1984834277
 GameObject:
   m_ObjectHideFlags: 0
@@ -14553,6 +14614,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4486717272605013115, guid: ffba10acf807e91428a21fa6d9fcd6c2, type: 3}
+      propertyPath: crop
+      value: 
+      objectReference: {fileID: 11400000, guid: 5fad64f5242fcfb4fb4dcc809d47adc6, type: 2}
+    - target: {fileID: 4486717272605013115, guid: ffba10acf807e91428a21fa6d9fcd6c2, type: 3}
       propertyPath: animator
       value: 
       objectReference: {fileID: 87901165}
@@ -14576,6 +14641,26 @@ PrefabInstance:
       propertyPath: harvestedQuantity
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4486717272605013115, guid: ffba10acf807e91428a21fa6d9fcd6c2, type: 3}
+      propertyPath: growthStages.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486717272605013115, guid: ffba10acf807e91428a21fa6d9fcd6c2, type: 3}
+      propertyPath: growthStages.Array.data[0].model
+      value: 
+      objectReference: {fileID: 961606552}
+    - target: {fileID: 4486717272605013115, guid: ffba10acf807e91428a21fa6d9fcd6c2, type: 3}
+      propertyPath: growthStages.Array.data[1].model
+      value: 
+      objectReference: {fileID: 449798121}
+    - target: {fileID: 4486717272605013115, guid: ffba10acf807e91428a21fa6d9fcd6c2, type: 3}
+      propertyPath: growthStages.Array.data[0].growthTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486717272605013115, guid: ffba10acf807e91428a21fa6d9fcd6c2, type: 3}
+      propertyPath: growthStages.Array.data[1].growthTime
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7160708259738463230, guid: ffba10acf807e91428a21fa6d9fcd6c2, type: 3}
       propertyPath: m_Name
       value: Heartfelt Bush
@@ -14590,7 +14675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7499657305967489348, guid: ffba10acf807e91428a21fa6d9fcd6c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.0744977
+      value: 2.966
       objectReference: {fileID: 0}
     - target: {fileID: 7499657305967489348, guid: ffba10acf807e91428a21fa6d9fcd6c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14707,12 +14792,16 @@ PrefabInstance:
       objectReference: {fileID: 1190667871}
     - target: {fileID: 6119407483668525858, guid: 4bf6cae26d04cf346bd61c0bc3bc4276, type: 3}
       propertyPath: individualRecipes.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6119407483668525858, guid: 4bf6cae26d04cf346bd61c0bc3bc4276, type: 3}
       propertyPath: individualRecipes.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 3ee12d6286bf80e48b68442c9605593d, type: 2}
+    - target: {fileID: 6119407483668525858, guid: 4bf6cae26d04cf346bd61c0bc3bc4276, type: 3}
+      propertyPath: individualRecipes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a519d6167bd47e44af9e970256c9168, type: 2}
     - target: {fileID: 9049402463542339263, guid: 4bf6cae26d04cf346bd61c0bc3bc4276, type: 3}
       propertyPath: inventoryPanel
       value: 
@@ -14739,6 +14828,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eea86b453e69044f815da33b13bbd3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4439883926245626492 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6119407483668525858, guid: 4bf6cae26d04cf346bd61c0bc3bc4276, type: 3}
+  m_PrefabInstance: {fileID: 4439883926245626485}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29aff8e3b6ae89541993aa030c140488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6708997451200569387

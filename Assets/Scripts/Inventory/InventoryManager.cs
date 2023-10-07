@@ -7,19 +7,20 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
     public List<Item> Items = new List<Item>();
-    public List<Item> inventoryItems = new List<Item>();
 
     public Transform ItemContent;
     public GameObject InventoryItem;
-
+    public AlchemyRecipe recipeToCraft;
     public Toggle EnableRemove;
-
     private bool isInventoryOpen = false;
+    public PlayerInteract playerInteract;
 
     private void Awake()
     {
+      
         Instance = this;
     }
+
 
     private void Update()
     {
@@ -28,45 +29,52 @@ public class InventoryManager : MonoBehaviour
             ListItems();
         }
     }
+    public void SetRecipeToCraft(AlchemyRecipe newRecipe)
+{
+    recipeToCraft = newRecipe;
+}
 
-   public void Add(Item item)
+  public void Add(Item item)
 {
     if (item.isStackable)
     {
         // Check if there's an existing stack of this item in the inventory.
-        foreach (var existingItem in Items)
+        Item existingItem = Items.Find(i => i.id == item.id);
+
+        if (existingItem != null && existingItem.quantity < existingItem.maxStackCount)
         {
-            if (existingItem.id == item.id && existingItem.quantity < existingItem.maxStackCount)
+            // Calculate the remaining space in the existing stack.
+            int spaceLeftInStack = existingItem.maxStackCount - existingItem.quantity;
+
+            // Calculate how much can be added to the stack.
+            int quantityToAdd = Mathf.Min(spaceLeftInStack, item.quantity);
+
+            // Increment the quantity of the existing stack.
+            existingItem.quantity += quantityToAdd;
+
+            // Reduce the quantity to be added.
+            item.quantity -= quantityToAdd;
+
+            // Exit the method if the item quantity is now 0.
+            if (item.quantity == 0)
             {
-                // Calculate the remaining space in the existing stack.
-                int spaceLeftInStack = existingItem.maxStackCount - existingItem.quantity;
-                
-                // Calculate how much can be added to the stack.
-                int quantityToAdd = Mathf.Min(spaceLeftInStack, item.quantity);
-
-                // Increment the quantity of the existing stack.
-                existingItem.quantity += quantityToAdd;
-                
-                // Reduce the quantity to be added.
-                item.quantity -= quantityToAdd;
-
-                // Exit the method if the item quantity is now 0.
-                if (item.quantity == 0)
-                {
-                    return;
-                }
+                return;
             }
         }
     }
 
-    // If the item is not stackable or no stack was found, add the remaining quantity as a new item.
+    // If the item is not stackable or no stack was found, add it as a new item.
     Items.Add(item);
 }
 
-    public void Remove(Item item)
+  public void Remove(Item item)
+{
+    if (item.quantity <= 0)
     {
         Items.Remove(item);
+        ListItems(); // Update the inventory UI after removing the item
     }
+}
 
     public void ListItems()
     {
@@ -154,16 +162,18 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
-    
-   public bool CraftItem(AlchemyRecipe recipe)
+
+  public bool CraftItem(AlchemyRecipe recipeToCraft)
 {
-    if (recipe == null)
+    // Check if the selected recipe is null.
+    if (recipeToCraft == null)
     {
         Debug.LogError("CraftItem called with a null recipe.");
         return false;
     }
 
-    foreach (HarvestableCrop requiredIngredient in recipe.requiredIngredients)
+    // Check if the player has all the required ingredients
+    foreach (HarvestableCrop requiredIngredient in recipeToCraft.requiredIngredients)
     {
         string requiredItemName = requiredIngredient.itemName;
         int requiredQuantity = requiredIngredient.quantity;
@@ -171,38 +181,57 @@ public class InventoryManager : MonoBehaviour
         // Find the item in the player's inventory that matches the required ingredient
         Item matchingItem = Items.Find(item => item.itemName == requiredItemName);
 
-        if (matchingItem == null)
-        {
-            Debug.LogWarning("Player doesn't have the required ingredient: " + requiredItemName);
-            return false; // Exit early because the required item is missing.
-        }
-
-        // Check if there's enough quantity of the required ingredient.
-        if (matchingItem.quantity < requiredQuantity)
+        if (matchingItem == null || matchingItem.quantity < requiredQuantity)
         {
             Debug.LogWarning("Player doesn't have enough of the required ingredient: " + requiredItemName);
             return false; // Exit early because there's not enough of the required item.
         }
+    }
 
-        // Deduct the required quantity from the matching item.
-        matchingItem.quantity -= requiredQuantity;
+    // Deduct the required quantities from the inventory
+    foreach (HarvestableCrop requiredIngredient in recipeToCraft.requiredIngredients)
+    {
+        string requiredItemName = requiredIngredient.itemName;
+        int requiredQuantity = requiredIngredient.quantity;
 
-        // If the item is no longer stackable, remove it from the inventory if its quantity reaches 0.
-        if (!matchingItem.isStackable && matchingItem.quantity <= 0)
+        Item matchingItem = Items.Find(item => item.itemName == requiredItemName);
+
+        if (matchingItem != null)
         {
-            Items.Remove(matchingItem);
+            matchingItem.quantity -= requiredQuantity;
+
+            // If the item is no longer stackable, remove it from the inventory if its quantity reaches 0.
+            if (matchingItem.quantity <= 0)
+            {
+                Remove(matchingItem);
+                Debug.Log("Removed item: " + requiredItemName);
+            }
         }
     }
 
-    // Now that the crafting is successful, add the crafted item to the inventory
-    Item craftedItem = recipe.resultingPotion;
-    craftedItem.quantity = 1; // Assuming crafting always results in 1 item, adjust as needed
+    // Try to find the crafted item in the inventory
+    Item craftedItem = Items.Find(item => item.id == recipeToCraft.resultingPotion.id);
 
-    Items.Add(craftedItem);
+    if (craftedItem != null)
+    {
+        // If the crafted item exists, increment its quantity by 1
+        craftedItem.quantity++;
+    }
+    else
+    {
+        // If the crafted item doesn't exist, create a new one with quantity 1 and add it to the inventory
+        Item newCraftedItem = recipeToCraft.resultingPotion;
+        newCraftedItem.quantity = 1;
+        Items.Add(newCraftedItem);
+    }
+
     ListItems();
 
-    return true;
+    return true; // Return true to indicate a successful crafting operation.
 }
+
+
+
 
     public void ToggleInventory(bool isOpen)
     {

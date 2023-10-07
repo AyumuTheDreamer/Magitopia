@@ -15,35 +15,49 @@ public class PlayerInteract : MonoBehaviour
     public Button craftingButton;
     public InventoryManager inventoryManager;
     private AlchemyRecipe selectedRecipe;
+    public AlchemyRecipe recipeToCraft;
     public Animator animator;
 
    private void Start()
 {
     // Copy the individual recipes to the availableRecipes list.
     availableRecipes = new List<AlchemyRecipe>(individualRecipes);
-
-    // Populate the UI dropdown with recipe names.
+    craftingButton.onClick.AddListener(CraftButtonClicked);
+    recipeDropdown.onValueChanged.AddListener(OnRecipeDropdownValueChanged);
     PopulateRecipeDropdown();
+
+    // Initially select the first recipe (or another default if needed).
+    if (availableRecipes.Count > 0)
+    {
+        selectedRecipeIndex = 0;
+        selectedRecipe = availableRecipes[selectedRecipeIndex];
+        recipeToCraft = selectedRecipe;
+        recipeDropdown.value = selectedRecipeIndex;
+        Debug.Log("Selected Recipe: " + recipeToCraft.name);
+    }
 }
-    
 private void PopulateRecipeDropdown()
+{
+    recipeDropdown.ClearOptions();
+
+    List<string> recipeNames = new List<string>();
+    foreach (AlchemyRecipe recipe in availableRecipes)
     {
-        recipeDropdown.ClearOptions();
-
-        List<string> recipeNames = new List<string>();
-        foreach (AlchemyRecipe recipe in availableRecipes)
-        {
-            recipeNames.Add(recipe.name);
-        }
-
-        recipeDropdown.AddOptions(recipeNames);
+        recipeNames.Add(recipe.name);
     }
 
-    private void UpdateSelectedRecipe()
+    recipeDropdown.AddOptions(recipeNames);
+}
+     private void UpdateSelectedRecipe()
+{
+    // Update the selected recipe based on the dropdown's value.
+    selectedRecipeIndex = recipeDropdown.value;
+
+    if (selectedRecipeIndex >= 0 && selectedRecipeIndex < availableRecipes.Count)
     {
-        // Update the selected recipe based on the dropdown's value.
-        selectedRecipeIndex = recipeDropdown.value;
+        selectedRecipe = availableRecipes[selectedRecipeIndex];
     }
+}
 
     private void Update()
 {
@@ -184,30 +198,37 @@ private void InteractWithAlchemyStation()
     // Now, call the HandleAlchemyStationInteraction method with only one argument.
     HandleAlchemyStationInteraction(alchemyStation.gameObject);
 }
+ public void OnRecipeDropdownValueChanged(int value)
+{
+    // Update the selected recipe based on the index
+    if (value >= 0 && value < availableRecipes.Count)
+    {
+        // Update the selected recipe in the PlayerInteract script
+        selectedRecipeIndex = value;
+        selectedRecipe = availableRecipes[selectedRecipeIndex];
+        recipeToCraft = selectedRecipe; // Update the recipeToCraft field
+
+        Debug.Log("Selected Recipe (PlayerInteract): " + recipeToCraft.name);
+    }
+}
+private void SetRecipeForCrafting(AlchemyRecipe newRecipe)
+    {
+        inventoryManager.SetRecipeToCraft(newRecipe);
+    }
 
 public void CraftButtonClicked()
 {
-    // Call the InitiateCrafting method when the UI button is clicked.
-    InitiateCrafting();
-}
-
-public void InitiateCrafting()
-{
-    if (selectedRecipeIndex >= 0 && selectedRecipeIndex < availableRecipes.Count)
+    // Check if recipeToCraft is not null before crafting.
+    if (recipeToCraft != null)
     {
-        // Get the selected recipe based on the index.
-        AlchemyRecipe selectedRecipe = availableRecipes[selectedRecipeIndex];
-
-        // Call the CraftItem method in InventoryManager with the selected recipe.
-        if (selectedRecipe != null)
-        {
-            inventoryManager.CraftItem(selectedRecipe);
-        }
-        else
-        {
-            Debug.LogWarning("Selected recipe is null.");
-        }
+        inventoryManager.CraftItem(recipeToCraft);
+    }
+    else
+    {
+        Debug.LogWarning("No recipe selected for crafting.");
     }
 }
+
+
 }
 
