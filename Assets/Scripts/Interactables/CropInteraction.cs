@@ -13,7 +13,6 @@ public class CropInteraction : MonoBehaviour
     public HarvestableCrop crop;
     public Animator animator;
     public InventoryManager inventoryManager;
-     // Add these variables
     public GameObject immatureModel;
     public GameObject fullyGrownModel;
     public int harvestedQuantity = 5; // Initialize harvestedQuantity
@@ -67,7 +66,7 @@ public void Harvest()
         Item cropItem = ScriptableObject.CreateInstance<Item>();
         cropItem.itemName = crop.cropName;
         cropItem.id = "Crop_" + crop.cropName;
-
+        cropItem.itemIcon = crop.itemIcon;
         // Determine the harvested quantity based on the current growth stage
         if (IsFullyGrown())
         {

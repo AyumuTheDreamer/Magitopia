@@ -8,7 +8,7 @@ public class Item : ScriptableObject
     public string id; // Match this with your actual ID variable.
     public string itemName;
     public int value;
-    public Sprite icon;
+    public Sprite itemIcon;
     public int maxStackCount;
     public int quantity; // Match this with your actual quantity variable.
     public bool isStackable; // Match this with your actual isStackable variable.

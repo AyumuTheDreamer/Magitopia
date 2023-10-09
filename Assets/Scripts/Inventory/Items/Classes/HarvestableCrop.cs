@@ -13,6 +13,7 @@ public class HarvestableCrop : ScriptableObject
     public string cropName;
     public string itemName;
     public int growthTime;
+    public Sprite itemIcon;
     public GameObject[] growthStages; // Array of GameObjects representing different growth stages.
 
     

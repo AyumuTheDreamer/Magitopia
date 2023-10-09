@@ -88,8 +88,12 @@ public class InventoryManager : MonoBehaviour
             GameObject obj = Instantiate(InventoryItem, ItemContent);
             var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
             var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
+            var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+           
 
             itemName.text = item.itemName;
+            itemIcon.sprite = item.itemIcon;
+
 
             if (item.isStackable)
             {
