@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
@@ -14,13 +14,20 @@ public class InventoryManager : MonoBehaviour
     public Toggle EnableRemove;
     private bool isInventoryOpen = false;
     public PlayerInteract playerInteract;
-
+    public CurrencyManager currencyManager;
+    public Text currencyText;
+    public Button sellButton;
     private void Awake()
     {
       
         Instance = this;
     }
-
+    private void Start()
+    {
+        // Add an onClick event to the sell button in the item prefab.
+        Button sellButton = InventoryItem.transform.Find("SellButton").GetComponent<Button>();
+        sellButton.onClick.AddListener(SellItemOnClick);
+    }
 
     private void Update()
     {
@@ -89,6 +96,7 @@ public class InventoryManager : MonoBehaviour
             var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
             var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
             var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+            var sellButton = obj.transform.Find("SellButton").GetComponent<Button>();
            
 
             itemName.text = item.itemName;
@@ -113,7 +121,9 @@ public class InventoryManager : MonoBehaviour
 
             if (EnableRemove.isOn)
                 removeButton.gameObject.SetActive(true);
-        }
+            }
+            
+            
     }
 
     public void EnableItemsRemove()
@@ -230,15 +240,48 @@ public class InventoryManager : MonoBehaviour
     }
 
     ListItems();
-
     return true; // Return true to indicate a successful crafting operation.
-}
-
-
+  
+    }
 
 
     public void ToggleInventory(bool isOpen)
     {
         isInventoryOpen = isOpen;
     }
+
+    public void BuyItem(Item item)
+    {
+        if (CurrencyManager.Instance.DeductCurrency(item.value))
+        {
+            Add(item);
+        }
+        else
+        {
+            Debug.LogWarning("Not enough currency to buy " + item.itemName);
+        }
+
+    }
+    public void SellItem(Item item)
+    {
+        CurrencyManager.Instance.AddCurrency(item.value);
+        Remove(item);
+    }
+
+    private void SellItemOnClick()
+{
+    GameObject clickedItem = EventSystem.current.currentSelectedGameObject;
+    if (clickedItem != null)
+    {
+        // Get the Item component from the clicked item
+        Item itemToSell = clickedItem.GetComponent<Item>();
+
+        if (itemToSell != null)
+        {
+            SellItem(itemToSell);
+        }
+    }
+}
+
+
 }

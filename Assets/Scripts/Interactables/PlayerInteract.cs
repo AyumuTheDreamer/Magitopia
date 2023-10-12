@@ -17,6 +17,9 @@ public class PlayerInteract : MonoBehaviour
     private AlchemyRecipe selectedRecipe;
     public AlchemyRecipe recipeToCraft;
     public Animator animator;
+    public Button sellButton;
+    public DirtPlotManager dirtPlotManager;
+    public GameObject cropPrefab;
 
    private void Start()
 {
@@ -82,14 +85,18 @@ private void PopulateRecipeDropdown()
                 HandleCropInteraction(nearestObject);
             }
             else if (nearestObject.CompareTag("Plantable"))
-            {
-                HandleDirtPlotInteraction(nearestObject);
-            }
+                {
+                    HandleDirtPlotInteraction(nearestObject);
+                }
             else if (nearestObject.CompareTag("AlchemyStation"))
             {
             // Handle interaction with objects tagged as "AlchemyStation"
                 HandleAlchemyStationInteraction(nearestObject);
              }
+             else if (nearestObject.CompareTag("ShopSell"))
+                {
+                    HandleShopSellInteraction(nearestObject);
+                }
            
         }
     }
@@ -157,21 +164,25 @@ private void PopulateRecipeDropdown()
 }
     private void HandleDirtPlotInteraction(GameObject dirtPlotObject)
 {
-    DirtPlotInteraction dirtPlotInteraction = dirtPlotObject.GetComponent<DirtPlotInteraction>();
+    DirtPlotManager dirtPlotManager = dirtPlotObject.GetComponent<DirtPlotManager>();
 
-    // Check if the script component and tag are found
-    if (dirtPlotInteraction != null && dirtPlotObject.CompareTag("Plantable") && dirtPlotInteraction.isPlantable)
+    if (dirtPlotManager != null)
     {
-        // Call the appropriate method from DirtPlotInteraction
-        dirtPlotInteraction.InteractWithDirtPlot();
-        Debug.Log("Interacting with " + dirtPlotObject.name);
-    }
-    else
-    {
-        // Handle cases where the dirt plot is not plantable or doesn't have the script/tag
-        Debug.LogWarning("Dirt plot cannot be planted or is missing components.");
+        if (dirtPlotManager.IsPlantable())
+        {
+            // Plant a crop in the dirt plot
+            dirtPlotManager.PlantCrop();
+        }
+        else
+        {
+            // Harvest the crop from the dirt plot
+            dirtPlotManager.HarvestCrop();
+        }
     }
 }
+
+
+
 
 private void HandleAlchemyStationInteraction(GameObject alchemyStationObject)
     {
@@ -228,6 +239,10 @@ public void CraftButtonClicked()
         Debug.LogWarning("No recipe selected for crafting.");
     }
 }
+    private void HandleShopSellInteraction(GameObject shopObject)
+    {
+        Debug.Log("Shop");
+    }
 
 
 }

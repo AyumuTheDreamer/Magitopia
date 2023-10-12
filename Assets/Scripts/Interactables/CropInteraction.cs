@@ -99,4 +99,16 @@ public void Harvest()
         inventoryManager.Add(cropItem);
     }
 }
+public void ResetGrowth()
+{
+    currentGrowthStage = 0;
+    currentGrowthTime = 0f;
+    
+    // Deactivate all growth stage models except the first one
+    for (int i = 1; i < growthStages.Length; i++)
+    {
+        growthStages[i].model.SetActive(false);
+    }
+}
+
 }
