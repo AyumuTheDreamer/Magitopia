@@ -17,6 +17,7 @@ public class InventoryManager : MonoBehaviour
     public CurrencyManager currencyManager;
     public Text currencyText;
     public Button sellButton;
+    
     private void Awake()
     {
       
@@ -24,17 +25,12 @@ public class InventoryManager : MonoBehaviour
     }
     private void Start()
     {
-        // Add an onClick event to the sell button in the item prefab.
-        Button sellButton = InventoryItem.transform.Find("SellButton").GetComponent<Button>();
-        sellButton.onClick.AddListener(SellItemOnClick);
+      
     }
 
     private void Update()
     {
-        if (isInventoryOpen)
-        {
-            ListItems();
-        }
+       
     }
     public void SetRecipeToCraft(AlchemyRecipe newRecipe)
 {
@@ -43,6 +39,7 @@ public class InventoryManager : MonoBehaviour
 
   public void Add(Item item)
 {
+    ListItems();
     if (item.isStackable)
     {
         // Check if there's an existing stack of this item in the inventory.
@@ -72,6 +69,7 @@ public class InventoryManager : MonoBehaviour
 
     // If the item is not stackable or no stack was found, add it as a new item.
     Items.Add(item);
+    
 }
 
   public void Remove(Item item)
@@ -81,6 +79,12 @@ public class InventoryManager : MonoBehaviour
         Items.Remove(item);
         ListItems(); // Update the inventory UI after removing the item
     }
+    
+    
+        Items.Remove(item);
+        ListItems();
+    
+    
 }
 
     public void ListItems()
@@ -264,24 +268,9 @@ public class InventoryManager : MonoBehaviour
     }
     public void SellItem(Item item)
     {
-        CurrencyManager.Instance.AddCurrency(item.value);
-        Remove(item);
+    CurrencyManager.Instance.AddCurrency(item.value);
+    Remove(item);
     }
-
-    private void SellItemOnClick()
-{
-    GameObject clickedItem = EventSystem.current.currentSelectedGameObject;
-    if (clickedItem != null)
-    {
-        // Get the Item component from the clicked item
-        Item itemToSell = clickedItem.GetComponent<Item>();
-
-        if (itemToSell != null)
-        {
-            SellItem(itemToSell);
-        }
-    }
-}
 
 
 }

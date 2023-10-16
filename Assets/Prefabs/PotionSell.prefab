@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 7967967349477522907}
   - component: {fileID: 4497963464448282465}
   - component: {fileID: 1084541518141315489}
-  - component: {fileID: 7887658990492180537}
+  - component: {fileID: 2231250961673632411}
+  - component: {fileID: 7961140683978058260}
   m_Layer: 0
   m_Name: PotionSell
-  m_TagString: Untagged
+  m_TagString: ShopSell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4497963464448282465
 MeshFilter:
@@ -89,8 +90,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7887658990492180537
-MeshCollider:
+--- !u!65 &2231250961673632411
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -107,7 +108,21 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -748244684350474592, guid: b68e3484dd488ab4f839dd885d744b03, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.4375, y: 1.04375, z: 1.18}
+  m_Center: {x: 0.625, y: 0.303125, z: 0.03125}
+--- !u!114 &7961140683978058260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6391010526399944851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cca728119dfe84b8fe65a68b893761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopPanel: {fileID: 0}
+  inventoryPanel: {fileID: 0}
+  inventoryManager: {fileID: 0}

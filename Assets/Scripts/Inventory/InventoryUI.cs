@@ -22,6 +22,7 @@ public class InventoryUI : MonoBehaviour
 
             // Update the isInventoryOpen variable in the PlayerMovement script
             playerMovement.isInventoryOpen = inventoryPanel.activeSelf;
+            inventoryManager.ListItems();
 
             // Lock or unlock the cursor based on the inventory state
             if (inventoryPanel.activeSelf)

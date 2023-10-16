@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0147ba64586b863488526098708cf476, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.125
+      value: 9.56
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0147ba64586b863488526098708cf476, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.5
+      value: 11.443
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0147ba64586b863488526098708cf476, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.22
+      value: 4.81
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0147ba64586b863488526098708cf476, type: 3}
       propertyPath: m_LocalRotation.w
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0147ba64586b863488526098708cf476, type: 3}
       propertyPath: m_TagString
-      value: DirtPlot
+      value: Plantable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67,6 +67,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0147ba64586b863488526098708cf476, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8918625614211674463}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0147ba64586b863488526098708cf476, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6204951144034558660}
   m_SourcePrefab: {fileID: 100100000, guid: 0147ba64586b863488526098708cf476, type: 3}
 --- !u!1 &8718972301993337557 stripped
 GameObject:
@@ -92,5 +95,22 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 0.2125, z: 3}
-  m_Center: {x: 1.125, y: 0.01666667, z: 0}
+  m_Size: {x: 1.77, y: 0.9, z: 1.73}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6204951144034558660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8718972301993337557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01971498c7117243ba506d472197cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cropPrefab: {fileID: 4751169530046710642, guid: a2ad7e6b5f457e94f95b67b3bc0f986e, type: 3}
+  isPlantable: 1
+  isCropPlanted: 0
+  cropAnimator: {fileID: 0}
+  cropInventoryManager: {fileID: 0}

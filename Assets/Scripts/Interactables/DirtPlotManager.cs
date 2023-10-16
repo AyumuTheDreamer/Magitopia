@@ -37,14 +37,19 @@ public class DirtPlotManager : MonoBehaviour
         if (isCropPlanted)
         {
             CropInteraction cropInteraction = currentCrop.GetComponent<CropInteraction>();
-            if (cropInteraction != null)
+            if (cropInteraction != null && cropInteraction.IsFullyGrown())
             {
                 cropInteraction.Harvest();
+                 
+            }
+            else if (cropInteraction != null && !cropInteraction.IsFullyGrown())
+            {
+                return;
             }
 
-            Destroy(currentCrop); // Remove the crop game object.
+            Destroy(currentCrop);
             currentCrop = null;
-            isCropPlanted = false; // Mark the plot as not having a crop planted.
+            isCropPlanted = false; 
         }
     }
 }

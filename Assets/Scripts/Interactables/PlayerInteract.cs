@@ -20,14 +20,17 @@ public class PlayerInteract : MonoBehaviour
     public Button sellButton;
     public DirtPlotManager dirtPlotManager;
     public GameObject cropPrefab;
+    
 
    private void Start()
 {
     // Copy the individual recipes to the availableRecipes list.
     availableRecipes = new List<AlchemyRecipe>(individualRecipes);
-    craftingButton.onClick.AddListener(CraftButtonClicked);
+    //craftingButton.onClick.AddListener(CraftButtonClicked);
     recipeDropdown.onValueChanged.AddListener(OnRecipeDropdownValueChanged);
     PopulateRecipeDropdown();
+    
+    
 
     // Initially select the first recipe (or another default if needed).
     if (availableRecipes.Count > 0)
@@ -38,6 +41,7 @@ public class PlayerInteract : MonoBehaviour
         recipeDropdown.value = selectedRecipeIndex;
         Debug.Log("Selected Recipe: " + recipeToCraft.name);
     }
+    
 }
 private void PopulateRecipeDropdown()
 {
@@ -66,6 +70,8 @@ private void PopulateRecipeDropdown()
 {
     // Check for nearby objects
     interactableObjects = GetInteractableObjects();
+    
+    
 
     // Check for player input to interact with objects
     if (Input.GetKeyDown(KeyCode.E))
@@ -181,9 +187,6 @@ private void PopulateRecipeDropdown()
     }
 }
 
-
-
-
 private void HandleAlchemyStationInteraction(GameObject alchemyStationObject)
     {
         if (alchemyStationObject != null)
@@ -203,8 +206,6 @@ private void InteractWithAlchemyStation()
 {
     // Set the recipe to craft in the AlchemyStationCrafting script.
     alchemyStation.recipeToCraft = selectedRecipe;
-
-    // Call the AlchemyStationCrafting's CraftItem method using the button click handler.
 
     // Now, call the HandleAlchemyStationInteraction method with only one argument.
     HandleAlchemyStationInteraction(alchemyStation.gameObject);
@@ -239,11 +240,20 @@ public void CraftButtonClicked()
         Debug.LogWarning("No recipe selected for crafting.");
     }
 }
-    private void HandleShopSellInteraction(GameObject shopObject)
-    {
-        Debug.Log("Shop");
-    }
+  private void HandleShopSellInteraction(GameObject shopObject)
+{
+    ShopInteraction shopInteraction = shopObject.GetComponent<ShopInteraction>();
 
+    if (shopInteraction != null)
+    {
+        // Call the Interact method on the ShopInteraction script
+        shopInteraction.Interact();
+    }
+    else
+    {
+        Debug.LogWarning("ShopInteraction component not found on the ShopSell object.");
+    }
+}
 
 }
 

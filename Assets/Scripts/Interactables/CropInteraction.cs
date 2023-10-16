@@ -77,6 +77,12 @@ public void Harvest()
         {
             cropItem.quantity = 0;
             Debug.Log("Harvesting immature crop. Quantity: 0");
+            if (cropItem.quantity == 0)
+            {
+            // Remove the item from the inventory or perform any other desired action.
+            inventoryManager.Remove(cropItem); 
+            return; 
+            }
         }
 
         cropItem.isStackable = true;
@@ -97,6 +103,7 @@ public void Harvest()
 
         // Add the crop item to the inventory
         inventoryManager.Add(cropItem);
+        inventoryManager.ListItems();
     }
 }
 public void ResetGrowth()

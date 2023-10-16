@@ -379,7 +379,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -7848951911549018596}
+      - m_Target: {fileID: 6834472448036590341}
         m_TargetAssemblyTypeName: InventoryItemController, Assembly-CSharp
         m_MethodName: RemoveItem
         m_Mode: 1
@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 8812345048022038083}
   - component: {fileID: 2320311322734935236}
   - component: {fileID: 1759707530848318797}
-  - component: {fileID: -7848951911549018596}
+  - component: {fileID: 6834472448036590341}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -889,7 +889,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-7848951911549018596
+--- !u!114 &6834472448036590341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -901,4 +901,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2bb47cfc536b6841b70c9c4c5894439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
   RemoveButton: {fileID: 3107360202652915792}
