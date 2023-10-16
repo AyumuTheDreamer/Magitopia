@@ -20,25 +20,23 @@ public class ShopInteraction : MonoBehaviour
     }
 
     public void Interact()
+{
+    Debug.Log("Interact method called on " + gameObject.name);
+
+    shopPanel.SetActive(!shopPanel.activeSelf);
+    inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+    playerMovement.isInventoryOpen = inventoryPanel.activeSelf;
+
+    if (inventoryPanel.activeSelf)
     {
-        Debug.Log("Interact method called on " + gameObject.name);
-
-        shopPanel.SetActive(!shopPanel.activeSelf);
-        inventoryPanel.SetActive(!inventoryPanel.activeSelf);
-        playerMovement.isInventoryOpen = inventoryPanel.activeSelf;
-
-        if (inventoryPanel.activeSelf)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-
-        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
+    else
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+}
 
 }

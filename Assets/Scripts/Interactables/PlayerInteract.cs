@@ -91,18 +91,18 @@ private void PopulateRecipeDropdown()
                 HandleCropInteraction(nearestObject);
             }
             else if (nearestObject.CompareTag("Plantable"))
-                {
-                    HandleDirtPlotInteraction(nearestObject);
-                }
+            {
+                HandleDirtPlotInteraction(nearestObject);
+            }
             else if (nearestObject.CompareTag("AlchemyStation"))
             {
             // Handle interaction with objects tagged as "AlchemyStation"
                 HandleAlchemyStationInteraction(nearestObject);
-             }
-             else if (nearestObject.CompareTag("ShopSell"))
-                {
-                    HandleShopSellInteraction(nearestObject);
-                }
+            }
+            else if (nearestObject.CompareTag("ShopSell"))
+            {
+                HandleShopSellInteraction(nearestObject);
+            }
            
         }
     }
@@ -116,7 +116,7 @@ private void PopulateRecipeDropdown()
 
         foreach (Collider col in colliders)
         {
-            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation"))
+            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell"))
             {
                 interactableObjectList.Add(col.gameObject);
             }
