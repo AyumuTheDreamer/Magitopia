@@ -16,7 +16,7 @@ public class InventoryManager : MonoBehaviour
     public PlayerInteract playerInteract;
     public CurrencyManager currencyManager;
     public Text currencyText;
-    public Button sellButton;
+    public ShopInteraction shopInteraction;
     
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class InventoryManager : MonoBehaviour
     }
     private void Start()
     {
-      
+      shopInteraction = FindObjectOfType<ShopInteraction>();
     }
 
     private void Update()
@@ -101,21 +101,17 @@ public class InventoryManager : MonoBehaviour
             var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
             var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             var sellButton = obj.transform.Find("SellButton").GetComponent<Button>();
-           
 
             itemName.text = item.itemName;
             itemIcon.sprite = item.itemIcon;
 
-
             if (item.isStackable)
             {
-                // Check if it's a stackable item and set the item count text.
                 var itemCountText = obj.transform.Find("ItemCount").GetComponent<Text>();
                 itemCountText.text = "x" + item.quantity.ToString();
             }
             else
             {
-                // If it's not stackable, hide the item count text (if it exists).
                 var itemCountText = obj.transform.Find("ItemCount").GetComponent<Text>();
                 if (itemCountText != null)
                 {
@@ -123,11 +119,12 @@ public class InventoryManager : MonoBehaviour
                 }
             }
 
-            if (EnableRemove.isOn)
-                removeButton.gameObject.SetActive(true);
+            // Set the SellButton active based on the ShopUI state
+            if (shopInteraction != null)
+            {
+                sellButton.gameObject.SetActive(shopInteraction.shopPanel.activeSelf);
             }
-            
-            
+        }
     }
 
     public void EnableItemsRemove()
@@ -271,6 +268,10 @@ public class InventoryManager : MonoBehaviour
     CurrencyManager.Instance.AddCurrency(item.value);
     Remove(item);
     }
-
+    public void SellItemButtonClicked(Item item)
+{
+    // Call the SellItemToShop method in the ShopInteraction script.
+    shopInteraction.SellShopItem(item);
+}
 
 }

@@ -34,6 +34,7 @@ public class TimeController : MonoBehaviour
     private DateTime currentTime;
     private TimeSpan sunriseTime;
     private TimeSpan sunsetTime;
+    public int dayCounter = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +50,13 @@ public class TimeController : MonoBehaviour
         UpdateTimeOfDay();
         RotateSun();
         UpdateLightSettings();
+
+        //Check for midnight (00:00)
+        if (currentTime.TimeOfDay.Hours == 0 && currentTime.TimeOfDay.Minutes == 0)
+        {
+            dayCounter++;
+            IncrementCropGrowthForAll();
+        }
     }
 
     private void UpdateTimeOfDay()
@@ -104,4 +112,26 @@ public class TimeController : MonoBehaviour
 
         return difference;
     }
+    public void SetCurrentTime(int hour, int minute)
+    {
+    currentTime = DateTime.Now.Date + new TimeSpan(hour, minute, 0);
+    }
+    
+    public int GetDayCounter()
+    {
+        return dayCounter;
+    }
+  public DateTime GetCurrentTime()
+{
+    return currentTime;
+}
+ public void IncrementCropGrowthForAll()
+    {
+        CropInteraction[] cropInteractions = FindObjectsOfType<CropInteraction>();
+        foreach (CropInteraction crop in cropInteractions)
+        {
+            crop.IncrementGrowthByDay();
+        }
+    }
+
 }

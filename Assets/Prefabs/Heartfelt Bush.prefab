@@ -255,14 +255,14 @@ MonoBehaviour:
   crop: {fileID: 11400000, guid: 5fad64f5242fcfb4fb4dcc809d47adc6, type: 2}
   animator: {fileID: 0}
   inventoryManager: {fileID: 0}
-  immatureModel: {fileID: 7904441886281283805}
-  fullyGrownModel: {fileID: 4805737763286161364}
   harvestedQuantity: 2
   growthStages:
   - model: {fileID: 7904441886281283805}
-    growthTime: 2
+    growthTime: 1
   - model: {fileID: 4805737763286161364}
     growthTime: 0
+  currentGrowthStage: 0
+  timeController: {fileID: 0}
 --- !u!65 &7264460565828223888
 BoxCollider:
   m_ObjectHideFlags: 0

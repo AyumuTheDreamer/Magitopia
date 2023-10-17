@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,15 +21,16 @@ public class PlayerInteract : MonoBehaviour
     public Button sellButton;
     public DirtPlotManager dirtPlotManager;
     public GameObject cropPrefab;
-    
+    public ShopInteraction shopInteraction;
+    public TimeController timeController;
 
    private void Start()
 {
     // Copy the individual recipes to the availableRecipes list.
     availableRecipes = new List<AlchemyRecipe>(individualRecipes);
-    //craftingButton.onClick.AddListener(CraftButtonClicked);
     recipeDropdown.onValueChanged.AddListener(OnRecipeDropdownValueChanged);
     PopulateRecipeDropdown();
+    
     
     
 
@@ -102,6 +104,11 @@ private void PopulateRecipeDropdown()
             else if (nearestObject.CompareTag("ShopSell"))
             {
                 HandleShopSellInteraction(nearestObject);
+                
+            }
+            else if(nearestObject.CompareTag("Bed"))
+            {
+                Sleep(nearestObject);
             }
            
         }
@@ -116,7 +123,7 @@ private void PopulateRecipeDropdown()
 
         foreach (Collider col in colliders)
         {
-            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell"))
+            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell") || col.CompareTag("Bed"))
             {
                 interactableObjectList.Add(col.gameObject);
             }
@@ -254,6 +261,42 @@ public void CraftButtonClicked()
         Debug.LogWarning("ShopInteraction component not found on the ShopSell object.");
     }
 }
+private void Sleep(GameObject bedObject)
+{
+    if (timeController == null)
+    {
+        Debug.LogError("timeController is null");
+        return;
+    }
+    else
+    {
+        Debug.Log("Incrementing growth");
+    }
+    // Get the current time
+    DateTime currentTime = timeController.GetCurrentTime();
+
+    // Set the time to 7 AM
+    currentTime = currentTime.Date + new TimeSpan(7, 0, 0);
+
+    // Increment the day counter
+    int currentDay = timeController.GetDayCounter();
+    timeController.dayCounter = currentDay + 1;
+
+    // Update the time controller with the new time
+    timeController.SetCurrentTime(7, 0);
+
+    // Get all crop objects in the scene
+    CropInteraction[] cropInteractions = FindObjectsOfType<CropInteraction>();
+
+    foreach (CropInteraction crop in cropInteractions)
+    {
+        // Increment the growth stage of each crop
+        crop.IncrementGrowthByDay();
+    }
+}
 
 }
+
+
+
 
