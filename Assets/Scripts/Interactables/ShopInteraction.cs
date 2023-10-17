@@ -60,13 +60,32 @@ public void SellShopItem(Item item)
         return;
     }
 
-    // Transfer the item from the player's inventory to the shop's inventory.
-    inventoryManager.Remove(item); // Remove from player's inventory.
-    shopInventory.Add(item); // Add to the shop's inventory.
+    // Try to find the item in the shop's inventory
+    Item shopItem = shopInventory.Find(shopItem => shopItem.id == item.id);
 
-    inventoryManager.ListItems();
+    if (shopItem != null)
+    {
+        // Item is already in the shop's inventory, update its quantity.
+        shopItem.quantity += item.quantity;
+    }
+    else
+    {
+        // Item is not in the shop's inventory, add it as a new item.
+        shopInventory.Add(item);
+    }
+
+    // Remove the item from the player's inventory.
+    inventoryManager.Remove(item);
+
+    // Update the shop's UI.
     UpdateShopUI();
+
+    // Update the player's inventory UI.
+    inventoryManager.ListItems();
 }
+
+
+
 
 public void UpdateShopUI()
 {
@@ -80,6 +99,13 @@ public void UpdateShopUI()
         return;
     }
 
+    // Clear the existing shop item content.
+    foreach (Transform item in shopItemContent)
+    {
+        Destroy(item.gameObject);
+    }
+
+    // Add items from the shop's inventory list.
     foreach (var item in shopInventory)
     {
         Debug.Log("Item ID: " + item.id);
@@ -95,23 +121,44 @@ public void UpdateShopUI()
         itemIcon.sprite = item.itemIcon;
 
         // Add a click event to the sell button.
-        sellButton.onClick.RemoveAllListeners();
-        sellButton.onClick.AddListener(() => SellShopItem(item));
         if (item.isStackable)
+        {
+            // Check if it's a stackable item and set the item count text.
+            var itemCountText = shopItemObject.transform.Find("ItemCount").GetComponent<Text>();
+            itemCountText.text = "x" + item.quantity.ToString();
+        }
+        else
+        {
+            // If it's not stackable, hide the item count text (if it exists).
+            var itemCountText = shopItemObject.transform.Find("ItemCount").GetComponent<Text>();
+            if (itemCountText != null)
             {
-                // Check if it's a stackable item and set the item count text.
-                var itemCountText = shopItemObject.transform.Find("ItemCount").GetComponent<Text>();
-                itemCountText.text = "x" + item.quantity.ToString();
+                itemCountText.text = "";
             }
-            else
-            {
-                // If it's not stackable, hide the item count text (if it exists).
-                var itemCountText = shopItemObject.transform.Find("ItemCount").GetComponent<Text>();
-                if (itemCountText != null)
-                {
-                    itemCountText.text = "";
-                }
-            }
+        }
     }
 }
+public void CheckoutAndClearInventory()
+{
+    int totalValue = CalculateTotalValue();  // Calculate the total value of items in the shop's inventory.
+    CurrencyManager.Instance.AddCurrency(totalValue);  // Add the total value to the player's currency.
+    ClearShopInventory();  // Clear the shop's inventory.
+}
+private int CalculateTotalValue()
+{
+    int totalValue = 0;
+
+    foreach (var item in shopInventory)
+    {
+        totalValue += item.value * item.quantity;
+    }
+
+    return totalValue;
+}
+private void ClearShopInventory()
+{
+    shopInventory.Clear();
+    UpdateShopUI();  // Update the shop's UI to reflect the empty inventory.
+}
+
 }

@@ -101,6 +101,8 @@ public class InventoryManager : MonoBehaviour
             var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
             var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             var sellButton = obj.transform.Find("SellButton").GetComponent<Button>();
+            sellButton.onClick.RemoveAllListeners(); // Clear any previous listeners
+            sellButton.onClick.AddListener(() => SellItemButtonClicked(item));
 
             itemName.text = item.itemName;
             itemIcon.sprite = item.itemIcon;
@@ -269,9 +271,21 @@ public class InventoryManager : MonoBehaviour
     Remove(item);
     }
     public void SellItemButtonClicked(Item item)
-{
-    // Call the SellItemToShop method in the ShopInteraction script.
-    shopInteraction.SellShopItem(item);
+    {
+    // Check if the ShopInteraction reference is not null
+    if (shopInteraction != null)
+    {
+        // Call the SellShopItem method in ShopInteraction to transfer the item to the shop's inventory
+        shopInteraction.SellShopItem(item);
+
+        // Update the shop's UI to reflect the items in the shop's inventory
+        //shopInteraction.UpdateShopUI();
+    }
+    else
+    {
+        Debug.LogWarning("ShopInteraction reference is null.");
+    }
 }
+
 
 }
