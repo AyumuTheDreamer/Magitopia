@@ -17,7 +17,15 @@ public class InventoryManager : MonoBehaviour
     public CurrencyManager currencyManager;
     public Text currencyText;
     public ShopInteraction shopInteraction;
-    
+    public GameObject SelectedSeedsPanel; // UI panel for selected seeds
+    public Text SelectedSeedNameText;
+    public Image SelectedSeedImage; // Drag your UI Image component here in Unity's editor
+    public Text SelectedSeedCount; // UI text to display the currently selected seed
+    public GameObject cropToBePlanted; // Selected crop prefab
+    public Item currentSeed;
+    private int currentSeedIndex = 0; // Keep track of the currently selected seed
+    public List<Item> seedItems = new List<Item>(); 
+    public List<Seeds> allSeeds;
     private void Awake()
     {
       
@@ -26,11 +34,12 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
       shopInteraction = FindObjectOfType<ShopInteraction>();
+      ListItems();
     }
 
     private void Update()
     {
-       
+       HandleScrollInput();
     }
     public void SetRecipeToCraft(AlchemyRecipe newRecipe)
 {
@@ -69,7 +78,7 @@ public class InventoryManager : MonoBehaviour
 
     // If the item is not stackable or no stack was found, add it as a new item.
     Items.Add(item);
-    
+    UpdateSeedItemsList();
 }
 
   public void Remove(Item item)
@@ -79,16 +88,20 @@ public class InventoryManager : MonoBehaviour
         Items.Remove(item);
         ListItems(); // Update the inventory UI after removing the item
     }
-    
+    if (item == currentSeed)
+    {
+        UpdateSelectedSeed(0); // or any other index based on your logic
+    }
     
         Items.Remove(item);
         ListItems();
-    
-    
+        UpdateSeedItemsList();
+        
 }
 
     public void ListItems()
     {
+         seedItems.Clear();
         foreach (Transform item in ItemContent)
         {
             Destroy(item.gameObject);
@@ -120,12 +133,28 @@ public class InventoryManager : MonoBehaviour
                     itemCountText.text = "";
                 }
             }
-
+             if (item.itemName.Contains("Seeds"))
+            {
+                seedItems.Add(item); // Add to our list of seed items
+            }
             // Set the SellButton active based on the ShopUI state
             if (shopInteraction != null)
             {
                 sellButton.gameObject.SetActive(shopInteraction.shopPanel.activeSelf);
             }
+        }
+         if (seedItems.Count > 0)
+        {
+            UpdateSelectedSeed(0);
+        }
+        else
+        {
+            // New code to handle when there are no seed items
+            SelectedSeedNameText.text = "None";
+            SelectedSeedImage.sprite = null;
+            SelectedSeedCount.text = "";
+            cropToBePlanted = null;
+            currentSeed = null;
         }
     }
 
@@ -286,6 +315,104 @@ public class InventoryManager : MonoBehaviour
         Debug.LogWarning("ShopInteraction reference is null.");
     }
 }
+private void UpdateSelectedSeed(int index)
+{
+    currentSeedIndex = index;
+    if (index >= 0 && index < seedItems.Count)
+    {
+        currentSeed = seedItems[index];
+        SelectedSeedImage.sprite = currentSeed.itemIcon;
+        if (currentSeed.isStackable)
+        {
+            SelectedSeedCount.text = "x" + currentSeed.quantity.ToString();
+        }
+        else
+        {
+            SelectedSeedCount.text = "";
+        }
+        Seeds correspondingSeed = FindSeedFromItem(currentSeed);
+        if (correspondingSeed != null)
+        {
+            cropToBePlanted = correspondingSeed.cropToPlant;
+        }
 
+        // Update the displayed seed name
+        if (SelectedSeedNameText != null && currentSeedIndex >= 0 && currentSeedIndex < seedItems.Count)
+        {
+            SelectedSeedNameText.text = seedItems[currentSeedIndex].itemName;
+        }
+    }
+    if (seedItems.Count == 0)
+        {
+            SelectedSeedNameText.text = "None";
+            SelectedSeedImage.sprite = null;
+            SelectedSeedCount.text = "";
+            cropToBePlanted = null;
+            return;
+        }
+}
+private void HandleScrollInput()
+{
+    float scroll = Input.GetAxis("Mouse ScrollWheel");
+    if (scroll != 0)
+    {
+        if (scroll > 0) // scroll up
+        {
+            currentSeedIndex++;
+        }
+        else // scroll down
+        {
+            currentSeedIndex--;
+        }
+
+        // Ensure the index is within valid range
+        currentSeedIndex = Mathf.Clamp(currentSeedIndex, 0, seedItems.Count - 1);
+
+        // Update the selected seed
+        UpdateSelectedSeed(currentSeedIndex);
+    }
+}
+
+private Seeds FindSeedFromItem(Item item)
+{
+    // Assuming allSeeds is a List<Seeds> containing all possible Seeds objects.
+    foreach (Seeds seed in allSeeds)
+    {
+        if (seed.itemName == item.itemName)
+        {
+            return seed;
+        }
+    }
+    return null;
+}
+public void UpdateSeedItemsList()
+{
+    seedItems.Clear(); // Clear the existing list to rebuild it
+    foreach (var item in Items)
+    {
+        if (item.itemName.Contains("Seeds"))
+        {
+            seedItems.Add(item);
+        }
+    }
+}
+public void RemoveSingleQuantityOfItem(Item item)
+{
+    if (item.isStackable && item.quantity > 0)
+    {
+        item.quantity--;
+        if (item.quantity <= 0)
+        {
+            Items.Remove(item);
+        }
+    }
+    else
+    {
+        Items.Remove(item);
+    }
+
+    UpdateSeedItemsList(); // Update the list of seed items
+    ListItems(); // Update the inventory UI if needed
+}
 
 }

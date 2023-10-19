@@ -36,7 +36,6 @@ public class InventoryUI : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
-
             inventoryManager.ToggleInventory(inventoryPanel.activeSelf);
         }
     }
