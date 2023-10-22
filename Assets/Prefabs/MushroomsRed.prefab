@@ -36,7 +36,7 @@ Transform:
   - {fileID: 2346297662101162069}
   - {fileID: 191499015772128609}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &3343260134265982688
 MeshRenderer:
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2113940530725847121, guid: c706464ef5bf7bc479a6f63a80e8d42b, type: 3}
+  - {fileID: 2100000, guid: 087c9a024e259e44fb36fe137aa01510, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -256,6 +256,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e22dc009d134f9c48bc508a4f1ec4e6f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 087c9a024e259e44fb36fe137aa01510, type: 2}
     - target: {fileID: 919132149155446097, guid: e22dc009d134f9c48bc508a4f1ec4e6f, type: 3}
       propertyPath: m_Name
       value: mushroomsSprouts

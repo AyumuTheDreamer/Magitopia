@@ -26,6 +26,8 @@ public class InventoryManager : MonoBehaviour
     private int currentSeedIndex = 0; // Keep track of the currently selected seed
     public List<Item> seedItems = new List<Item>(); 
     public List<Seeds> allSeeds;
+    public delegate void InventoryChangedDelegate();
+    public event InventoryChangedDelegate OnInventoryChanged;
     private void Awake()
     {
       
@@ -79,6 +81,7 @@ public class InventoryManager : MonoBehaviour
     // If the item is not stackable or no stack was found, add it as a new item.
     Items.Add(item);
     UpdateSeedItemsList();
+    NotifyInventoryChanged();
 }
 
   public void Remove(Item item)
@@ -96,6 +99,7 @@ public class InventoryManager : MonoBehaviour
         Items.Remove(item);
         ListItems();
         UpdateSeedItemsList();
+        NotifyInventoryChanged();
         
 }
 
@@ -209,7 +213,7 @@ public class InventoryManager : MonoBehaviour
     }
 
 
-  public bool CraftItem(AlchemyRecipe recipeToCraft)
+  public bool CraftItem(AlchemyRecipe recipeToCraft, bool simulate = false)
 {
     // Check if the selected recipe is null.
     if (recipeToCraft == null)
@@ -233,7 +237,8 @@ public class InventoryManager : MonoBehaviour
             return false; // Exit early because there's not enough of the required item.
         }
     }
-
+    if (!simulate)
+    {
     // Deduct the required quantities from the inventory
     foreach (HarvestableCrop requiredIngredient in recipeToCraft.requiredIngredients)
     {
@@ -272,9 +277,15 @@ public class InventoryManager : MonoBehaviour
     }
 
     ListItems();
+    NotifyInventoryChanged();
     return true; // Return true to indicate a successful crafting operation.
   
     }
+    else
+    {
+        return true;
+    }
+}
 
 
     public void ToggleInventory(bool isOpen)
@@ -287,6 +298,7 @@ public class InventoryManager : MonoBehaviour
         if (CurrencyManager.Instance.DeductCurrency(item.value))
         {
             Add(item);
+            NotifyInventoryChanged();
         }
         else
         {
@@ -306,7 +318,7 @@ public class InventoryManager : MonoBehaviour
     {
         // Call the SellShopItem method in ShopInteraction to transfer the item to the shop's inventory
         shopInteraction.SellShopItem(item);
-
+        NotifyInventoryChanged();
         // Update the shop's UI to reflect the items in the shop's inventory
         //shopInteraction.UpdateShopUI();
     }
@@ -414,5 +426,8 @@ public void RemoveSingleQuantityOfItem(Item item)
     UpdateSeedItemsList(); // Update the list of seed items
     ListItems(); // Update the inventory UI if needed
 }
-
+public void NotifyInventoryChanged()
+    {
+        OnInventoryChanged?.Invoke();
+    }
 }

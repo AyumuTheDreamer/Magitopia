@@ -9,7 +9,6 @@ public class PlayerInteract : MonoBehaviour
     public float interactionDistance = 2f;
     private GameObject[] interactableObjects;
     public AlchemyStationCrafting alchemyStation;
-    public Dropdown recipeDropdown;
     private List<AlchemyRecipe> availableRecipes = new List<AlchemyRecipe>();
     public List<AlchemyRecipe> individualRecipes;
     private int selectedRecipeIndex = 0;
@@ -23,44 +22,24 @@ public class PlayerInteract : MonoBehaviour
     public GameObject cropPrefab;
     public ShopInteraction shopInteraction;
     public TimeController timeController;
-
+    public GameObject ingredientPrefab;
    private void Start()
 {
     // Copy the individual recipes to the availableRecipes list.
     availableRecipes = new List<AlchemyRecipe>(individualRecipes);
-    recipeDropdown.onValueChanged.AddListener(OnRecipeDropdownValueChanged);
-    PopulateRecipeDropdown();
-    
-    
-    
 
     // Initially select the first recipe (or another default if needed).
     if (availableRecipes.Count > 0)
     {
-        selectedRecipeIndex = 0;
         selectedRecipe = availableRecipes[selectedRecipeIndex];
         recipeToCraft = selectedRecipe;
-        recipeDropdown.value = selectedRecipeIndex;
         Debug.Log("Selected Recipe: " + recipeToCraft.name);
     }
     
 }
-private void PopulateRecipeDropdown()
-{
-    recipeDropdown.ClearOptions();
 
-    List<string> recipeNames = new List<string>();
-    foreach (AlchemyRecipe recipe in availableRecipes)
-    {
-        recipeNames.Add(recipe.name);
-    }
-
-    recipeDropdown.AddOptions(recipeNames);
-}
      private void UpdateSelectedRecipe()
 {
-    // Update the selected recipe based on the dropdown's value.
-    selectedRecipeIndex = recipeDropdown.value;
 
     if (selectedRecipeIndex >= 0 && selectedRecipeIndex < availableRecipes.Count)
     {
@@ -217,19 +196,6 @@ private void InteractWithAlchemyStation()
     // Now, call the HandleAlchemyStationInteraction method with only one argument.
     HandleAlchemyStationInteraction(alchemyStation.gameObject);
 }
- public void OnRecipeDropdownValueChanged(int value)
-{
-    // Update the selected recipe based on the index
-    if (value >= 0 && value < availableRecipes.Count)
-    {
-        // Update the selected recipe in the PlayerInteract script
-        selectedRecipeIndex = value;
-        selectedRecipe = availableRecipes[selectedRecipeIndex];
-        recipeToCraft = selectedRecipe; // Update the recipeToCraft field
-
-        Debug.Log("Selected Recipe (PlayerInteract): " + recipeToCraft.name);
-    }
-}
 private void SetRecipeForCrafting(AlchemyRecipe newRecipe)
     {
         inventoryManager.SetRecipeToCraft(newRecipe);
@@ -240,6 +206,7 @@ public void CraftButtonClicked()
     // Check if recipeToCraft is not null before crafting.
     if (recipeToCraft != null)
     {
+        DisplayIngredients(recipeToCraft);
         inventoryManager.CraftItem(recipeToCraft);
     }
     else
@@ -247,6 +214,35 @@ public void CraftButtonClicked()
         Debug.LogWarning("No recipe selected for crafting.");
     }
 }
+void DisplayIngredients(AlchemyRecipe recipe)
+    {
+        // Clear any existing displayed ingredients
+        foreach (Transform child in craftingButton.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Loop through each ingredient in the recipe
+        foreach (HarvestableCrop ingredient in recipe.requiredIngredients)
+        {
+            // Instantiate the ingredientPrefab and set its parent to the crafting button
+            GameObject instantiatedPrefab = Instantiate(ingredientPrefab, craftingButton.transform);
+
+            // Find and set the Image and Text components of the instantiated prefab
+            Image ingredientImage = instantiatedPrefab.GetComponentInChildren<Image>();
+            Text ingredientText = instantiatedPrefab.GetComponentInChildren<Text>();
+
+            if (ingredientImage != null && ingredientText != null)
+            {
+                ingredientImage.sprite = ingredient.itemIcon; // The sprite field should be a part of your Ingredient scriptable object
+                ingredientText.text = ingredient.quantity.ToString(); // Assuming you have a quantity field in your Ingredient scriptable object
+            }
+            else
+            {
+                Debug.LogWarning("Image or Text component not found on the ingredientPrefab.");
+            }
+        }
+    }
   private void HandleShopSellInteraction(GameObject shopObject)
 {
     ShopInteraction shopInteraction = shopObject.GetComponent<ShopInteraction>();

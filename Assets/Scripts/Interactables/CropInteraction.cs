@@ -24,6 +24,15 @@ public class CropInteraction : MonoBehaviour
 
     private void Start()
     {
+         GameObject player = GameObject.FindWithTag("Player"); // Replace "Player" with the tag you've given to your player
+        if (player != null)
+        {
+            animator = player.GetComponent<Animator>();
+        }
+        else
+        {
+            Debug.LogWarning("Player GameObject not found in the scene.");
+        }
         timeUntilNextStage = growthStages[currentGrowthStage].growthTime;
 
         // Find the TimeController in the scene and store the reference
