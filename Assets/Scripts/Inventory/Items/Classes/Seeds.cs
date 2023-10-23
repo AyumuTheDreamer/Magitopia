@@ -11,5 +11,7 @@ public class Seeds : ScriptableObject
     public Sprite itemIcon;
     public bool isStackable;
     public int quantity;
+    public int value;
+    public int maxStackCount;
     public GameObject cropToPlant; // Add this field to specify the crop prefab.
 }

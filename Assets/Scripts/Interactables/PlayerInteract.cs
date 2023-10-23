@@ -23,6 +23,7 @@ public class PlayerInteract : MonoBehaviour
     public ShopInteraction shopInteraction;
     public TimeController timeController;
     public GameObject ingredientPrefab;
+    public SeedShop seedShop;
    private void Start()
 {
     // Copy the individual recipes to the availableRecipes list.
@@ -89,6 +90,11 @@ public class PlayerInteract : MonoBehaviour
             {
                 Sleep(nearestObject);
             }
+             else if (nearestObject.CompareTag("Shop"))
+            {
+            HandleSeedShopInteraction(nearestObject);
+            }   
+
            
         }
     }
@@ -102,7 +108,7 @@ public class PlayerInteract : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell") || col.CompareTag("Bed"))
+            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell") || col.CompareTag("Bed") || col.CompareTag("Shop"))
             {
                 interactableObjectList.Add(col.gameObject);
             }
@@ -290,6 +296,20 @@ private void Sleep(GameObject bedObject)
         crop.IncrementGrowthByDay();
     }
 }
+private void HandleSeedShopInteraction(GameObject shopObject)
+{
+    SeedShop seedShop = shopObject.GetComponent<SeedShop>();
+
+    if (seedShop != null)
+    {
+        seedShop.ToggleShopUI();
+    }
+    else
+    {
+        Debug.LogWarning("SeedShop component not found on the Shop object.");
+    }
+}
+
 
 }
 

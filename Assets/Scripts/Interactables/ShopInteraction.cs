@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ShopInteraction : MonoBehaviour
 {
-    public GameObject shopPanel;
+    public GameObject potionShopPanel;
     public GameObject inventoryPanel;
     public InventoryManager inventoryManager;
     private PlayerMovement playerMovement;
@@ -27,11 +27,11 @@ public class ShopInteraction : MonoBehaviour
     {
         Debug.Log("Interact method called on " + gameObject.name);
 
-        shopPanel.SetActive(!shopPanel.activeSelf);
+        potionShopPanel.SetActive(!potionShopPanel.activeSelf);
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);
         playerMovement.isInventoryOpen = inventoryPanel.activeSelf;
 
-        isShopOpen = shopPanel.activeSelf;  // Update the state of the ShopUI
+        isShopOpen = potionShopPanel.activeSelf;  // Update the state of the ShopUI
 
         if (inventoryPanel.activeSelf)
         {
@@ -91,7 +91,7 @@ public void UpdateShopUI()
 {
     Debug.Log("UpdateShopUI called");
 
-    Transform shopItemContent = shopPanel.transform.Find("ShopPanel/ShopItemContent");
+    Transform shopItemContent = potionShopPanel.transform.Find("ShopPanel/ShopItemContent");
 
     if (shopItemContent == null)
     {

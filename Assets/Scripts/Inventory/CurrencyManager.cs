@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class CurrencyManager : MonoBehaviour
 {
     public static CurrencyManager Instance;
     public int playerCurrency = 0;
     public Text currencyText;
+
+    public delegate void CurrencyChangedDelegate();
+    public event CurrencyChangedDelegate OnCurrencyChanged;
+
     private void Awake()
     {
         Instance = this;
     }
+
     private void Start()
     {
         // Find the Text component in the InventoryManager
@@ -19,9 +25,14 @@ public class CurrencyManager : MonoBehaviour
         // Update the currency display
         UpdateCurrencyDisplay();
     }
+
     public void AddCurrency(int amount)
     {
         playerCurrency += amount;
+
+        // Notify subscribers that the currency has changed
+        OnCurrencyChanged?.Invoke();
+
         UpdateCurrencyDisplay();
     }
 
@@ -30,6 +41,10 @@ public class CurrencyManager : MonoBehaviour
         if (playerCurrency >= amount)
         {
             playerCurrency -= amount;
+
+            // Notify subscribers that the currency has changed
+            OnCurrencyChanged?.Invoke();
+
             UpdateCurrencyDisplay();
             return true;
         }

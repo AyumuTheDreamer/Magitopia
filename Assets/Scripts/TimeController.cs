@@ -35,6 +35,7 @@ public class TimeController : MonoBehaviour
     private TimeSpan sunriseTime;
     private TimeSpan sunsetTime;
     public int dayCounter = 0;
+    public bool isPaused = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,17 +46,20 @@ public class TimeController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+   void Update()
     {
-        UpdateTimeOfDay();
-        RotateSun();
-        UpdateLightSettings();
-
-        //Check for midnight (00:00)
-        if (currentTime.TimeOfDay.Hours == 0 && currentTime.TimeOfDay.Minutes == 0)
+        if (!isPaused)  // <-- Add this condition
         {
-            dayCounter++;
-            IncrementCropGrowthForAll();
+            UpdateTimeOfDay();
+            RotateSun();
+            UpdateLightSettings();
+            
+            // Check for midnight (00:00)
+            if (currentTime.TimeOfDay.Hours == 0 && currentTime.TimeOfDay.Minutes == 0)
+            {
+                dayCounter++;
+                IncrementCropGrowthForAll();
+            }
         }
     }
 

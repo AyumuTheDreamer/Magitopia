@@ -48,42 +48,52 @@ public class InventoryManager : MonoBehaviour
     recipeToCraft = newRecipe;
 }
 
-  public void Add(Item item)
+public void Add(Item item)
 {
-    ListItems();
+    Debug.Log($"Trying to add item with Name: {item.itemName}, Quantity: {item.quantity}");
+    
+    if (item.quantity <= 0)
+    {
+        return; // Don't add items with zero or negative quantity
+    }
+
     if (item.isStackable)
     {
-        // Check if there's an existing stack of this item in the inventory.
-        Item existingItem = Items.Find(i => i.id == item.id);
-
-        if (existingItem != null && existingItem.quantity < existingItem.maxStackCount)
+        Debug.Log("Item is Stackable");
+        for (int i = 0; i < Items.Count; i++)
         {
-            // Calculate the remaining space in the existing stack.
-            int spaceLeftInStack = existingItem.maxStackCount - existingItem.quantity;
-
-            // Calculate how much can be added to the stack.
-            int quantityToAdd = Mathf.Min(spaceLeftInStack, item.quantity);
-
-            // Increment the quantity of the existing stack.
-            existingItem.quantity += quantityToAdd;
-
-            // Reduce the quantity to be added.
-            item.quantity -= quantityToAdd;
-
-            // Exit the method if the item quantity is now 0.
-            if (item.quantity == 0)
+            Item existingItem = Items[i];
+            Debug.Log($"Found existing item with Quantity: {existingItem.itemName}, Item name: {item.itemName}");
+            // Changed condition here from ID to itemName
+            if (existingItem.id == item.id && existingItem.quantity < existingItem.maxStackCount)
             {
-                return;
+                Debug.Log($"Found existing item with Quantity: {existingItem.quantity}, MaxStack: {existingItem.maxStackCount}");
+                
+                int spaceLeftInStack = existingItem.maxStackCount - existingItem.quantity;
+                int quantityToAdd = Mathf.Min(spaceLeftInStack, item.quantity);
+                
+                existingItem.quantity += quantityToAdd;
+                Items[i] = existingItem; // Update the item in the list
+                
+                item.quantity -= quantityToAdd;
+                
+                if (item.quantity <= 0)
+                {
+                    return; // If all quantities are added, return
+                }
             }
         }
     }
 
-    // If the item is not stackable or no stack was found, add it as a new item.
-    Items.Add(item);
+    if (item.quantity > 0)
+    {
+        Items.Add(item);
+    }
+
+    // Your other update methods...
     UpdateSeedItemsList();
     NotifyInventoryChanged();
 }
-
   public void Remove(Item item)
 {
     if (item.quantity <= 0)
@@ -144,7 +154,7 @@ public class InventoryManager : MonoBehaviour
             // Set the SellButton active based on the ShopUI state
             if (shopInteraction != null)
             {
-                sellButton.gameObject.SetActive(shopInteraction.shopPanel.activeSelf);
+                sellButton.gameObject.SetActive(shopInteraction.potionShopPanel.activeSelf);
             }
         }
          if (seedItems.Count > 0)
@@ -399,15 +409,38 @@ private Seeds FindSeedFromItem(Item item)
 }
 public void UpdateSeedItemsList()
 {
+    // Check if seedItems is null
+    if (seedItems == null)
+    {
+        Debug.LogError("seedItems is null");
+        return;
+    }
+
     seedItems.Clear(); // Clear the existing list to rebuild it
+    
+    // Check if Items is null
+    if (Items == null)
+    {
+        Debug.LogError("Items is null");
+        return;
+    }
+
     foreach (var item in Items)
     {
+        // Check if itemName is null
+        if (item.itemName == null)
+        {
+            Debug.LogError("itemName is null");
+            continue;  // Skip to the next iteration
+        }
+
         if (item.itemName.Contains("Seeds"))
         {
             seedItems.Add(item);
         }
     }
 }
+
 public void RemoveSingleQuantityOfItem(Item item)
 {
     if (item.isStackable && item.quantity > 0)
@@ -430,4 +463,6 @@ public void NotifyInventoryChanged()
     {
         OnInventoryChanged?.Invoke();
     }
+
+    
 }

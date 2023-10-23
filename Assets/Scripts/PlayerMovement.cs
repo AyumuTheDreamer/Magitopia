@@ -16,8 +16,8 @@ public bool grounded;
 public float groundDrag;
 public Transform groundCheck;
 public float groundDistance = 0.4f;
-
-
+public bool isGamePaused = false;
+public bool isSeedShopOpen = false;
 
 public bool isInventoryOpen = false;
 
@@ -41,7 +41,7 @@ private Animator animator;
     void Update()
     {
 
-         if (isInventoryOpen)
+         if (isGamePaused || isInventoryOpen || isSeedShopOpen)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
