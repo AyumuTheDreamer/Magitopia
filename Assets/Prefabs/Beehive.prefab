@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4803324221529997210}
   - component: {fileID: 4877855720459009081}
   - component: {fileID: 9041016623675942023}
+  - component: {fileID: 7872789118094225694}
   m_Layer: 0
   m_Name: Beehive
   m_TagString: CropForPickup
@@ -36,7 +37,7 @@ Transform:
   - {fileID: 743635907537560877}
   - {fileID: 447062547520422006}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &286160698605109651
 MeshRenderer:
@@ -96,14 +97,14 @@ MonoBehaviour:
   crop: {fileID: 11400000, guid: 4ffd7a1412604b74cb46066d206167c1, type: 2}
   animator: {fileID: 0}
   inventoryManager: {fileID: 0}
-  immatureModel: {fileID: 79442216483831703}
-  fullyGrownModel: {fileID: 972664992105388748}
   harvestedQuantity: 1
   growthStages:
   - model: {fileID: 79442216483831703}
     growthTime: 2
   - model: {fileID: 972664992105388748}
     growthTime: 0
+  currentGrowthStage: 0
+  timeController: {fileID: 0}
 --- !u!64 &4803324221529997210
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4921,6 +4922,24 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7872789118094225694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4581510768250408329}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &125802245582972829
 PrefabInstance:
   m_ObjectHideFlags: 0

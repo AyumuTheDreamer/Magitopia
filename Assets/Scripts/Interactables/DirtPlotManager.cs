@@ -15,28 +15,34 @@ public class DirtPlotManager : MonoBehaviour
     }
 
    public void PlantCrop()
-{
-    if (IsPlantable())
     {
-        GameObject cropPrefab = inventoryManager.cropToBePlanted; // Take the crop to be planted from the InventoryManager
-        currentCrop = Instantiate(cropPrefab, transform.position, transform.rotation);
-        isCropPlanted = true;
-        animator.SetTrigger("Plant");
-        // Decrease the quantity of the currently selected seed
-        inventoryManager.RemoveSingleQuantityOfItem(inventoryManager.currentSeed);
+        if (IsPlantable())
+        {
+            GameObject cropPrefab = inventoryManager.cropToBePlanted;
 
-        // Assign the Animator and Inventory Manager to the newly instantiated crop.
-        CropInteraction cropInteraction = currentCrop.GetComponent<CropInteraction>();
-        if (cropInteraction != null)
-        {
-            cropInteraction.inventoryManager = inventoryManager;
-        }
-        if (inventoryManager.cropToBePlanted == null)
-        {
-        return;
+            // Generate a random Y-axis rotation angle between 0 and 360 degrees.
+            float randomYRotation = Random.Range(0f, 360f);
+
+            // Combine the original rotation with the random Y-axis rotation.
+            Quaternion combinedRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, randomYRotation, transform.rotation.eulerAngles.z);
+
+            currentCrop = Instantiate(cropPrefab, transform.position, combinedRotation);
+            isCropPlanted = true;
+            animator.SetTrigger("Plant");
+            inventoryManager.RemoveSingleQuantityOfItem(inventoryManager.currentSeed);
+
+            CropInteraction cropInteraction = currentCrop.GetComponent<CropInteraction>();
+            if (cropInteraction != null)
+            {
+                cropInteraction.inventoryManager = inventoryManager;
+            }
+
+            if (inventoryManager.cropToBePlanted == null)
+            {
+                return;
+            }
         }
     }
-}
 
 
 

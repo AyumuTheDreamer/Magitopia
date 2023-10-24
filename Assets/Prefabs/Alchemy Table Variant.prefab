@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b103c40e8d87fc1478d7a537b46deced, type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b103c40e8d87fc1478d7a537b46deced, type: 3}
       propertyPath: m_LocalPosition.x
@@ -74,6 +74,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b103c40e8d87fc1478d7a537b46deced, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3038156706609712705}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b103c40e8d87fc1478d7a537b46deced, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4468554163882228171}
   m_SourcePrefab: {fileID: 100100000, guid: b103c40e8d87fc1478d7a537b46deced, type: 3}
 --- !u!1 &8264236132289824836 stripped
 GameObject:
@@ -121,5 +124,26 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3ee12d6286bf80e48b68442c9605593d, type: 2}
   - {fileID: 11400000, guid: 5a519d6167bd47e44af9e970256c9168, type: 2}
   - {fileID: 11400000, guid: 5e56521fb67343d4eada670bdeda1fa5, type: 2}
-  dropdown: {fileID: 0}
+  recipeButtonContainer: {fileID: 0}
+  recipeButtonPrefab: {fileID: 0}
   recipeToCraft: {fileID: 0}
+  ingredientDisplayPrefab: {fileID: 0}
+  recipeButtons: []
+--- !u!114 &4468554163882228171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8264236132289824836}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

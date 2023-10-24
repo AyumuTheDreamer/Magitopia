@@ -24,6 +24,7 @@ public class PlayerInteract : MonoBehaviour
     public TimeController timeController;
     public GameObject ingredientPrefab;
     public SeedShop seedShop;
+    private GameObject lastHighlightedObject;
    private void Start()
 {
     // Copy the individual recipes to the availableRecipes list.
@@ -53,13 +54,16 @@ public class PlayerInteract : MonoBehaviour
     // Check for nearby objects
     interactableObjects = GetInteractableObjects();
     
-    
+      GameObject nearestObject = GetNearestObject();
+
+        // Highlight the nearest object
+        HighlightNearestObject(nearestObject);
 
     // Check for player input to interact with objects
     if (Input.GetKeyDown(KeyCode.E))
     {
         // Perform interaction with the nearest object
-        GameObject nearestObject = GetNearestObject();
+        GameObject nearestObj = GetNearestObject();
         if (nearestObject != null)
         {
             if (nearestObject.CompareTag("Interactable"))
@@ -101,7 +105,7 @@ public class PlayerInteract : MonoBehaviour
 }
 
 
-    private GameObject[] GetInteractableObjects()
+   private GameObject[] GetInteractableObjects()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, interactionDistance);
         List<GameObject> interactableObjectList = new List<GameObject>();
@@ -136,6 +140,36 @@ public class PlayerInteract : MonoBehaviour
         }
 
         return nearestObject;
+    }
+
+    private void HighlightNearestObject(GameObject nearestObj)
+    {
+        // If a new nearest object is detected
+        if (lastHighlightedObject != nearestObj)
+        {
+            // Disable outline for the last highlighted object
+            if (lastHighlightedObject != null)
+            {
+                Outline outline = lastHighlightedObject.GetComponent<Outline>();
+                if (outline != null)
+                {
+                    outline.enabled = false;
+                }
+            }
+
+            // Enable outline for the new nearest object
+            if (nearestObj != null)
+            {
+                Outline outline = nearestObj.GetComponent<Outline>();
+                if (outline != null)
+                {
+                    outline.enabled = true;
+                }
+            }
+
+            // Update the last highlighted object
+            lastHighlightedObject = nearestObj;
+        }
     }
 
     private void HandleInteractableInteraction(GameObject interactableObject)

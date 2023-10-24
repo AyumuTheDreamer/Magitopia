@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8520383825882812437}
   - component: {fileID: 400196142014972170}
   - component: {fileID: 6978065486460625319}
+  - component: {fileID: 2983233955921877920}
   m_Layer: 0
   m_Name: Drake Claw Plant
   m_TagString: CropForPickup
@@ -35,7 +36,7 @@ Transform:
   - {fileID: 1556252087498742342}
   - {fileID: 4510665720921976005}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &8520383825882812437
 MeshRenderer:
@@ -96,8 +97,6 @@ MonoBehaviour:
   crop: {fileID: 11400000, guid: a4cfa88238a6709449358c9579f4bd14, type: 2}
   animator: {fileID: 0}
   inventoryManager: {fileID: 0}
-  immatureModel: {fileID: 3878384603310175871}
-  fullyGrownModel: {fileID: 1751451999744633192}
   harvestedQuantity: 1
   growthStages:
   - model: {fileID: 3878384603310175871}
@@ -106,6 +105,8 @@ MonoBehaviour:
     growthTime: 2
   - model: {fileID: 1751451999744633192}
     growthTime: 0
+  currentGrowthStage: 0
+  timeController: {fileID: 0}
 --- !u!65 &6978065486460625319
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -127,6 +128,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2983233955921877920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2920221728660204318}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1302193927393115565
 PrefabInstance:
   m_ObjectHideFlags: 0

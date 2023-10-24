@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1779473478087183304}
   - component: {fileID: 1790743773573181840}
   - component: {fileID: 1719654055010357912}
+  - component: {fileID: 2111070120220713313}
   m_Layer: 0
   m_Name: Spade Melon
   m_TagString: CropForPickup
@@ -36,7 +37,7 @@ Transform:
   - {fileID: 9090424187252210762}
   - {fileID: 603555877841541307}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1779473478087183304
 MeshRenderer:
@@ -95,8 +96,6 @@ MonoBehaviour:
   crop: {fileID: 11400000, guid: abb7ae532cadf7d4d8bfabf55ac72266, type: 2}
   animator: {fileID: 0}
   inventoryManager: {fileID: 0}
-  immatureModel: {fileID: 919132149155446097, guid: c367f123b3d9e53438f9e7144247d016, type: 3}
-  fullyGrownModel: {fileID: 919132149155446097, guid: d1ea58b559f337249bf6cd98242d9a45, type: 3}
   harvestedQuantity: 1
   growthStages:
   - model: {fileID: 8142211729092547352}
@@ -107,6 +106,8 @@ MonoBehaviour:
     growthTime: 2
   - model: {fileID: 228437229241385473}
     growthTime: 0
+  currentGrowthStage: 0
+  timeController: {fileID: 0}
 --- !u!64 &1719654055010357912
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -129,6 +130,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8053333148710267863, guid: d1ea58b559f337249bf6cd98242d9a45, type: 3}
+--- !u!114 &2111070120220713313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4751169530046710642}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1147005732523442000
 PrefabInstance:
   m_ObjectHideFlags: 0
