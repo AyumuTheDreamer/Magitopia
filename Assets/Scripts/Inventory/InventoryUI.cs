@@ -8,7 +8,7 @@ public class InventoryUI : MonoBehaviour
 
     // Reference to the PlayerMovement script
     public PlayerMovement playerMovement;
-
+    public ThirdPersonCam thirdPersonCam;
     public InventoryManager inventoryManager;
 
     // Update is called once per frame
@@ -29,12 +29,14 @@ public class InventoryUI : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                thirdPersonCam.LockCameraOrientation();
             }
             else
             {
                 // Re-lock the cursor when the inventory is closed
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
+                thirdPersonCam.UnlockCameraOrientation();
             }
             inventoryManager.ToggleInventory(inventoryPanel.activeSelf);
         }

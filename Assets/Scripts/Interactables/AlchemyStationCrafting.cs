@@ -12,6 +12,7 @@ public class AlchemyStationCrafting : MonoBehaviour
     public GameObject recipeButtonContainer;
     public Button recipeButtonPrefab; 
     public AlchemyRecipe recipeToCraft;
+    public ThirdPersonCam thirdPersonCam;
     public GameObject ingredientDisplayPrefab;
     [SerializeField]
     private List<Button> recipeButtons = new List<Button>();
@@ -42,12 +43,14 @@ public class AlchemyStationCrafting : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            thirdPersonCam.LockCameraOrientation();
         }
         else
         {
             // Re-lock the cursor when the inventory is closed
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            thirdPersonCam.UnlockCameraOrientation();
         }
     }
 

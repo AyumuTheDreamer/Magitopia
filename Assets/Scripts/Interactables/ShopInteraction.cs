@@ -11,6 +11,7 @@ public class ShopInteraction : MonoBehaviour
     public List<Item> shopInventory = new List<Item>();
     public GameObject ShopItemPrefab;
     public Transform shopItemContent;
+    public ThirdPersonCam thirdPersonCam;
     public bool isShopOpen { get; private set; } = false;
     private void Start()
     {
@@ -37,11 +38,13 @@ public class ShopInteraction : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            thirdPersonCam.LockCameraOrientation();
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            thirdPersonCam.UnlockCameraOrientation();
         }
 
         UpdateShopUI();

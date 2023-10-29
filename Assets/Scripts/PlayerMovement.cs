@@ -20,7 +20,8 @@ public bool isGamePaused = false;
 public bool isSeedShopOpen = false;
 
 public bool isInventoryOpen = false;
-
+public float groundStickForce = 300f;
+private float currentStickForce;
 private Animator animator;
 
 
@@ -40,6 +41,7 @@ private Animator animator;
     // Update is called once per frame
     void Update()
     {
+        
 
          if (isGamePaused || isInventoryOpen || isSeedShopOpen)
         {
@@ -53,15 +55,17 @@ private Animator animator;
         }
         else
         {
-
+          
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         MyInput();
         SpeedControl();
         grounded = Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
-
        
-        
+          if (!grounded)  // Apply force only when not completely grounded
+            {
+                StickToGround();
+            }
 
         if (grounded)
         {
@@ -113,6 +117,16 @@ private Animator animator;
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
        
+    }
+    private void StickToGround()  // Modified function
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.5f, whatIsGround))
+        {
+            float distanceToGround = hit.distance;
+            currentStickForce = Mathf.Lerp(0, groundStickForce, 1 - (distanceToGround / 1.5f));
+            rb.AddForce(Vector3.down * currentStickForce, ForceMode.Force);
+        }
     }
 }
 

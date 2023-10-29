@@ -142,35 +142,66 @@ public class PlayerInteract : MonoBehaviour
         return nearestObject;
     }
 
-    private void HighlightNearestObject(GameObject nearestObj)
+ private void HighlightNearestObject(GameObject nearestObj)
+{
+    // If a new nearest object is detected
+    if (lastHighlightedObject != nearestObj)
     {
-        // If a new nearest object is detected
-        if (lastHighlightedObject != nearestObj)
+        // Remove existing highlights, if any
+        if (lastHighlightedObject != null)
         {
-            // Disable outline for the last highlighted object
-            if (lastHighlightedObject != null)
+            Outline outline = lastHighlightedObject.GetComponent<Outline>();
+            if (outline != null)
             {
-                Outline outline = lastHighlightedObject.GetComponent<Outline>();
-                if (outline != null)
-                {
-                    outline.enabled = false;
-                }
+                outline.enabled = false;
             }
 
-            // Enable outline for the new nearest object
-            if (nearestObj != null)
+            foreach (Transform child in lastHighlightedObject.transform)
             {
-                Outline outline = nearestObj.GetComponent<Outline>();
-                if (outline != null)
+                Outline childOutline = child.GetComponent<Outline>();
+                if (childOutline != null)
                 {
-                    outline.enabled = true;
+                    childOutline.enabled = false;
                 }
             }
-
-            // Update the last highlighted object
-            lastHighlightedObject = nearestObj;
         }
+
+        // Apply new highlight only if the crop is fully grown
+        if (nearestObj != null)
+        {
+            CropInteraction cropInteraction = nearestObj.GetComponent<CropInteraction>();
+            if (cropInteraction == null || cropInteraction.IsFullyGrown())
+            {
+                // For single model objects
+                Outline nearestOutline = nearestObj.GetComponent<Outline>();
+                if (nearestOutline != null)
+                {
+                    nearestOutline.enabled = true;
+                }
+
+                // For multiple model objects like crops
+                foreach (Transform child in nearestObj.transform)
+                {
+                    if (child.gameObject.activeInHierarchy)
+                    {
+                        Outline childOutline = child.GetComponent<Outline>();
+                        if (childOutline == null)
+                        {
+                            childOutline = child.gameObject.AddComponent<Outline>();
+                        }
+                        childOutline.enabled = true;
+                    }
+                }
+            }
+        }
+
+        // Update the last highlighted object
+        lastHighlightedObject = nearestObj;
     }
+}
+
+
+
 
     private void HandleInteractableInteraction(GameObject interactableObject)
     {

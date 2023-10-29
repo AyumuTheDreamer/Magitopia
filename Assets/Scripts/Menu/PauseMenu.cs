@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     private bool isPaused = false;
     private TimeController timeController; // Reference to your TimeController
     private PlayerMovement playerMovement;
+    public ThirdPersonCam thirdPersonCam;
     void Start()
     {
         timeController = FindObjectOfType<TimeController>();
@@ -29,6 +30,14 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(isPaused);
         timeController.isPaused = isPaused; // Set isPaused in TimeController
         playerMovement.isGamePaused = isPaused;
+        if(isPaused)
+        {
+            thirdPersonCam.LockCameraOrientation();
+        }
+        else
+        {
+            thirdPersonCam.UnlockCameraOrientation();
+        }
     }
 
     public void ContinueGame()
@@ -47,5 +56,10 @@ public class PauseMenu : MonoBehaviour
     {
         Application.Quit();
         playerMovement.isGamePaused = false;
+    }
+    void OnEnable()
+    {
+        // Set as last sibling (will render over all other siblings)
+        transform.SetAsLastSibling();
     }
 }

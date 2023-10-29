@@ -11,7 +11,7 @@ public class SeedShop : MonoBehaviour
     public GameObject shopUI;
     private bool isUIActive = false;
     private PlayerMovement playerMovement;
-
+    public ThirdPersonCam thirdPersonCam;
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -60,6 +60,7 @@ public class SeedShop : MonoBehaviour
             newItem.isStackable = seed.isStackable;
             newItem.quantity = 1;
             newItem.itemName = seed.itemName;
+            newItem.itemIcon = seed.itemIcon;
 
             Debug.Log($"OnButtonClick: Created new item with ID: {newItem.id}, Name: {newItem.itemName}, IsStackable: {newItem.isStackable}, Quantity: {newItem.quantity}");
 
@@ -80,7 +81,18 @@ public class SeedShop : MonoBehaviour
         {
             playerMovement.isSeedShopOpen = isUIActive;
         }
-        
+         if (isUIActive)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            thirdPersonCam.LockCameraOrientation(); // Add this line
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            thirdPersonCam.UnlockCameraOrientation(); // Add this line
+        }
         UpdateButtonState();
     }
 
