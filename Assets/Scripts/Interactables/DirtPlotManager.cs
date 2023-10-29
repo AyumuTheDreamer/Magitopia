@@ -30,11 +30,12 @@ public class DirtPlotManager : MonoBehaviour
             isCropPlanted = true;
             animator.SetTrigger("Plant");
             inventoryManager.RemoveSingleQuantityOfItem(inventoryManager.currentSeed);
-
+            
             CropInteraction cropInteraction = currentCrop.GetComponent<CropInteraction>();
             if (cropInteraction != null)
             {
                 cropInteraction.inventoryManager = inventoryManager;
+                cropInteraction.animator = this.animator;
             }
 
             if (inventoryManager.cropToBePlanted == null)

@@ -153,16 +153,7 @@
         145,
         146,
         147,
-        148,
-        149,
-        150,
-        151,
-        152,
-        153,
-        154,
-        155,
-        156,
-        157
+        148
       ],
       "OverwriteOutputs": false,
       "DebugActionIndex": 0
@@ -352,7 +343,7 @@
       "DisplayName": "Writing boot.config_tyr4.info",
       "ActionType": "WriteFile",
       "PayloadOffset": 83,
-      "PayloadLength": 14575,
+      "PayloadLength": 13958,
       "PayloadDebugContentSnippet": "{\"System.Object\":null,\"Bee.Tun",
       "Inputs": [],
       "Outputs": [
@@ -453,24 +444,17 @@
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Assembly-CSharp.dll",
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.Burst.dll",
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.VisualScripting.Core.dll",
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/UnityEngine.UI.dll",
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.VisualScripting.Flow.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.Timeline.dll",
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.InputSystem.dll",
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.InputSystem.ForUI.dll",
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.Mathematics.dll",
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.TextMeshPro.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll",
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.VisualScripting.State.dll",
         "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Cinemachine.dll",
         "E:/NekinsGame/Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll",
-        "E:/NekinsGame/Library/PackageCache/com.unity.burst@1.8.7/Unity.Burst.Unsafe.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/Facades/System.Runtime.dll",
         "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/Facades/netstandard.dll",
         "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/Mono.Security.dll",
         "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.ComponentModel.Composition.dll",
@@ -1408,30 +1392,6 @@
       "DebugActionIndex": 89
     },
     {
-      "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.RenderPipelines.Universal.Runtime.dll",
-      "DisplayName": "Copying Unity.RenderPipelines.Universal.Runtime.dll",
-      "ActionType": "CopyFiles",
-      "Inputs": [
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll"
-      ],
-      "Outputs": [
-        "E:/Test Builds/Magitopia_Data/Managed/Unity.RenderPipelines.Universal.Runtime.dll"
-      ],
-      "DebugActionIndex": 90
-    },
-    {
-      "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.Burst.dll",
-      "DisplayName": "Copying Unity.Burst.dll",
-      "ActionType": "CopyFiles",
-      "Inputs": [
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.Burst.dll"
-      ],
-      "Outputs": [
-        "E:/Test Builds/Magitopia_Data/Managed/Unity.Burst.dll"
-      ],
-      "DebugActionIndex": 91
-    },
-    {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.VisualScripting.Core.dll",
       "DisplayName": "Copying Unity.VisualScripting.Core.dll",
       "ActionType": "CopyFiles",
@@ -1441,7 +1401,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/Unity.VisualScripting.Core.dll"
       ],
-      "DebugActionIndex": 92
+      "DebugActionIndex": 90
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/UnityEngine.UI.dll",
@@ -1453,7 +1413,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/UnityEngine.UI.dll"
       ],
-      "DebugActionIndex": 93
+      "DebugActionIndex": 91
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.VisualScripting.Flow.dll",
@@ -1465,19 +1425,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/Unity.VisualScripting.Flow.dll"
       ],
-      "DebugActionIndex": 94
-    },
-    {
-      "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
-      "DisplayName": "Copying Unity.RenderPipeline.Universal.ShaderLibrary.dll",
-      "ActionType": "CopyFiles",
-      "Inputs": [
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll"
-      ],
-      "Outputs": [
-        "E:/Test Builds/Magitopia_Data/Managed/Unity.RenderPipeline.Universal.ShaderLibrary.dll"
-      ],
-      "DebugActionIndex": 95
+      "DebugActionIndex": 92
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.Timeline.dll",
@@ -1489,7 +1437,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/Unity.Timeline.dll"
       ],
-      "DebugActionIndex": 96
+      "DebugActionIndex": 93
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.InputSystem.dll",
@@ -1501,7 +1449,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/Unity.InputSystem.dll"
       ],
-      "DebugActionIndex": 97
+      "DebugActionIndex": 94
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.InputSystem.ForUI.dll",
@@ -1513,7 +1461,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/Unity.InputSystem.ForUI.dll"
       ],
-      "DebugActionIndex": 98
+      "DebugActionIndex": 95
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.RenderPipelines.Core.ShaderLibrary.dll",
@@ -1525,19 +1473,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/Unity.RenderPipelines.Core.ShaderLibrary.dll"
       ],
-      "DebugActionIndex": 99
-    },
-    {
-      "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.Mathematics.dll",
-      "DisplayName": "Copying Unity.Mathematics.dll",
-      "ActionType": "CopyFiles",
-      "Inputs": [
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.Mathematics.dll"
-      ],
-      "Outputs": [
-        "E:/Test Builds/Magitopia_Data/Managed/Unity.Mathematics.dll"
-      ],
-      "DebugActionIndex": 100
+      "DebugActionIndex": 96
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.TextMeshPro.dll",
@@ -1549,19 +1485,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/Unity.TextMeshPro.dll"
       ],
-      "DebugActionIndex": 101
-    },
-    {
-      "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.RenderPipelines.Universal.Shaders.dll",
-      "DisplayName": "Copying Unity.RenderPipelines.Universal.Shaders.dll",
-      "ActionType": "CopyFiles",
-      "Inputs": [
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll"
-      ],
-      "Outputs": [
-        "E:/Test Builds/Magitopia_Data/Managed/Unity.RenderPipelines.Universal.Shaders.dll"
-      ],
-      "DebugActionIndex": 102
+      "DebugActionIndex": 97
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.VisualScripting.State.dll",
@@ -1573,7 +1497,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/Unity.VisualScripting.State.dll"
       ],
-      "DebugActionIndex": 103
+      "DebugActionIndex": 98
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Cinemachine.dll",
@@ -1585,7 +1509,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/Cinemachine.dll"
       ],
-      "DebugActionIndex": 104
+      "DebugActionIndex": 99
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.VisualScripting.Antlr3.Runtime.dll",
@@ -1597,31 +1521,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/Unity.VisualScripting.Antlr3.Runtime.dll"
       ],
-      "DebugActionIndex": 105
-    },
-    {
-      "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Unity.Burst.Unsafe.dll",
-      "DisplayName": "Copying Unity.Burst.Unsafe.dll",
-      "ActionType": "CopyFiles",
-      "Inputs": [
-        "E:/NekinsGame/Library/PackageCache/com.unity.burst@1.8.7/Unity.Burst.Unsafe.dll"
-      ],
-      "Outputs": [
-        "E:/Test Builds/Magitopia_Data/Managed/Unity.Burst.Unsafe.dll"
-      ],
-      "DebugActionIndex": 106
-    },
-    {
-      "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Runtime.dll",
-      "DisplayName": "Copying System.Runtime.dll",
-      "ActionType": "CopyFiles",
-      "Inputs": [
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/Facades/System.Runtime.dll"
-      ],
-      "Outputs": [
-        "E:/Test Builds/Magitopia_Data/Managed/System.Runtime.dll"
-      ],
-      "DebugActionIndex": 107
+      "DebugActionIndex": 100
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/netstandard.dll",
@@ -1633,7 +1533,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/netstandard.dll"
       ],
-      "DebugActionIndex": 108
+      "DebugActionIndex": 101
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/Mono.Security.dll",
@@ -1645,7 +1545,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/Mono.Security.dll"
       ],
-      "DebugActionIndex": 109
+      "DebugActionIndex": 102
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.ComponentModel.Composition.dll",
@@ -1657,7 +1557,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.ComponentModel.Composition.dll"
       ],
-      "DebugActionIndex": 110
+      "DebugActionIndex": 103
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Configuration.dll",
@@ -1669,7 +1569,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.Configuration.dll"
       ],
-      "DebugActionIndex": 111
+      "DebugActionIndex": 104
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Core.dll",
@@ -1681,7 +1581,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.Core.dll"
       ],
-      "DebugActionIndex": 112
+      "DebugActionIndex": 105
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Data.DataSetExtensions.dll",
@@ -1693,7 +1593,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.Data.DataSetExtensions.dll"
       ],
-      "DebugActionIndex": 113
+      "DebugActionIndex": 106
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Data.dll",
@@ -1705,7 +1605,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.Data.dll"
       ],
-      "DebugActionIndex": 114
+      "DebugActionIndex": 107
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Drawing.dll",
@@ -1717,7 +1617,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.Drawing.dll"
       ],
-      "DebugActionIndex": 115
+      "DebugActionIndex": 108
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.EnterpriseServices.dll",
@@ -1729,7 +1629,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.EnterpriseServices.dll"
       ],
-      "DebugActionIndex": 116
+      "DebugActionIndex": 109
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.IO.Compression.FileSystem.dll",
@@ -1741,7 +1641,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.IO.Compression.FileSystem.dll"
       ],
-      "DebugActionIndex": 117
+      "DebugActionIndex": 110
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.IO.Compression.dll",
@@ -1753,7 +1653,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.IO.Compression.dll"
       ],
-      "DebugActionIndex": 118
+      "DebugActionIndex": 111
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Net.Http.dll",
@@ -1765,7 +1665,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.Net.Http.dll"
       ],
-      "DebugActionIndex": 119
+      "DebugActionIndex": 112
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Numerics.dll",
@@ -1777,7 +1677,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.Numerics.dll"
       ],
-      "DebugActionIndex": 120
+      "DebugActionIndex": 113
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Runtime.Serialization.dll",
@@ -1789,7 +1689,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.Runtime.Serialization.dll"
       ],
-      "DebugActionIndex": 121
+      "DebugActionIndex": 114
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Security.dll",
@@ -1801,7 +1701,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.Security.dll"
       ],
-      "DebugActionIndex": 122
+      "DebugActionIndex": 115
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.ServiceModel.Internals.dll",
@@ -1813,7 +1713,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.ServiceModel.Internals.dll"
       ],
-      "DebugActionIndex": 123
+      "DebugActionIndex": 116
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Transactions.dll",
@@ -1825,7 +1725,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.Transactions.dll"
       ],
-      "DebugActionIndex": 124
+      "DebugActionIndex": 117
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Xml.Linq.dll",
@@ -1837,7 +1737,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.Xml.Linq.dll"
       ],
-      "DebugActionIndex": 125
+      "DebugActionIndex": 118
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.Xml.dll",
@@ -1849,7 +1749,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.Xml.dll"
       ],
-      "DebugActionIndex": 126
+      "DebugActionIndex": 119
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/System.dll",
@@ -1861,7 +1761,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/System.dll"
       ],
-      "DebugActionIndex": 127
+      "DebugActionIndex": 120
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Managed/mscorlib.dll",
@@ -1873,189 +1773,20 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Managed/mscorlib.dll"
       ],
-      "DebugActionIndex": 128
-    },
-    {
-      "Annotation": "GenerateNativePluginsForAssemblies Library/Bee/artifacts/WinPlayerBuildProgram/AsyncPluginsFromLinker",
-      "DisplayName": "Running Burst Compiler",
-      "ActionType": "RunRPCCommand",
-      "PayloadOffset": 14781,
-      "PayloadLength": 13437,
-      "PayloadDebugContentSnippet": "{\"PlayerBuildProgramLibrary.Da",
-      "Action": "GenerateNativePluginsForAssemblies",
-      "Inputs": [
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.AIModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ARModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.AccessibilityModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.AndroidJNIModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.AnimationModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.AssetBundleModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.AudioModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ClothModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ClusterInputModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ClusterRendererModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ContentLoadModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.CoreModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.CrashReportingModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.DSPGraphModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.DirectorModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.GIModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.GameCenterModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.GridModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.HotReloadModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.IMGUIModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ImageConversionModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.InputLegacyModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.InputModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.JSONSerializeModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.LocalizationModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.NVIDIAModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ParticleSystemModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.PerformanceReportingModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.Physics2DModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.PhysicsModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ProfilerModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.PropertiesModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ScreenCaptureModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.SharedInternalsModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.SpriteMaskModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.SpriteShapeModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.StreamingModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.SubstanceModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.SubsystemsModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TLSModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TerrainModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TerrainPhysicsModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TextCoreFontEngineModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TextCoreTextEngineModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TextRenderingModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TilemapModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UIElementsModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UIModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UmbraModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityAnalyticsCommonModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityAnalyticsModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityConnectModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityCurlModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityTestProtocolModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestAudioModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestTextureModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestWWWModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.VFXModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.VRModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.VehiclesModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.VideoModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.VirtualTexturingModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.WindModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.XRModule.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Assembly-CSharp.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.Burst.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.VisualScripting.Core.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/UnityEngine.UI.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.VisualScripting.Flow.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.Timeline.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.InputSystem.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.InputSystem.ForUI.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.Mathematics.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.TextMeshPro.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Unity.VisualScripting.State.dll",
-        "E:/NekinsGame/Library/Bee/PlayerScriptAssemblies/Cinemachine.dll",
-        "E:/NekinsGame/Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll",
-        "E:/NekinsGame/Library/PackageCache/com.unity.burst@1.8.7/Unity.Burst.Unsafe.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/Facades/System.Runtime.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/Facades/netstandard.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/Mono.Security.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.ComponentModel.Composition.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.Configuration.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.Core.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.Data.DataSetExtensions.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.Data.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.Drawing.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.EnterpriseServices.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.IO.Compression.FileSystem.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.IO.Compression.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.Net.Http.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.Numerics.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.Runtime.Serialization.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.Security.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.ServiceModel.Internals.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.Transactions.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.Xml.Linq.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.Xml.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/System.dll",
-        "E:/UnityHub/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32/mscorlib.dll",
-        "ProjectSettings/BurstAotSettings_StandaloneWindows.json",
-        "E:/NekinsGame/Library/PackageCache/com.unity.burst@1.8.7/.Runtime/bcl.exe"
-      ],
-      "Outputs": [],
-      "TargetDirectories": [
-        "Library/Bee/artifacts/WinPlayerBuildProgram/AsyncPluginsFromLinker",
-        "Library/Bee/artifacts/WinPlayerBuildProgram/AsyncPluginsFromLinkerSymbols"
-      ],
-      "OverwriteOutputs": false,
-      "StatSignatures": [
-        {
-          "File": "Library/Bee/artifacts/WinPlayerBuildProgram/AsyncPluginsFromLinker"
-        },
-        {
-          "File": "Library/Bee/artifacts/WinPlayerBuildProgram/AsyncPluginsFromLinker/x86_64"
-        },
-        {
-          "File": "Library/Bee/artifacts/WinPlayerBuildProgram/AsyncPluginsFromLinkerSymbols"
-        }
-      ],
-      "GlobSignatures": [
-        {
-          "Path": "Library/Bee/artifacts/WinPlayerBuildProgram/AsyncPluginsFromLinker"
-        },
-        {
-          "Path": "Library/Bee/artifacts/WinPlayerBuildProgram/AsyncPluginsFromLinker/x86_64",
-          "Recurse": 1
-        },
-        {
-          "Path": "Library/Bee/artifacts/WinPlayerBuildProgram/AsyncPluginsFromLinkerSymbols",
-          "Recurse": 1
-        }
-      ],
-      "DebugActionIndex": 129
-    },
-    {
-      "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Plugins/x86_64/lib_burst_generated.dll",
-      "DisplayName": "Copying lib_burst_generated.dll",
-      "ActionType": "CopyFiles",
-      "Inputs": [
-        "Library/Bee/artifacts/WinPlayerBuildProgram/AsyncPluginsFromLinker/x86_64/lib_burst_generated.dll"
-      ],
-      "Outputs": [
-        "E:/Test Builds/Magitopia_Data/Plugins/x86_64/lib_burst_generated.dll"
-      ],
-      "ToBuildDependencies": [
-        129
-      ],
-      "DebugActionIndex": 130
+      "DebugActionIndex": 121
     },
     {
       "Annotation": "WriteText Library/Bee/artifacts/WinPlayerBuildProgram/Data/app.info",
       "DisplayName": "Writing app.info",
       "ActionType": "WriteFile",
-      "PayloadOffset": 28307,
+      "PayloadOffset": 14130,
       "PayloadLength": 23,
       "PayloadDebugContentSnippet": "Simply Studio\nMagitopia",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/WinPlayerBuildProgram/Data/app.info"
       ],
-      "DebugActionIndex": 131
+      "DebugActionIndex": 122
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/app.info",
@@ -2068,9 +1799,9 @@
         "E:/Test Builds/Magitopia_Data/app.info"
       ],
       "ToBuildDependencies": [
-        131
+        122
       ],
-      "DebugActionIndex": 132
+      "DebugActionIndex": 123
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia_Data/Resources/unity default resources",
@@ -2082,7 +1813,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia_Data/Resources/unity default resources"
       ],
-      "DebugActionIndex": 133
+      "DebugActionIndex": 124
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/Magitopia.exe",
@@ -2094,7 +1825,7 @@
       "Outputs": [
         "E:/Test Builds/Magitopia.exe"
       ],
-      "DebugActionIndex": 134
+      "DebugActionIndex": 125
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll",
@@ -2106,7 +1837,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll"
       ],
-      "DebugActionIndex": 135
+      "DebugActionIndex": 126
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll",
@@ -2118,7 +1849,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll"
       ],
-      "DebugActionIndex": 136
+      "DebugActionIndex": 127
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser",
@@ -2130,7 +1861,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser"
       ],
-      "DebugActionIndex": 137
+      "DebugActionIndex": 128
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx",
@@ -2142,7 +1873,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx"
       ],
-      "DebugActionIndex": 138
+      "DebugActionIndex": 129
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/2.0/machine.config",
@@ -2154,7 +1885,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/2.0/machine.config"
       ],
-      "DebugActionIndex": 139
+      "DebugActionIndex": 130
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/2.0/settings.map",
@@ -2166,7 +1897,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/2.0/settings.map"
       ],
-      "DebugActionIndex": 140
+      "DebugActionIndex": 131
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/2.0/web.config",
@@ -2178,7 +1909,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/2.0/web.config"
       ],
-      "DebugActionIndex": 141
+      "DebugActionIndex": 132
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser",
@@ -2190,7 +1921,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser"
       ],
-      "DebugActionIndex": 142
+      "DebugActionIndex": 133
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx",
@@ -2202,7 +1933,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx"
       ],
-      "DebugActionIndex": 143
+      "DebugActionIndex": 134
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/4.0/machine.config",
@@ -2214,7 +1945,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/4.0/machine.config"
       ],
-      "DebugActionIndex": 144
+      "DebugActionIndex": 135
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/4.0/settings.map",
@@ -2226,7 +1957,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/4.0/settings.map"
       ],
-      "DebugActionIndex": 145
+      "DebugActionIndex": 136
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/4.0/web.config",
@@ -2238,7 +1969,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/4.0/web.config"
       ],
-      "DebugActionIndex": 146
+      "DebugActionIndex": 137
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser",
@@ -2250,7 +1981,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser"
       ],
-      "DebugActionIndex": 147
+      "DebugActionIndex": 138
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx",
@@ -2262,7 +1993,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx"
       ],
-      "DebugActionIndex": 148
+      "DebugActionIndex": 139
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/4.5/machine.config",
@@ -2274,7 +2005,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/4.5/machine.config"
       ],
-      "DebugActionIndex": 149
+      "DebugActionIndex": 140
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/4.5/settings.map",
@@ -2286,7 +2017,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/4.5/settings.map"
       ],
-      "DebugActionIndex": 150
+      "DebugActionIndex": 141
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/4.5/web.config",
@@ -2298,7 +2029,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/4.5/web.config"
       ],
-      "DebugActionIndex": 151
+      "DebugActionIndex": 142
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/browscap.ini",
@@ -2310,7 +2041,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/browscap.ini"
       ],
-      "DebugActionIndex": 152
+      "DebugActionIndex": 143
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/config",
@@ -2322,7 +2053,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/config"
       ],
-      "DebugActionIndex": 153
+      "DebugActionIndex": 144
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/MonoBleedingEdge/etc/mono/mconfig/config.xml",
@@ -2334,7 +2065,7 @@
       "Outputs": [
         "E:/Test Builds/MonoBleedingEdge/etc/mono/mconfig/config.xml"
       ],
-      "DebugActionIndex": 154
+      "DebugActionIndex": 145
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/UnityCrashHandler64.exe",
@@ -2346,7 +2077,7 @@
       "Outputs": [
         "E:/Test Builds/UnityCrashHandler64.exe"
       ],
-      "DebugActionIndex": 155
+      "DebugActionIndex": 146
     },
     {
       "Annotation": "CopyFiles E:/Test Builds/UnityPlayer.dll",
@@ -2358,7 +2089,7 @@
       "Outputs": [
         "E:/Test Builds/UnityPlayer.dll"
       ],
-      "DebugActionIndex": 156
+      "DebugActionIndex": 147
     },
     {
       "Annotation": "Player",
@@ -2485,14 +2216,15 @@
         119,
         120,
         121,
-        122,
         123,
         124,
         125,
         126,
         127,
         128,
+        129,
         130,
+        131,
         132,
         133,
         134,
@@ -2508,19 +2240,10 @@
         144,
         145,
         146,
-        147,
-        148,
-        149,
-        150,
-        151,
-        152,
-        153,
-        154,
-        155,
-        156
+        147
       ],
       "OverwriteOutputs": false,
-      "DebugActionIndex": 157
+      "DebugActionIndex": 148
     }
   ],
   "FileSignatures": [
@@ -2719,13 +2442,9 @@
   "DigestCacheFileNameTmp": "Library/Bee/tundra.digestcache.tmp",
   "CachedNodeOutputDirectoryName": "Library/Bee/CachedNodeOutput",
   "EmitDataForBeeWhy": 0,
-  "DirectoriesCausingImplicitDependencies": [
-    "Library/Bee/artifacts/WinPlayerBuildProgram/AsyncPluginsFromLinker",
-    "Library/Bee/artifacts/WinPlayerBuildProgram/AsyncPluginsFromLinkerSymbols"
-  ],
         "NamedNodes": {
           "all_tundra_nodes": 0,
-          "Player": 157
+          "Player": 148
         }
 ,  "DefaultNodes": [
     0
