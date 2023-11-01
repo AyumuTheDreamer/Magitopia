@@ -10,12 +10,12 @@ public class InventoryUI : MonoBehaviour
     public PlayerMovement playerMovement;
     public ThirdPersonCam thirdPersonCam;
     public InventoryManager inventoryManager;
-
+    public PauseMenu pauseMenu;
     // Update is called once per frame
     void Update()
     {
         // Check if the 'I' key is pressed
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             // Toggle the Inventory UI panel
             inventoryPanel.SetActive(!inventoryPanel.activeSelf);

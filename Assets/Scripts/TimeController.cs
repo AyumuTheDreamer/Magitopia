@@ -98,18 +98,20 @@ public class TimeController : MonoBehaviour
         sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);
     }
 
-  private void UpdateLightSettings()
-{
-    float dotProduct = Vector3.Dot(sunLight.transform.forward, Vector3.down);
-    sunLight.intensity = Mathf.Lerp(0, maxSunLightIntensity, lightChangeCurve.Evaluate(dotProduct));
-    moonLight.intensity = Mathf.Lerp(maxMoonLightIntensity, 0, lightChangeCurve.Evaluate(dotProduct));
+    private void UpdateLightSettings()
+    {
+        float dotProduct = Vector3.Dot(sunLight.transform.forward, Vector3.down);
+        sunLight.intensity = Mathf.Lerp(0, maxSunLightIntensity, lightChangeCurve.Evaluate(dotProduct));
+        moonLight.intensity = Mathf.Lerp(maxMoonLightIntensity, 0, lightChangeCurve.Evaluate(dotProduct));
 
-    // Adjust skybox brightness and color based on time of day
-    Color skyboxTintColor = Color.Lerp(nightAmbientLight, dayAmbientLight, lightChangeCurve.Evaluate(dotProduct));
-
-    // Set the Skybox material's tint color to control brightness and color
-    RenderSettings.skybox.SetColor("_Tint", skyboxTintColor);
-}
+        // Line to adjust the skybox color
+        Color skyboxTintColor = Color.Lerp(nightAmbientLight, dayAmbientLight, lightChangeCurve.Evaluate(dotProduct));
+        RenderSettings.skybox.SetColor("_Tint", skyboxTintColor);
+        
+        // Line to adjust the ambient light color
+        Color ambientLightColor = Color.Lerp(nightAmbientLight, dayAmbientLight, lightChangeCurve.Evaluate(dotProduct));
+        RenderSettings.ambientLight = ambientLightColor;
+    }
 
 
     private TimeSpan CalculateTimeDifference(TimeSpan fromTime, TimeSpan toTime)

@@ -23,8 +23,8 @@ public class PlayerInteract : MonoBehaviour
     public ShopInteraction shopInteraction;
     public TimeController timeController;
     public GameObject ingredientPrefab;
-    public SeedShop seedShop;
     private GameObject lastHighlightedObject;
+    public Text interactionPrompt;
    private void Start()
 {
     // Copy the individual recipes to the availableRecipes list.
@@ -51,6 +51,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void Update()
 {
+  
     // Check for nearby objects
     interactableObjects = GetInteractableObjects();
     
@@ -58,7 +59,49 @@ public class PlayerInteract : MonoBehaviour
 
         // Highlight the nearest object
         HighlightNearestObject(nearestObject);
-
+         if (nearestObject != null)
+        {
+            if (nearestObject.CompareTag("ShopSell"))
+            {
+                interactionPrompt.text = "E - Sell Potions";
+            }
+            else if (nearestObject.CompareTag("Shop"))
+            {
+                interactionPrompt.text = "E - Buy Seeds";
+            }
+            else if (nearestObject.CompareTag("AlchemyStation"))
+            {
+                interactionPrompt.text = "E - Brew Potions";
+            }
+            else if (nearestObject.CompareTag("Bed"))
+            {
+                interactionPrompt.text = "E - Sleep to Next Day";
+            }
+            else if (nearestObject.CompareTag("Plantable"))
+            {
+                DirtPlotManager dirtPlotManager = nearestObject.GetComponent<DirtPlotManager>();
+                if (dirtPlotManager != null && dirtPlotManager.IsPlantable())
+                {
+                    interactionPrompt.text = "E - Plant Seeds";
+                }
+                else
+                {
+                    interactionPrompt.text = "";
+                }
+            }
+            else if (nearestObject.CompareTag("CropForPickup"))
+            {
+                interactionPrompt.text = "E - Harvest";
+            }
+            else
+            {
+                interactionPrompt.text = "";
+            }
+        }
+        else
+        {
+            interactionPrompt.text = "";
+        }
     // Check for player input to interact with objects
     if (Input.GetKeyDown(KeyCode.E))
     {
@@ -102,6 +145,7 @@ public class PlayerInteract : MonoBehaviour
            
         }
     }
+    
 }
 
 

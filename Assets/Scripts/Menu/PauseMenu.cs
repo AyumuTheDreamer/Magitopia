@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI; // Drag your pause menu UI here in Unity Inspector
-    private bool isPaused = false;
+    public bool isPaused = false;
     private TimeController timeController; // Reference to your TimeController
     private PlayerMovement playerMovement;
     public ThirdPersonCam thirdPersonCam;

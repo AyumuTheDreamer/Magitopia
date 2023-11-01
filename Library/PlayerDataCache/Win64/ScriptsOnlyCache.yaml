@@ -13,6 +13,7 @@ ScriptsOnlyBuild:
     - InventoryUI
     - Item
     - MainMenuButtons
+    - ManagerShopPromptUI
     - Outline
     - PauseMenu
     - PlayerInteract
@@ -76,15 +77,14 @@ ScriptsOnlyBuild:
     - TMPro.TMP_StyleSheet
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
-    - TMPro.TMP_Settings
-    - TMPro.TMP_SpriteAsset
-    - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -512,6 +512,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10004}
     - Class: 114
       Script: {instanceID: 10082}
+    - Class: 114
+      Script: {instanceID: 317274}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -540,7 +542,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
-    - Class: 258
+    - Class: 850595691
       Script: {instanceID: 0}
     - Class: 1953259897
       Script: {instanceID: 0}
@@ -1303,7 +1305,7 @@ ScriptsOnlyBuild:
     className: CinemachineHardLockToTarget
   - hash:
       serializedVersion: 2
-      Hash: 87aabd69967ee6f9aff843125172c074
+      Hash: 183deba7ed21cf886b47e12a81e3c4fb
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PauseMenu
@@ -1441,7 +1443,7 @@ ScriptsOnlyBuild:
     className: InventoryManager
   - hash:
       serializedVersion: 2
-      Hash: a3e538bbd989d02f6cdef09c21c8d046
+      Hash: c41762873ebf904b5fe1bec9c943b70c
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerInteract
@@ -2131,7 +2133,7 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
-      Hash: 86cd0420b92ec38c92f937b953751703
+      Hash: 5215396e1e4bcbfca986ece092565529
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: InventoryUI
@@ -2285,6 +2287,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 877c8f15bb6763a1a1808a481e9b5b9d
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ManagerShopPromptUI
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
