@@ -98,12 +98,13 @@ MonoBehaviour:
   inventoryManager: {fileID: 0}
   harvestedQuantity: 3
   growthStages:
-  - model: {fileID: 1482696735385484367}
+  - model: {fileID: 919132149155446097, guid: e22dc009d134f9c48bc508a4f1ec4e6f, type: 3}
     growthTime: 0
   - model: {fileID: 712562680365260763}
     growthTime: 0
   currentGrowthStage: 0
   timeController: {fileID: 0}
+  initialGrowthStage: 0
 --- !u!64 &3851664663823077097
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -284,11 +285,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e22dc009d134f9c48bc508a4f1ec4e6f, type: 3}
---- !u!1 &1482696735385484367 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e22dc009d134f9c48bc508a4f1ec4e6f, type: 3}
-  m_PrefabInstance: {fileID: 1752728199554744606}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2294663723211040501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e22dc009d134f9c48bc508a4f1ec4e6f, type: 3}

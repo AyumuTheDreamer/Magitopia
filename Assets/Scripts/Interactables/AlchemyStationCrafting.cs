@@ -16,6 +16,7 @@ public class AlchemyStationCrafting : MonoBehaviour
     public GameObject ingredientDisplayPrefab;
     [SerializeField]
     private List<Button> recipeButtons = new List<Button>();
+    private bool shiftHeldDown = false;
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -28,6 +29,11 @@ public class AlchemyStationCrafting : MonoBehaviour
         // Populate the recipeButtonContainer with buttons
         PopulateRecipeButtons();
         CheckRecipeAvailability();
+    }
+     void Update()
+    {
+        // Check if either Shift key is held down
+        shiftHeldDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
     }
 
     public void Interact()
@@ -116,21 +122,39 @@ public class AlchemyStationCrafting : MonoBehaviour
         // Unsubscribe to prevent memory leaks
         inventoryManager.OnInventoryChanged -= CheckRecipeAvailability;
     }
-   public void CraftItemDirectly(AlchemyRecipe recipe, Button correspondingButton)
-{
-    if (inventoryManager.CraftItem(recipe))  // Assuming CraftItem returns true if successful
+  public void CraftItemDirectly(AlchemyRecipe recipe, Button correspondingButton)
     {
-        Debug.Log("Successfully crafted: " + recipe.name);
-        
-        // Any additional logic like updating UI can go here.
+        int craftCount = 0;
+        const int maxCraftCount = 100; // Prevent crafting indefinitely if there's a lot of materials.
+
+        // If shift is held, attempt to craft as many items as possible.
+        while (shiftHeldDown && inventoryManager.CraftItem(recipe, true))
+        {
+            if (inventoryManager.CraftItem(recipe))
+            {
+                craftCount++;
+                Debug.Log("Successfully crafted: " + recipe.name);
+                if (craftCount >= maxCraftCount)
+                {
+                    Debug.LogWarning("Reached crafting limit of: " + maxCraftCount.ToString());
+                    break;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Couldn't craft: " + recipe.name + " after " + craftCount.ToString() + " crafts.");
+                break; // Break out of the loop if we run out of materials
+            }
+        }
+
+        // If shift wasn't held down, just craft once
+        if (!shiftHeldDown && inventoryManager.CraftItem(recipe))
+        {
+            Debug.Log("Successfully crafted: " + recipe.name);
+        }
+
         CheckRecipeAvailability(); // Update availability after crafting
     }
-    else
-    {
-        Debug.LogWarning("Couldn't craft: " + recipe.name);
-        // Maybe display a message to the player
-    }
-}
 
 
 }

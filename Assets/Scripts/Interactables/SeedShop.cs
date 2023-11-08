@@ -12,6 +12,9 @@ public class SeedShop : MonoBehaviour
     private bool isUIActive = false;
     private PlayerMovement playerMovement;
     public ThirdPersonCam thirdPersonCam;
+    public GameObject firstTimeTextBox; // Add this line to hold the text box UI
+    private bool isFirstTime = true;    // Add this line to track if it's the first time
+    private bool isFirstTimeTextBoxActive = false;
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -69,32 +72,56 @@ public class SeedShop : MonoBehaviour
         }
     }
 }
-
+ void Update()
+    {
+        // If the UI is active and the user presses the hotkey, toggle the first time text box
+        if (isUIActive && Input.GetKeyDown(KeyCode.K)) // Change KeyCode.K to whatever key you want
+        {
+            // We only want to toggle if it's not the first time
+            if (!isFirstTime)
+            {
+                isFirstTimeTextBoxActive = !isFirstTimeTextBoxActive;
+                firstTimeTextBox.SetActive(isFirstTimeTextBoxActive);
+            }
+        }
+    }
 
     public void ToggleShopUI()
     {
         isUIActive = !isUIActive;
         shopUI.SetActive(isUIActive);
 
-        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
         if (playerMovement != null)
         {
             playerMovement.isSeedShopOpen = isUIActive;
         }
-         if (isUIActive)
+
+        if (isUIActive)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            thirdPersonCam.LockCameraOrientation(); // Add this line
+            thirdPersonCam.LockCameraOrientation();
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            thirdPersonCam.UnlockCameraOrientation(); // Add this line
+            thirdPersonCam.UnlockCameraOrientation();
+            // Also make sure to hide the firstTimeTextBox when closing the UI
+            isFirstTimeTextBoxActive = false;
+            firstTimeTextBox.SetActive(false);
         }
+
+        if (isFirstTime && isUIActive)
+        {
+            firstTimeTextBox.SetActive(true);
+            isFirstTime = false;
+            isFirstTimeTextBoxActive = true; // Make sure to set this true as well
+        }
+
         UpdateButtonState();
     }
+
 
     public void UpdateButtonState()
     {

@@ -28,6 +28,9 @@ public class InventoryManager : MonoBehaviour
     public List<Seeds> allSeeds;
     public delegate void InventoryChangedDelegate();
     public event InventoryChangedDelegate OnInventoryChanged;
+    private GameObject draggedItem;
+    public Transform dragItemParent;
+    [SerializeField] private GameObject notificationPrefab;
     private void Awake()
     {
       
@@ -51,11 +54,14 @@ public class InventoryManager : MonoBehaviour
 public void Add(Item item)
 {
     Debug.Log($"Trying to add item with Name: {item.itemName}, Quantity: {item.quantity}");
-    
+
     if (item.quantity <= 0)
     {
         return; // Don't add items with zero or negative quantity
     }
+
+    bool inventoryUpdated = false;
+    int addedQuantity = 0; // This will track the amount we actually add to the inventory
 
     if (item.isStackable)
     {
@@ -63,23 +69,21 @@ public void Add(Item item)
         for (int i = 0; i < Items.Count; i++)
         {
             Item existingItem = Items[i];
-            Debug.Log($"Found existing item with Quantity: {existingItem.itemName}, Item name: {item.itemName}");
-            // Changed condition here from ID to itemName
             if (existingItem.id == item.id && existingItem.quantity < existingItem.maxStackCount)
             {
-                Debug.Log($"Found existing item with Quantity: {existingItem.quantity}, MaxStack: {existingItem.maxStackCount}");
-                
                 int spaceLeftInStack = existingItem.maxStackCount - existingItem.quantity;
                 int quantityToAdd = Mathf.Min(spaceLeftInStack, item.quantity);
-                
-                existingItem.quantity += quantityToAdd;
+
+                existingItem.quantity += quantityToAdd; // Increase the stack's quantity
                 Items[i] = existingItem; // Update the item in the list
-                
-                item.quantity -= quantityToAdd;
-                
+                inventoryUpdated = true;
+
+                addedQuantity += quantityToAdd; // Track the quantity that we have added
+                item.quantity -= quantityToAdd; // Decrease the added item's quantity
+
                 if (item.quantity <= 0)
                 {
-                    return; // If all quantities are added, return
+                    break; // If all items have been added to the stack, we're done
                 }
             }
         }
@@ -87,13 +91,23 @@ public void Add(Item item)
 
     if (item.quantity > 0)
     {
-        Items.Add(item);
+        Items.Add(item); // Add the item as a new entry in the inventory
+        inventoryUpdated = true;
+        addedQuantity += item.quantity; // The added quantity is the full item quantity in this case
     }
 
-    // Your other update methods...
+    if (inventoryUpdated)
+    {
+        ListItems(); // Update the UI to reflect the inventory changes
+        GenerateNotification(item, addedQuantity); // Show the notification with the correct added quantity
+    }
+
+    
     UpdateSeedItemsList();
     NotifyInventoryChanged();
 }
+
+
   public void Remove(Item item)
 {
     if (item.quantity <= 0)
@@ -114,63 +128,68 @@ public void Add(Item item)
 }
 
     public void ListItems()
+{
+    seedItems.Clear();
+    foreach (Transform itemTransform in ItemContent)
     {
-         seedItems.Clear();
-        foreach (Transform item in ItemContent)
-        {
-            Destroy(item.gameObject);
-        }
+        Destroy(itemTransform.gameObject);
+    }
 
-        foreach (var item in Items)
+    foreach (var item in Items)
+    {
+        GameObject obj = Instantiate(InventoryItem, ItemContent);
+        var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
+        var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
+        var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+        var sellButton = obj.transform.Find("SellButton").GetComponent<Button>();
+
+        // Check if the ShopUI is open and if the item name contains "Potion"
+        bool canSell = shopInteraction.isShopOpen && item.itemName.Contains("Potion");
+        sellButton.gameObject.SetActive(canSell);
+
+        if (canSell)
         {
-            GameObject obj = Instantiate(InventoryItem, ItemContent);
-            var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
-            var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
-            var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
-            var sellButton = obj.transform.Find("SellButton").GetComponent<Button>();
             sellButton.onClick.RemoveAllListeners(); // Clear any previous listeners
             sellButton.onClick.AddListener(() => SellItemButtonClicked(item));
-
-            itemName.text = item.itemName;
-            itemIcon.sprite = item.itemIcon;
-
-            if (item.isStackable)
-            {
-                var itemCountText = obj.transform.Find("ItemCount").GetComponent<Text>();
-                itemCountText.text = "x" + item.quantity.ToString();
-            }
-            else
-            {
-                var itemCountText = obj.transform.Find("ItemCount").GetComponent<Text>();
-                if (itemCountText != null)
-                {
-                    itemCountText.text = "";
-                }
-            }
-             if (item.itemName.Contains("Seeds"))
-            {
-                seedItems.Add(item); // Add to our list of seed items
-            }
-            // Set the SellButton active based on the ShopUI state
-            if (shopInteraction != null)
-            {
-                sellButton.gameObject.SetActive(shopInteraction.potionShopPanel.activeSelf);
-            }
         }
-         if (seedItems.Count > 0)
+
+        itemName.text = item.itemName;
+        itemIcon.sprite = item.itemIcon;
+
+        if (item.isStackable)
         {
-            UpdateSelectedSeed(0);
+            var itemCountText = obj.transform.Find("ItemCount").GetComponent<Text>();
+            itemCountText.text = "x" + item.quantity.ToString();
         }
         else
         {
-            // New code to handle when there are no seed items
-            SelectedSeedNameText.text = "None";
-            SelectedSeedImage.sprite = null;
-            SelectedSeedCount.text = "";
-            cropToBePlanted = null;
-            currentSeed = null;
+            var itemCountText = obj.transform.Find("ItemCount").GetComponent<Text>();
+            if (itemCountText != null)
+            {
+                itemCountText.text = "";
+            }
+        }
+
+        if (item.itemName.Contains("Seeds"))
+        {
+            seedItems.Add(item); // Add to our list of seed items
         }
     }
+
+    if (seedItems.Count > 0)
+    {
+        UpdateSelectedSeed(0);
+    }
+    else
+    {
+        // Code to handle when there are no seed items
+        SelectedSeedNameText.text = "None";
+        SelectedSeedImage.sprite = null;
+        SelectedSeedCount.text = "";
+        cropToBePlanted = null;
+        currentSeed = null;
+    }
+}
 
     public void EnableItemsRemove()
     {
@@ -463,6 +482,45 @@ public void NotifyInventoryChanged()
     {
         OnInventoryChanged?.Invoke();
     }
+ public void OnBeginDrag(PointerEventData eventData)
+    {
+        draggedItem = Instantiate(InventoryItem, dragItemParent);
+        draggedItem.GetComponent<CanvasGroup>().blocksRaycasts = false;
+    }
+     public void OnDrag(PointerEventData eventData)
+    {
+        draggedItem.transform.position = eventData.position;
+    }
+     public void OnEndDrag(PointerEventData eventData)
+    {
+        Destroy(draggedItem);
+        // TODO: Implement the logic for adding the item to the destination inventory
+    }
+  private void GenerateNotification(Item item, int quantity)
+{
+    // Find the PlayerUI canvas by name
+    Canvas canvas = GameObject.Find("PlayerUI").GetComponent<Canvas>();
 
-    
+    if (canvas != null && notificationPrefab != null)
+    {
+        // Instantiate the notification prefab as a child of the PlayerUI canvas
+        GameObject notificationInstance = Instantiate(notificationPrefab, canvas.transform, false);
+
+        // Set the notification details
+        Notification notification = notificationInstance.GetComponent<Notification>();
+        if (notification != null)
+        {
+            notification.SetNotification(item.itemIcon, quantity); // Use the quantity that was added
+        }
+        else
+        {
+            Debug.LogError("Notification component not found on the prefab.");
+        }
+    }
+    else
+    {
+        Debug.LogError("PlayerUI canvas or notification prefab is null.");
+    }
+}
+
 }

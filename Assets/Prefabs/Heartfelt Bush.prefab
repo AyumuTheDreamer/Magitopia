@@ -52,6 +52,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f553a684e72eb74791d41b28ef86d1b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ff6298d3b71e985429567b085db2ea1f, type: 2}
     - target: {fileID: 919132149155446097, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
       propertyPath: m_Name
       value: BushBerried
@@ -152,6 +164,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b48c1e5da9a1a4f4f865b0ade82b14a2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ff6298d3b71e985429567b085db2ea1f, type: 2}
     - target: {fileID: 919132149155446097, guid: b48c1e5da9a1a4f4f865b0ade82b14a2, type: 3}
       propertyPath: m_Name
       value: Bush Bare
@@ -185,15 +201,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.25
+      value: 3.4818668
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.45713
+      value: 11.591
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.34
+      value: 73.09372
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
       propertyPath: m_LocalRotation.w
@@ -291,6 +307,8 @@ MonoBehaviour:
     growthTime: 0
   currentGrowthStage: 0
   timeController: {fileID: 0}
+  initialGrowthStage: 0
+  notificationPrefab: {fileID: 1944214429490141531, guid: 8e2fd1dd2fcf1d146ba5ea9e4d8a617f, type: 3}
 --- !u!65 &7264460565828223888
 BoxCollider:
   m_ObjectHideFlags: 0

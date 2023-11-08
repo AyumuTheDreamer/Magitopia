@@ -1,0 +1,534 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8399498416329337819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9201428074130778942}
+  - component: {fileID: 7870198901697167441}
+  - component: {fileID: 7487904199315447720}
+  m_Layer: 0
+  m_Name: GoldenDragonFruit
+  m_TagString: CropForPickup
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9201428074130778942
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399498416329337819}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 587738026741133014}
+  - {fileID: 634514120070436216}
+  - {fileID: 7187238920234714698}
+  - {fileID: 7462271872580074167}
+  - {fileID: 2023010056485955590}
+  - {fileID: 8899057399263160777}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &7870198901697167441
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399498416329337819}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5156403815867675949, guid: cf00929d79155594399a303a32e75674, type: 3}
+--- !u!114 &7487904199315447720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399498416329337819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b958576937ae5408a809609a192fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crop: {fileID: 11400000, guid: c051853411c71e9439eb14c733ac2d73, type: 2}
+  animator: {fileID: 0}
+  inventoryManager: {fileID: 0}
+  harvestedQuantity: 1
+  growthStages:
+  - model: {fileID: 244250132404810860}
+    growthTime: 1
+  - model: {fileID: 253872383175479234}
+    growthTime: 1
+  - model: {fileID: 7563200856468987120}
+    growthTime: 1
+  - model: {fileID: 1682371817115955900}
+    growthTime: 1
+  - model: {fileID: 8085119265928393587}
+    growthTime: 1
+  currentGrowthStage: 0
+  timeController: {fileID: 0}
+  initialGrowthStage: 0
+--- !u!1001 &1100151850725405331
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9201428074130778942}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_Name
+      value: Dragon Fruit stage 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e1582f7285446044488e991bda56764c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1582f7285446044488e991bda56764c, type: 3}
+--- !u!1 &253872383175479234 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e1582f7285446044488e991bda56764c, type: 3}
+  m_PrefabInstance: {fileID: 1100151850725405331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &634514120070436216 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e1582f7285446044488e991bda56764c, type: 3}
+  m_PrefabInstance: {fileID: 1100151850725405331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1126649646775109949
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9201428074130778942}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+      propertyPath: m_Name
+      value: Dragon Fruit stage 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+--- !u!1 &244250132404810860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+  m_PrefabInstance: {fileID: 1126649646775109949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &587738026741133014 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
+  m_PrefabInstance: {fileID: 1126649646775109949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1988785160184532973
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9201428074130778942}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_Name
+      value: Dragon Fruit stage 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cf00929d79155594399a303a32e75674, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cf00929d79155594399a303a32e75674, type: 3}
+--- !u!1 &1682371817115955900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cf00929d79155594399a303a32e75674, type: 3}
+  m_PrefabInstance: {fileID: 1988785160184532973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2023010056485955590 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cf00929d79155594399a303a32e75674, type: 3}
+  m_PrefabInstance: {fileID: 1988785160184532973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6919193440349281628
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9201428074130778942}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_Name
+      value: Dragon Fruit stage 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+--- !u!4 &7462271872580074167 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 32fc8e4af4b31fc40984bfb9e0fe6cc8, type: 3}
+  m_PrefabInstance: {fileID: 6919193440349281628}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7220548705367007649
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9201428074130778942}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_Name
+      value: Dragon Fruit stage 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+--- !u!4 &7187238920234714698 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+  m_PrefabInstance: {fileID: 7220548705367007649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7563200856468987120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6fd1bb3caf1cc024a944b91b0c4296ab, type: 3}
+  m_PrefabInstance: {fileID: 7220548705367007649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9004231618371063330
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9201428074130778942}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_Name
+      value: Dragon Fruit stage 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+--- !u!1 &8085119265928393587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+  m_PrefabInstance: {fileID: 9004231618371063330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8899057399263160777 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: db1c9480840c53b45b0d5acc2275f401, type: 3}
+  m_PrefabInstance: {fileID: 9004231618371063330}
+  m_PrefabAsset: {fileID: 0}

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class GrowthStage
@@ -22,7 +23,6 @@ public class CropInteraction : MonoBehaviour
     private DateTime lastGrowthUpdateTime;
     [SerializeField]
     private int initialGrowthStage = 0;
-
     private void Start()
     {
         timeController = FindObjectOfType<TimeController>();
@@ -91,6 +91,7 @@ public class CropInteraction : MonoBehaviour
 
         inventoryManager.Add(cropItem);
         inventoryManager.ListItems();
+        
     }
 }
 

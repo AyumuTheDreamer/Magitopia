@@ -25,6 +25,8 @@ public class PlayerInteract : MonoBehaviour
     public GameObject ingredientPrefab;
     private GameObject lastHighlightedObject;
     public Text interactionPrompt;
+    public GameObject InfoPanel;
+    private GameObject currentInteractableObject;
    private void Start()
 {
     // Copy the individual recipes to the availableRecipes list.
@@ -91,7 +93,19 @@ public class PlayerInteract : MonoBehaviour
             }
             else if (nearestObject.CompareTag("CropForPickup"))
             {
+                CropInteraction cropInteraction = nearestObject.GetComponent<CropInteraction>();
+                if (cropInteraction.IsFullyGrown())
+                {
                 interactionPrompt.text = "E - Harvest";
+                }
+                else
+                {
+                    interactionPrompt.text = "";
+                }
+            }
+            else if (nearestObject.CompareTag("Info"))
+            {
+                interactionPrompt.text = "E - Read";
             }
             else
             {
@@ -141,10 +155,22 @@ public class PlayerInteract : MonoBehaviour
             {
             HandleSeedShopInteraction(nearestObject);
             }   
-
+            else if (nearestObject.CompareTag("Info"))
+            {
+                OpenInfoPanel(nearestObject);
+                currentInteractableObject = nearestObject;
+            }
            
         }
     }
+    if (InfoPanel.activeSelf && currentInteractableObject != null)
+        {
+            float distance = Vector3.Distance(transform.position, currentInteractableObject.transform.position);
+            if (distance > interactionDistance)
+            {
+                CloseInfoPanel(); // Close the panel if the player is too far away
+            }
+        }
     
 }
 
@@ -156,7 +182,7 @@ public class PlayerInteract : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell") || col.CompareTag("Bed") || col.CompareTag("Shop"))
+            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell") || col.CompareTag("Bed") || col.CompareTag("Shop") || col.CompareTag("Info"))
             {
                 interactableObjectList.Add(col.gameObject);
             }
@@ -419,9 +445,18 @@ private void HandleSeedShopInteraction(GameObject shopObject)
     }
 }
 
+void OpenInfoPanel(GameObject infoObject)
+{
+    InfoPanel.SetActive(!InfoPanel.activeSelf);
 
 }
+ void CloseInfoPanel()
+    {
+        InfoPanel.SetActive(false);
+        currentInteractableObject = null; // Clear the reference
+    }
 
+}
 
 
 

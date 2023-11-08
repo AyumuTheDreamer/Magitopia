@@ -63,15 +63,17 @@ public class TimeController : MonoBehaviour
         }
     }
 
-    private void UpdateTimeOfDay()
-    {
-        currentTime = currentTime.AddSeconds(Time.deltaTime * timeMultiplier);
+   private void UpdateTimeOfDay()
+{
+    currentTime = currentTime.AddSeconds(Time.deltaTime * timeMultiplier);
 
-        if (timeText != null)
-        {
-            timeText.text = currentTime.ToString("HH:mm");
-        }
+    if (timeText != null)
+    {
+        // Use "hh:mm tt" to get the 12-hour format with AM/PM
+        timeText.text = currentTime.ToString("hh:mm tt");
     }
+}
+
     private void RotateSun()
     {
         float sunLightRotation;

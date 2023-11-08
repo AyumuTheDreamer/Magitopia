@@ -111,36 +111,47 @@ public void UpdateShopUI()
     // Add items from the shop's inventory list.
     foreach (var item in shopInventory)
     {
-        Debug.Log("Item ID: " + item.id);
-        Debug.Log("Item Icon: " + item.itemIcon);
-
-        Debug.Log("Item found in shopInventory: " + item.itemName);
         GameObject shopItemObject = Instantiate(ShopItemPrefab, shopItemContent);
         var itemName = shopItemObject.transform.Find("ItemName").GetComponent<Text>();
         var itemIcon = shopItemObject.transform.Find("ItemIcon").GetComponent<Image>();
         var sellButton = shopItemObject.transform.Find("SellButton").GetComponent<Button>();
 
+        // Debug statement to check item names
+        Debug.Log($"Checking item for sell button visibility: {item.itemName}");
+
+        // Set the sell button active state based on the item name containing "Potion"
+        bool hasPotionInName = item.itemName.Contains("Potion");
+        sellButton.gameObject.SetActive(hasPotionInName);
+
+        // Set up sell button if it's a potion
+        if (hasPotionInName)
+        {
+            sellButton.onClick.RemoveAllListeners(); // Remove previous listeners to avoid stacking listeners.
+            sellButton.onClick.AddListener(() => SellShopItem(item));
+        }
+
         itemName.text = item.itemName;
         itemIcon.sprite = item.itemIcon;
 
-        // Add a click event to the sell button.
+        // Check if it's a stackable item and set the item count text.
         if (item.isStackable)
         {
-            // Check if it's a stackable item and set the item count text.
             var itemCountText = shopItemObject.transform.Find("ItemCount").GetComponent<Text>();
-            itemCountText.text = "x" + item.quantity.ToString();
+            itemCountText.text = $"x{item.quantity}";
         }
         else
         {
-            // If it's not stackable, hide the item count text (if it exists).
+            // If it's not stackable, hide the item count text.
             var itemCountText = shopItemObject.transform.Find("ItemCount").GetComponent<Text>();
             if (itemCountText != null)
             {
-                itemCountText.text = "";
+                itemCountText.gameObject.SetActive(false);
             }
         }
     }
 }
+
+
 public void CheckoutAndClearInventory()
 {
     int totalValue = CalculateTotalValue();  // Calculate the total value of items in the shop's inventory.
@@ -163,5 +174,9 @@ private void ClearShopInventory()
     shopInventory.Clear();
     UpdateShopUI();  // Update the shop's UI to reflect the empty inventory.
 }
-
+ public void DropItemIntoShop(Item item)
+    {
+        // Your logic to handle items dropped into the shop goes here
+        SellShopItem(item);  // For now, just sell the item to the shop
+    }
 }
