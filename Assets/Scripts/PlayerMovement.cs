@@ -18,13 +18,24 @@ public Transform groundCheck;
 public float groundDistance = 0.4f;
 public bool isGamePaused = false;
 public bool isSeedShopOpen = false;
-
+public static PlayerMovement Instance { get; private set; }
 public bool isInventoryOpen = false;
 public float groundStickForce = 300f;
 private float currentStickForce;
 private Animator animator;
 
-
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

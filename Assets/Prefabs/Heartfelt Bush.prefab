@@ -54,12 +54,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0f553a684e72eb74791d41b28ef86d1b, type: 2}
+      objectReference: {fileID: 2100000, guid: ff6298d3b71e985429567b085db2ea1f, type: 2}
     - target: {fileID: -7511558181221131132, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -240,9 +240,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 48754c377369d4547b35876bee4e16f5, type: 2}
+      objectReference: {fileID: 2100000, guid: ff6298d3b71e985429567b085db2ea1f, type: 2}
+    - target: {fileID: -7511558181221131132, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f553a684e72eb74791d41b28ef86d1b, type: 2}
     - target: {fileID: -5754084199372789682, guid: cd152a1db463b914584ef9ffe588df96, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -308,7 +320,6 @@ MonoBehaviour:
   currentGrowthStage: 0
   timeController: {fileID: 0}
   initialGrowthStage: 0
-  notificationPrefab: {fileID: 1944214429490141531, guid: 8e2fd1dd2fcf1d146ba5ea9e4d8a617f, type: 3}
 --- !u!65 &7264460565828223888
 BoxCollider:
   m_ObjectHideFlags: 0

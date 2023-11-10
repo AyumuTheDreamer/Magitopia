@@ -13,6 +13,8 @@ public class ShopInteraction : MonoBehaviour
     public Transform shopItemContent;
     public ThirdPersonCam thirdPersonCam;
     public bool isShopOpen { get; private set; } = false;
+    public float minSellInterval = 5f; // Minimum time interval to sell an item
+    public float maxSellInterval = 15f;
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -21,7 +23,7 @@ public class ShopInteraction : MonoBehaviour
         {
             Debug.LogError("PlayerMovement script not found in the scene!");
         }
-        
+        StartCoroutine(AutoSellItemsCoroutine());
     }
 
     public void Interact()
@@ -150,33 +152,62 @@ public void UpdateShopUI()
         }
     }
 }
-
-
-public void CheckoutAndClearInventory()
-{
-    int totalValue = CalculateTotalValue();  // Calculate the total value of items in the shop's inventory.
-    CurrencyManager.Instance.AddCurrency(totalValue);  // Add the total value to the player's currency.
-    ClearShopInventory();  // Clear the shop's inventory.
-}
-private int CalculateTotalValue()
-{
-    int totalValue = 0;
-
-    foreach (var item in shopInventory)
+ private IEnumerator AutoSellItemsCoroutine()
     {
-        totalValue += item.value * item.quantity;
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(minSellInterval, maxSellInterval));
+
+            if (shopInventory.Count > 0)
+            {
+                SellRandomShopItem();
+            }
+        }
     }
 
-    return totalValue;
-}
-private void ClearShopInventory()
+//public void CheckoutAndClearInventory()
+//{
+   // int totalValue = CalculateTotalValue();  // Calculate the total value of items in the shop's inventory.
+   // CurrencyManager.Instance.AddCurrency(totalValue);  // Add the total value to the player's currency.
+  //  ClearShopInventory();  // Clear the shop's inventory.
+//}
+//private int CalculateTotalValue()
+//{
+//int totalValue = 0;
+
+//    foreach (var item in shopInventory)
+//    {
+ //       totalValue += item.value * item.quantity;
+ //   }
+
+ //   return totalValue;
+//}
+//private void ClearShopInventory()
+//{
+//    shopInventory.Clear();
+ //   UpdateShopUI();  // Update the shop's UI to reflect the empty inventory.
+//}
+     private void SellRandomShopItem()
 {
-    shopInventory.Clear();
-    UpdateShopUI();  // Update the shop's UI to reflect the empty inventory.
-}
- public void DropItemIntoShop(Item item)
+    int randomIndex = Random.Range(0, shopInventory.Count);
+    Item itemToSell = shopInventory[randomIndex];
+
+    // Add the value of the sold item to the player's currency
+    CurrencyManager.Instance.AddCurrency(itemToSell.value * itemToSell.quantity);
+
+    // Check if there are more than one of the item and reduce the quantity or remove
+    if (itemToSell.quantity > 1)
     {
-        // Your logic to handle items dropped into the shop goes here
-        SellShopItem(item);  // For now, just sell the item to the shop
+        itemToSell.quantity--;
     }
+    else
+    {
+        shopInventory.Remove(itemToSell);
+    }
+
+    // Update the shop's UI and possibly other elements such as the player's currency
+    UpdateShopUI();
+}
+
+
 }

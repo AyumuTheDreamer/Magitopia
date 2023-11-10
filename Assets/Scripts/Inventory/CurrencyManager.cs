@@ -8,7 +8,7 @@ public class CurrencyManager : MonoBehaviour
     public static CurrencyManager Instance;
     public int playerCurrency = 0;
     public Text currencyText;
-
+    public Text shopCurrencyText;
     public delegate void CurrencyChangedDelegate();
     public event CurrencyChangedDelegate OnCurrencyChanged;
 
@@ -56,6 +56,10 @@ public class CurrencyManager : MonoBehaviour
         if (currencyText != null)
         {
             currencyText.text = "Coins: " + playerCurrency.ToString();
+        }
+        if (shopCurrencyText != null)
+        {
+            shopCurrencyText.text = "Coins: " + playerCurrency.ToString();
         }
     }
 }
