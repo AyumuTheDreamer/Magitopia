@@ -5,9 +5,12 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - AlchemyRecipe
     - AlchemyStationCrafting
+    - AmbientSoundManager
     - CropInteraction
     - CurrencyManager
+    - DialogueSystem
     - DirtPlotManager
+    - FirefliesController
     - FloatingPrompt
     - FogController
     - HarvestableCrop
@@ -24,8 +27,11 @@ ScriptsOnlyBuild:
     - SeedShop
     - Seeds
     - ShopInteraction
+    - ShrineInteraction
+    - SoundManager
     - ThirdPersonCam
     - TimeController
+    - UIManager
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
     - Cinemachine.CinemachineCollider
@@ -84,8 +90,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -348,31 +356,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 8176}
     - Class: 114
-      Script: {instanceID: 8336}
+      Script: {instanceID: 8338}
     - Class: 114
-      Script: {instanceID: 8384}
+      Script: {instanceID: 8386}
     - Class: 114
-      Script: {instanceID: 8446}
+      Script: {instanceID: 8448}
     - Class: 114
-      Script: {instanceID: 8536}
+      Script: {instanceID: 8538}
     - Class: 114
-      Script: {instanceID: 8554}
+      Script: {instanceID: 8556}
     - Class: 114
-      Script: {instanceID: 8696}
+      Script: {instanceID: 8698}
     - Class: 114
-      Script: {instanceID: 8894}
+      Script: {instanceID: 8896}
     - Class: 114
-      Script: {instanceID: 9048}
+      Script: {instanceID: 9050}
     - Class: 114
-      Script: {instanceID: 9102}
+      Script: {instanceID: 9104}
     - Class: 114
-      Script: {instanceID: 9140}
+      Script: {instanceID: 9142}
     - Class: 114
-      Script: {instanceID: 9566}
+      Script: {instanceID: 9568}
     - Class: 114
-      Script: {instanceID: 10468}
+      Script: {instanceID: 10472}
     - Class: 114
-      Script: {instanceID: 10832}
+      Script: {instanceID: 10836}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -417,6 +425,10 @@ ScriptsOnlyBuild:
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
@@ -499,23 +511,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 8148}
     - Class: 114
-      Script: {instanceID: 8252}
+      Script: {instanceID: 8248}
     - Class: 114
-      Script: {instanceID: 8536}
+      Script: {instanceID: 8254}
     - Class: 114
-      Script: {instanceID: 8898}
+      Script: {instanceID: 8538}
     - Class: 114
-      Script: {instanceID: 8944}
+      Script: {instanceID: 8900}
     - Class: 114
-      Script: {instanceID: 9176}
+      Script: {instanceID: 8946}
     - Class: 114
-      Script: {instanceID: 9536}
+      Script: {instanceID: 9178}
     - Class: 114
-      Script: {instanceID: 9906}
+      Script: {instanceID: 9538}
     - Class: 114
-      Script: {instanceID: 10010}
+      Script: {instanceID: 9782}
     - Class: 114
-      Script: {instanceID: 10088}
+      Script: {instanceID: 9910}
+    - Class: 114
+      Script: {instanceID: 10014}
+    - Class: 114
+      Script: {instanceID: 10092}
+    - Class: 114
+      Script: {instanceID: 60768}
+    - Class: 114
+      Script: {instanceID: 77544}
+    - Class: 114
+      Script: {instanceID: 224188}
+    - Class: 114
+      Script: {instanceID: 241936}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -543,6 +567,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 330
       Script: {instanceID: 0}
     - Class: 850595691
       Script: {instanceID: 0}
@@ -1451,7 +1477,7 @@ ScriptsOnlyBuild:
     className: CinemachineBlendListCamera
   - hash:
       serializedVersion: 2
-      Hash: d61aef0a7cd24600a3e5db036f7ab11c
+      Hash: 6556f286b8cd62535e55f71c0fb861ba
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: InventoryManager
@@ -1793,6 +1819,12 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerIntField
   - hash:
       serializedVersion: 2
+      Hash: ef0ba3ea2ecafac8921ed6f0da54fb07
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FirefliesController
+  - hash:
+      serializedVersion: 2
       Hash: c9373f14c5762d994b38cfa8fa77b0f4
     assemblyName: Assembly-CSharp
     namespaceName: 
@@ -1913,7 +1945,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerColor
   - hash:
       serializedVersion: 2
-      Hash: 019015e52999e75f7be26d0a7bda71d0
+      Hash: 15f137c97a4f5f35bf68587321d69b31
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: SeedShop
@@ -2129,6 +2161,12 @@ ScriptsOnlyBuild:
     className: CinemachineTrackedDolly
   - hash:
       serializedVersion: 2
+      Hash: 67aa75ac435b47150b90688a947d8d01
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ShrineInteraction
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -2313,6 +2351,30 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 8a47f6de2b50cbb5ee56f36aff45127d
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: UIManager
+  - hash:
+      serializedVersion: 2
+      Hash: 59e1530149faa64eaa98391750053c9c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DialogueSystem
+  - hash:
+      serializedVersion: 2
+      Hash: 4b6340ce728c3b1ba48a07899598a528
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: AmbientSoundManager
+  - hash:
+      serializedVersion: 2
+      Hash: 5ab96f83e031ea09b45d7988939bd396
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SoundManager
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity

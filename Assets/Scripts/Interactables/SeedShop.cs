@@ -19,7 +19,7 @@ public class SeedShop : MonoBehaviour
     public Transform seedInventoryPanel; // Assign this in the inspector to your seed inventory panel in the shop UI
     public GameObject seedInventoryEntryPrefab;
     public Animator animator;
-    
+    public SoundManager soundManager;
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -79,6 +79,7 @@ public class SeedShop : MonoBehaviour
         }
     }
     UpdateSeedInventoryDisplay();
+    soundManager.PlayObtainedItem();
 }
  void Update()
     {

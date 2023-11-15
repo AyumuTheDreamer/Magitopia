@@ -32,8 +32,8 @@ public class TimeController : MonoBehaviour
     [SerializeField]
     private float maxMoonLightIntensity;
     private DateTime currentTime;
-    private TimeSpan sunriseTime;
-    private TimeSpan sunsetTime;
+    public TimeSpan sunriseTime;
+    public TimeSpan sunsetTime;
     public int dayCounter = 0;
     public bool isPaused = false;
     // Start is called before the first frame update

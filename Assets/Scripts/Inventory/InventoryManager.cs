@@ -31,6 +31,7 @@ public class InventoryManager : MonoBehaviour
     private GameObject draggedItem;
     public Transform dragItemParent;
     [SerializeField] private GameObject notificationPrefab;
+    public SoundManager soundManager;
     private void Awake()
     {
       
@@ -328,6 +329,7 @@ public void Add(Item item)
         {
             Add(item);
             NotifyInventoryChanged();
+            soundManager.PlayBuySeed();
         }
         else
         {
@@ -348,8 +350,7 @@ public void Add(Item item)
         // Call the SellShopItem method in ShopInteraction to transfer the item to the shop's inventory
         shopInteraction.SellShopItem(item);
         NotifyInventoryChanged();
-        // Update the shop's UI to reflect the items in the shop's inventory
-        //shopInteraction.UpdateShopUI();
+        
     }
     else
     {
@@ -511,6 +512,7 @@ public void NotifyInventoryChanged()
         if (notification != null)
         {
             notification.SetNotification(item.itemIcon, quantity); // Use the quantity that was added
+            
         }
         else
         {
@@ -521,6 +523,17 @@ public void NotifyInventoryChanged()
     {
         Debug.LogError("PlayerUI canvas or notification prefab is null.");
     }
+}
+public bool HasItem(string itemName)
+{
+    foreach (var item in Items)
+    {
+        if (item.itemName == itemName && item.quantity > 0)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 }

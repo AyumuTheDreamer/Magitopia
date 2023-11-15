@@ -79,6 +79,10 @@ public class PlayerInteract : MonoBehaviour
             {
                 interactionPrompt.text = "E - Sleep to Next Day";
             }
+            else if (nearestObject.CompareTag("Shrine"))
+            {
+                interactionPrompt.text = "E - Activate Shrine";
+            }
             else if (nearestObject.CompareTag("Plantable"))
             {
                 DirtPlotManager dirtPlotManager = nearestObject.GetComponent<DirtPlotManager>();
@@ -160,6 +164,11 @@ public class PlayerInteract : MonoBehaviour
                 OpenInfoPanel(nearestObject);
                 currentInteractableObject = nearestObject;
             }
+            else if (nearestObject.CompareTag("Shrine"))
+            {
+                HandleShrineInteraction(nearestObject);
+            }
+
            
         }
     }
@@ -182,7 +191,7 @@ public class PlayerInteract : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell") || col.CompareTag("Bed") || col.CompareTag("Shop") || col.CompareTag("Info"))
+            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell") || col.CompareTag("Bed") || col.CompareTag("Shop") || col.CompareTag("Info") || col.CompareTag("Shrine"))
             {
                 interactableObjectList.Add(col.gameObject);
             }
@@ -455,6 +464,41 @@ void OpenInfoPanel(GameObject infoObject)
         InfoPanel.SetActive(false);
         currentInteractableObject = null; // Clear the reference
     }
+private Item FindItemByName(string itemName)
+{
+    foreach (var item in inventoryManager.Items)
+    {
+        if (item.itemName == itemName)
+        {
+            return item;
+        }
+    }
+    return null; // Return null if the item is not found
+}
+
+
+
+private void HandleShrineInteraction(GameObject shrineObject)
+{
+    
+    ShrineInteraction shrineInteraction = shrineObject.GetComponent<ShrineInteraction>();
+    Item goldenDragonFruit = FindItemByName("Golden Dragon Fruit");
+
+    Debug.Log("Shrine Interaction Check: " + (shrineInteraction != null));
+    Debug.Log("Golden Dragon Fruit Found: " + (goldenDragonFruit != null));
+    Debug.Log("Golden Dragon Fruit Quantity: " + (goldenDragonFruit != null ? goldenDragonFruit.quantity.ToString() : "N/A"));
+
+    if (shrineInteraction != null && goldenDragonFruit != null && goldenDragonFruit.quantity > 0)
+    {
+        inventoryManager.Remove(goldenDragonFruit);
+        shrineInteraction.Interact();
+    }
+    else
+    {
+        Debug.Log("You need a Golden Dragon Fruit to activate the shrine.");
+    }
+}
+
 
 }
 
