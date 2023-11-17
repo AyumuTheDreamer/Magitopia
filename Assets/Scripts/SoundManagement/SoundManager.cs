@@ -9,8 +9,19 @@ public class SoundManager : MonoBehaviour
     public AudioClip obtainedItem;
     public AudioClip brewPotion;
     public AudioClip buySeed;
-
-    // Call this method when a seed is planted
+    public static SoundManager Instance { get; private set; }
+      void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Optional: if you want it to persist across scenes
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void PlayPlantingSound()
     {
         effectSource.PlayOneShot(plantingSound);

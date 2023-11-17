@@ -23,7 +23,7 @@ public bool isInventoryOpen = false;
 public float groundStickForce = 300f;
 private float currentStickForce;
 private Animator animator;
-
+public AudioSource walkingSoundSource;
     private void Awake()
     {
         if (Instance == null)
@@ -44,7 +44,6 @@ private Animator animator;
         rb.freezeRotation = true;
 
         animator = GetComponent<Animator>();
-
    }
 
 
@@ -91,7 +90,15 @@ private Animator animator;
         float speed = rb.velocity.magnitude;
         animator.SetFloat("Speed", speed);
         }
-       
+
+        if (walkingSoundSource != null && IsMoving() && grounded && !walkingSoundSource.isPlaying)
+        {
+            walkingSoundSource.Play();
+        }
+        else if (walkingSoundSource != null && (!IsMoving() || !grounded))
+        {
+            walkingSoundSource.Stop();
+        }
     }
     void FixedUpdate()
     {
@@ -138,6 +145,10 @@ private Animator animator;
             currentStickForce = Mathf.Lerp(0, groundStickForce, 1 - (distanceToGround / 1.5f));
             rb.AddForce(Vector3.down * currentStickForce, ForceMode.Force);
         }
+    }
+    private bool IsMoving()
+    {
+        return horizontalInput != 0 || verticalInput != 0;
     }
 }
 

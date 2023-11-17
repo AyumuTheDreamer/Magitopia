@@ -23,6 +23,7 @@ public class CropInteraction : MonoBehaviour
     private DateTime lastGrowthUpdateTime;
     [SerializeField]
     private int initialGrowthStage = 0;
+    public SoundManager soundManager;
     private void Start()
     {
         timeController = FindObjectOfType<TimeController>();
@@ -91,6 +92,7 @@ public class CropInteraction : MonoBehaviour
 
         inventoryManager.Add(cropItem);
         inventoryManager.ListItems();
+        SoundManager.Instance.PlayHarvestingSound();
         
     }
 }

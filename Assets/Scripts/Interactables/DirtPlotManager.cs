@@ -8,7 +8,7 @@ public class DirtPlotManager : MonoBehaviour
     public bool isCropPlanted = false;
     public InventoryManager inventoryManager; 
     public Animator animator;
-
+    public SoundManager soundManager;
     public bool IsPlantable()
     {
         return isPlantable && !isCropPlanted;
@@ -29,6 +29,7 @@ public class DirtPlotManager : MonoBehaviour
             currentCrop = Instantiate(cropPrefab, transform.position, combinedRotation);
             isCropPlanted = true;
             animator.SetTrigger("Plant");
+            soundManager.PlayPlantingSound();
             inventoryManager.RemoveSingleQuantityOfItem(inventoryManager.currentSeed);
             
             CropInteraction cropInteraction = currentCrop.GetComponent<CropInteraction>();
