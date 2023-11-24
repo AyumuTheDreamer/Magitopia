@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1719654055010357912}
   - component: {fileID: 2111070120220713313}
   - component: {fileID: -5888532056738545208}
+  - component: {fileID: -6453020373667666207}
   m_Layer: 0
   m_Name: Spade Melon
   m_TagString: CropForPickup
@@ -110,6 +111,7 @@ MonoBehaviour:
   currentGrowthStage: 0
   timeController: {fileID: 0}
   initialGrowthStage: 0
+  soundManager: {fileID: 0}
 --- !u!64 &1719654055010357912
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -127,11 +129,11 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -8053333148710267863, guid: d1ea58b559f337249bf6cd98242d9a45, type: 3}
+  m_Mesh: {fileID: 8489771332680169502, guid: a5bf093929db50648bdd336b49603ee8, type: 3}
 --- !u!114 &2111070120220713313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +168,19 @@ MonoBehaviour:
   visibilityDistance: 20
   bobbingSpeed: 1
   bobbingAmount: 0.3
+--- !u!114 &-6453020373667666207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4751169530046710642}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e394d42d075e528418385d0aa1982abb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cropInteraction: {fileID: 1790743773573181840}
 --- !u!1001 &785224557857230673
 PrefabInstance:
   m_ObjectHideFlags: 0

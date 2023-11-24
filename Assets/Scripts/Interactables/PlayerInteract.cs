@@ -27,6 +27,7 @@ public class PlayerInteract : MonoBehaviour
     public Text interactionPrompt;
     public GameObject InfoPanel;
     private GameObject currentInteractableObject;
+    public SoundManager soundManager;
    private void Start()
 {
     // Copy the individual recipes to the availableRecipes list.
@@ -39,7 +40,7 @@ public class PlayerInteract : MonoBehaviour
         recipeToCraft = selectedRecipe;
         Debug.Log("Selected Recipe: " + recipeToCraft.name);
     }
-    
+   
 }
 
      private void UpdateSelectedRecipe()
@@ -81,20 +82,62 @@ public class PlayerInteract : MonoBehaviour
             }
             else if (nearestObject.CompareTag("Shrine"))
             {
-                interactionPrompt.text = "E - Activate Shrine";
+                interactionPrompt.text = "E - Make an Offering";
             }
-            else if (nearestObject.CompareTag("Plantable"))
+            else if (nearestObject.CompareTag("Bookshelf"))
             {
-                DirtPlotManager dirtPlotManager = nearestObject.GetComponent<DirtPlotManager>();
-                if (dirtPlotManager != null && dirtPlotManager.IsPlantable())
+                interactionPrompt.text = "E - Read Guides";
+            }
+            else if (nearestObject.CompareTag("TeleportPad"))
+            {
+                TeleportPadScript teleportPad = nearestObject.GetComponent<TeleportPadScript>();
+                if (teleportPad != null)
                 {
-                    interactionPrompt.text = "E - Plant Seeds";
+                    if (!teleportPad.IsUnlocked())
+                    {
+                        interactionPrompt.text = "Double Tap E to Unlock";
+                    }
                 }
                 else
                 {
-                    interactionPrompt.text = "";
+                    HubTeleportPadScript hubTeleportPad = nearestObject.GetComponent<HubTeleportPadScript>();
+                    if (hubTeleportPad != null)
+                    {
+                        string destinationName = hubTeleportPad.GetCurrentDestinationName();
+                        interactionPrompt.text = $"E - Change Destination (Current: {destinationName})";
+                    }
                 }
             }
+
+
+            else if (nearestObject.CompareTag("Plantable"))
+            {
+                DirtPlotManager dirtPlotManager = nearestObject.GetComponent<DirtPlotManager>();
+                if (dirtPlotManager != null)
+                {
+                    if (dirtPlotManager.isCropPlanted)
+                    {
+                        CropInteraction cropInteraction = dirtPlotManager.currentCrop.GetComponent<CropInteraction>();
+                        if (cropInteraction != null && cropInteraction.IsFullyGrown())
+                        {
+                            interactionPrompt.text = "E - Harvest";
+                        }
+                        else
+                        {
+                            interactionPrompt.text = "";
+                        }
+                    }
+                    else if (dirtPlotManager.IsPlantable())
+                    {
+                        interactionPrompt.text = "E - Plant Seeds";
+                    }
+                    else
+                    {
+                        interactionPrompt.text = "";
+                    }
+                }
+            }
+
             else if (nearestObject.CompareTag("CropForPickup"))
             {
                 CropInteraction cropInteraction = nearestObject.GetComponent<CropInteraction>();
@@ -115,6 +158,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 interactionPrompt.text = "";
             }
+            
         }
         else
         {
@@ -161,14 +205,35 @@ public class PlayerInteract : MonoBehaviour
             }   
             else if (nearestObject.CompareTag("Info"))
             {
+                Debug.Log("Info object interacted with");
                 OpenInfoPanel(nearestObject);
                 currentInteractableObject = nearestObject;
+
+                FloatingPrompt promptController = nearestObject.GetComponent<FloatingPrompt>();
+                if (promptController != null)
+                {
+                    promptController.DisablePrompt();
+                }
+                else
+                {
+                    Debug.Log("FloatingPromptController not found on the object");
+                }
             }
+
+
             else if (nearestObject.CompareTag("Shrine"))
             {
                 HandleShrineInteraction(nearestObject);
             }
-
+            else if (nearestObject.CompareTag("TeleportPad"))
+            {
+                HandleTeleportPadInteraction(nearestObject);
+            }
+             else if (nearestObject.CompareTag("Bookshelf"))
+            {
+                // Handle interaction with the bookshelf
+                nearestObject.GetComponent<BookshelfInteract>().OpenBookList();
+            }
            
         }
     }
@@ -191,7 +256,7 @@ public class PlayerInteract : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell") || col.CompareTag("Bed") || col.CompareTag("Shop") || col.CompareTag("Info") || col.CompareTag("Shrine"))
+            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell") || col.CompareTag("Bed") || col.CompareTag("Shop") || col.CompareTag("Info") || col.CompareTag("Shrine") || col.CompareTag("TeleportPad") || col.CompareTag("Bookshelf"))
             {
                 interactableObjectList.Add(col.gameObject);
             }
@@ -287,7 +352,18 @@ public class PlayerInteract : MonoBehaviour
        Debug.Log("Interacting with " + gameObject.name);
     }
 
-    private void HandleCropInteraction(GameObject cropObject)
+    private IEnumerator HandleInteractionWithDelay(GameObject interactableObject, Action interactionMethod)
+{
+    PlayerMovement.Instance.SetPlayerMovement(false); // Disable movement
+
+    interactionMethod(); // Perform the interaction (planting or harvesting)
+
+    yield return new WaitForSeconds(1); // Wait for 1 second
+
+    PlayerMovement.Instance.SetPlayerMovement(true); // Re-enable movement
+}
+
+private void HandleCropInteraction(GameObject cropObject)
 {
     CropInteraction cropInteraction = cropObject.GetComponent<CropInteraction>();
 
@@ -295,8 +371,7 @@ public class PlayerInteract : MonoBehaviour
     {
         if (cropInteraction.IsFullyGrown())
         {
-            // Crop is fully grown and can be harvested
-            cropInteraction.Harvest();
+            StartCoroutine(HandleInteractionWithDelay(cropObject, () => cropInteraction.Harvest()));
         }
         else
         {
@@ -304,7 +379,8 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 }
-    private void HandleDirtPlotInteraction(GameObject dirtPlotObject)
+
+private void HandleDirtPlotInteraction(GameObject dirtPlotObject)
 {
     DirtPlotManager dirtPlotManager = dirtPlotObject.GetComponent<DirtPlotManager>();
 
@@ -312,13 +388,11 @@ public class PlayerInteract : MonoBehaviour
     {
         if (dirtPlotManager.IsPlantable())
         {
-            // Plant a crop in the dirt plot
-            dirtPlotManager.PlantCrop();
+            StartCoroutine(HandleInteractionWithDelay(dirtPlotObject, () => dirtPlotManager.PlantCrop()));
         }
         else
         {
-            // Harvest the crop from the dirt plot
-            dirtPlotManager.HarvestCrop();
+            StartCoroutine(HandleInteractionWithDelay(dirtPlotObject, () => dirtPlotManager.HarvestCrop()));
         }
     }
 }
@@ -430,6 +504,7 @@ private void Sleep(GameObject bedObject)
 
     // Update the time controller with the new time
     timeController.SetCurrentTime(7, 0);
+    soundManager.PlaySleepDing();
 
     // Get all crop objects in the scene
     CropInteraction[] cropInteractions = FindObjectsOfType<CropInteraction>();
@@ -498,6 +573,26 @@ private void HandleShrineInteraction(GameObject shrineObject)
         Debug.Log("You need a Golden Dragon Fruit to activate the shrine.");
     }
 }
+private void HandleTeleportPadInteraction(GameObject teleportPad)
+{
+    // First, try to get the script for a single destination pad
+    TeleportPadScript padScript = teleportPad.GetComponent<TeleportPadScript>();
+    if (padScript != null)
+    {
+        // If found, handle the interaction for a single destination pad
+        padScript.HandleInteraction();
+        return; // Exit the method to avoid further checks
+    }
+
+    // Next, try to get the script for the hub pad
+    HubTeleportPadScript hubPadScript = teleportPad.GetComponent<HubTeleportPadScript>();
+    if (hubPadScript != null)
+    {
+        // If found, handle the interaction for the hub pad
+        hubPadScript.ChangeDestination();
+    }
+}
+
 
 
 }

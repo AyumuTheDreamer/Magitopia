@@ -17,6 +17,7 @@ public class AlchemyStationCrafting : MonoBehaviour
     [SerializeField]
     private List<Button> recipeButtons = new List<Button>();
     private bool shiftHeldDown = false;
+    public SoundManager soundManager;
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -152,7 +153,7 @@ public class AlchemyStationCrafting : MonoBehaviour
         {
             Debug.Log("Successfully crafted: " + recipe.name);
         }
-
+        soundManager.PlayBrewPotion();
         CheckRecipeAvailability(); // Update availability after crafting
     }
 

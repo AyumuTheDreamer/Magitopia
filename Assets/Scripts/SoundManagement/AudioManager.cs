@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class AmbientSoundManager : MonoBehaviour
 {
-    public AudioSource ambientSource; // Assign in the inspector
-    public AudioClip lowElevationSound; // Assign your low elevation sound
-    public AudioClip mediumElevationSound; // Assign your medium elevation sound
-    public AudioClip highElevationSound; // Assign your high elevation sound
+    public AudioSource musicSource; // Assign in the inspector for music
+    public AudioSource ambientSource; // Assign in the inspector for ambience
+
+    public AudioClip lowElevationMusic; // Assign your low elevation music
+    public AudioClip mediumElevationMusic; // Assign your medium elevation music
+    public AudioClip highElevationMusic; // Assign your high elevation music
+
+    public AudioClip lowElevationAmbience; // Assign your low elevation ambience sound
+    public AudioClip mediumElevationAmbience; // Assign your medium elevation ambience sound
+    public AudioClip highElevationAmbience; // Assign your high elevation ambience sound
 
     public GameObject player; // Assign your player GameObject
 
@@ -14,36 +20,50 @@ public class AmbientSoundManager : MonoBehaviour
 
     void Update()
     {
-        ChangeAmbientSoundBasedOnElevation();
-    }
-
-    void ChangeAmbientSoundBasedOnElevation()
-    {
         float playerElevation = player.transform.position.y;
 
-        if (playerElevation < mediumElevationThreshold)
+        PlayMusicBasedOnElevation(playerElevation);
+        PlayAmbientSoundBasedOnElevation(playerElevation);
+    }
+
+    void PlayMusicBasedOnElevation(float elevation)
+    {
+        if (elevation < mediumElevationThreshold)
         {
-            if (ambientSource.clip != lowElevationSound)
-            {
-                ambientSource.clip = lowElevationSound;
-                ambientSource.Play();
-            }
+            PlayIfNotPlaying(musicSource, lowElevationMusic);
         }
-        else if (playerElevation < highElevationThreshold)
+        else if (elevation < highElevationThreshold)
         {
-            if (ambientSource.clip != mediumElevationSound)
-            {
-                ambientSource.clip = mediumElevationSound;
-                ambientSource.Play();
-            }
+            PlayIfNotPlaying(musicSource, mediumElevationMusic);
         }
         else
         {
-            if (ambientSource.clip != highElevationSound)
-            {
-                ambientSource.clip = highElevationSound;
-                ambientSource.Play();
-            }
+            PlayIfNotPlaying(musicSource, highElevationMusic);
+        }
+    }
+
+    void PlayAmbientSoundBasedOnElevation(float elevation)
+    {
+        if (elevation < mediumElevationThreshold)
+        {
+            PlayIfNotPlaying(ambientSource, lowElevationAmbience);
+        }
+        else if (elevation < highElevationThreshold)
+        {
+            PlayIfNotPlaying(ambientSource, mediumElevationAmbience);
+        }
+        else
+        {
+            PlayIfNotPlaying(ambientSource, highElevationAmbience);
+        }
+    }
+
+    void PlayIfNotPlaying(AudioSource audioSource, AudioClip clip)
+    {
+        if (!audioSource.isPlaying || audioSource.clip != clip)
+        {
+            audioSource.clip = clip;
+            audioSource.Play();
         }
     }
 }

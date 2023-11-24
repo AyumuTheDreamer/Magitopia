@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7487904199315447720}
   - component: {fileID: 2449734745325168619}
   - component: {fileID: 3940948419759244427}
+  - component: {fileID: 5195736806503222470}
   m_Layer: 0
   m_Name: GoldenDragonFruit
   m_TagString: CropForPickup
@@ -58,11 +59,11 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 5156403815867675949, guid: cf00929d79155594399a303a32e75674, type: 3}
+  m_Mesh: {fileID: -5807412956258089620, guid: 11bcdc31491180041ad60a5fceecf094, type: 3}
 --- !u!114 &7487904199315447720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +94,7 @@ MonoBehaviour:
   currentGrowthStage: 0
   timeController: {fileID: 0}
   initialGrowthStage: 0
+  soundManager: {fileID: 0}
 --- !u!114 &2449734745325168619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +153,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5195736806503222470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399498416329337819}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e394d42d075e528418385d0aa1982abb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cropInteraction: {fileID: 7487904199315447720}
 --- !u!1001 &1100151850725405331
 PrefabInstance:
   m_ObjectHideFlags: 0

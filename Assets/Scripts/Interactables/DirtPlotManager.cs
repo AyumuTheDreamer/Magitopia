@@ -4,7 +4,7 @@ public class DirtPlotManager : MonoBehaviour
 {
     
     public bool isPlantable = true; // Flag to check if the dirt plot is plantable.
-    private GameObject currentCrop; // Reference to the planted crop.
+    public GameObject currentCrop; // Reference to the planted crop.
     public bool isCropPlanted = false;
     public InventoryManager inventoryManager; 
     public Animator animator;

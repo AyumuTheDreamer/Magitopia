@@ -24,6 +24,7 @@ public float groundStickForce = 300f;
 private float currentStickForce;
 private Animator animator;
 public AudioSource walkingSoundSource;
+public bool canMove = true;
     private void Awake()
     {
         if (Instance == null)
@@ -45,27 +46,51 @@ public AudioSource walkingSoundSource;
 
         animator = GetComponent<Animator>();
    }
-
-
+   
+    public void SetPlayerMovement(bool canMove)
+{
+    this.canMove = canMove;
+}
 
     // Update is called once per frame
     void Update()
     {
         
 
-         if (isGamePaused || isInventoryOpen || isSeedShopOpen)
+         if (!canMove || isGamePaused || isInventoryOpen || isSeedShopOpen)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             
             // Disable player movement and rotation when the inventory is open
-            horizontalInput = 0f;
-            verticalInput = 0f;
-            orientation.rotation = Quaternion.identity;
+            StopMovingForASec();
+            
+            
         }
         else
         {
           
+        UnlockedAndMoving();
+        }
+
+        if (walkingSoundSource != null && IsMoving() && grounded && !walkingSoundSource.isPlaying)
+        {
+            walkingSoundSource.Play();
+        }
+        else if (walkingSoundSource != null && (!IsMoving() || !grounded))
+        {
+            walkingSoundSource.Stop();
+        }
+    }
+ public void StopMovingForASec()
+    {
+        horizontalInput = 0f;
+        verticalInput = 0f;
+        animator.SetFloat("Speed", 0f);
+        orientation.rotation = Quaternion.identity;
+    }
+public void UnlockedAndMoving()
+    {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         MyInput();
@@ -89,17 +114,8 @@ public AudioSource walkingSoundSource;
       //  animator.SetBool("Grounded", grounded);
         float speed = rb.velocity.magnitude;
         animator.SetFloat("Speed", speed);
-        }
-
-        if (walkingSoundSource != null && IsMoving() && grounded && !walkingSoundSource.isPlaying)
-        {
-            walkingSoundSource.Play();
-        }
-        else if (walkingSoundSource != null && (!IsMoving() || !grounded))
-        {
-            walkingSoundSource.Stop();
-        }
     }
+
     void FixedUpdate()
     {
         MovePlayer();

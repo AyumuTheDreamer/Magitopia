@@ -20,6 +20,7 @@ public class SeedShop : MonoBehaviour
     public GameObject seedInventoryEntryPrefab;
     public Animator animator;
     public SoundManager soundManager;
+    public ObjectiveManager objectiveManager;
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -46,6 +47,7 @@ public class SeedShop : MonoBehaviour
                 btnComponent.interactable = false;
             }
         }
+        objectiveManager.CompleteObjective();
     }
 
   void OnButtonClick(Seeds seed)
@@ -80,6 +82,7 @@ public class SeedShop : MonoBehaviour
     }
     UpdateSeedInventoryDisplay();
     soundManager.PlayObtainedItem();
+    objectiveManager.CompleteObjective();
 }
  void Update()
     {

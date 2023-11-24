@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip obtainedItem;
     public AudioClip brewPotion;
     public AudioClip buySeed;
+    public AudioClip sleepDing;
     public static SoundManager Instance { get; private set; }
       void Awake()
     {
@@ -47,6 +48,10 @@ public class SoundManager : MonoBehaviour
     public void PlayBuySeed()
     {
         effectSource.PlayOneShot(buySeed);
+    }
+    public void PlaySleepDing()
+    {
+        effectSource.PlayOneShot(sleepDing);
     }
 }
 

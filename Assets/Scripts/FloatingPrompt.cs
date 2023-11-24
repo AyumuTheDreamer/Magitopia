@@ -9,7 +9,7 @@ public class FloatingPrompt : MonoBehaviour
     private float originalYPosition;
     private Transform playerTransform;
     private Renderer objectRenderer;
-
+    private bool hasInteracted = false;
     void Start()
     {
         // Assuming the player has a tag "Player"
@@ -21,6 +21,7 @@ public class FloatingPrompt : MonoBehaviour
 
     void Update()
     {
+        if (hasInteracted) return;
         // Check the distance between the player and this object
         float distance = Vector3.Distance(playerTransform.position, transform.position);
         if (distance <= visibilityDistance)
@@ -61,4 +62,10 @@ private void BobbingEffect()
         // Set the position of the prompt
         promptCanvas.transform.position = new Vector3(promptCanvas.transform.position.x, newY, promptCanvas.transform.position.z);
     }
+     public void DisablePrompt()
+{
+    promptCanvas.SetActive(false);
+    hasInteracted = true;
+}
+
 }
