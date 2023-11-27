@@ -9,6 +9,7 @@ public class DirtPlotManager : MonoBehaviour
     public InventoryManager inventoryManager; 
     public Animator animator;
     public SoundManager soundManager;
+    public ObjectiveManager objectiveManager;
     public bool IsPlantable()
     {
         return isPlantable && !isCropPlanted;
@@ -31,7 +32,7 @@ public class DirtPlotManager : MonoBehaviour
             animator.SetTrigger("Plant");
             soundManager.PlayPlantingSound();
             inventoryManager.RemoveSingleQuantityOfItem(inventoryManager.currentSeed);
-            
+            objectiveManager.CompleteObjective("plantSeed");
             CropInteraction cropInteraction = currentCrop.GetComponent<CropInteraction>();
             if (cropInteraction != null)
             {

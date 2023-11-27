@@ -47,7 +47,7 @@ public class SeedShop : MonoBehaviour
                 btnComponent.interactable = false;
             }
         }
-        objectiveManager.CompleteObjective();
+        
     }
 
   void OnButtonClick(Seeds seed)
@@ -78,11 +78,17 @@ public class SeedShop : MonoBehaviour
 
             // Add the new item to the inventory
             InventoryManager.Instance.Add(newItem);
+             
+             if (newItem.itemName == "Drake Claw Seeds")
+            {
+                
+                objectiveManager.CompleteObjective("buySeed");
+            }
         }
     }
     UpdateSeedInventoryDisplay();
     soundManager.PlayObtainedItem();
-    objectiveManager.CompleteObjective();
+    
 }
  void Update()
     {
@@ -130,7 +136,7 @@ public class SeedShop : MonoBehaviour
             isFirstTime = false;
             isFirstTimeTextBoxActive = true; // Make sure to set this true as well
         }
-
+        objectiveManager.CompleteObjective("helloKeeper");
         UpdateButtonState();
         UpdateSeedInventoryDisplay();
         animator.SetTrigger("OnInteract");

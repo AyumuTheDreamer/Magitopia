@@ -81,6 +81,16 @@ public class CropInteraction : MonoBehaviour
             }
             Debug.Log("Harvesting fully grown crop. Quantity: " + harvestedQuantity);
         }
+         if (crop.cropName == "Heartfelt Berry")
+            {
+                // Replace "harvestHeartfeltBerry" with the actual ID for this objective
+                ObjectiveManager.Instance.CompleteObjective("pickBerry");
+            }
+            else if (crop.cropName == "Drake Claw Plant")
+            {
+                // Replace "harvestDrakeClawPlant" with the actual ID for this objective
+                ObjectiveManager.Instance.CompleteObjective("harvestClaw");
+            }
         else
         {
             cropItem.quantity = 0;

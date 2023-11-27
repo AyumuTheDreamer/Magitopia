@@ -77,8 +77,13 @@ public void SellShopItem(Item item)
     {
         // Item is not in the shop's inventory, add it as a new item.
         shopInventory.Add(item);
+        
     }
-
+    if (item.itemName == "Attack Potion")
+        {
+            // Replace "sellAttackPotion" with the actual ID for this objective
+            ObjectiveManager.Instance.CompleteObjective("sellAttackPotion");
+        }
     // Remove the item from the player's inventory.
     inventoryManager.Remove(item);
 
@@ -165,28 +170,7 @@ public void UpdateShopUI()
         }
     }
 
-//public void CheckoutAndClearInventory()
-//{
-   // int totalValue = CalculateTotalValue();  // Calculate the total value of items in the shop's inventory.
-   // CurrencyManager.Instance.AddCurrency(totalValue);  // Add the total value to the player's currency.
-  //  ClearShopInventory();  // Clear the shop's inventory.
-//}
-//private int CalculateTotalValue()
-//{
-//int totalValue = 0;
 
-//    foreach (var item in shopInventory)
-//    {
- //       totalValue += item.value * item.quantity;
- //   }
-
- //   return totalValue;
-//}
-//private void ClearShopInventory()
-//{
-//    shopInventory.Clear();
- //   UpdateShopUI();  // Update the shop's UI to reflect the empty inventory.
-//}
      private void SellRandomShopItem()
 {
     int randomIndex = Random.Range(0, shopInventory.Count);

@@ -63,6 +63,12 @@ public class AlchemyStationCrafting : MonoBehaviour
 
   private void PopulateRecipeButtons()
 {
+    foreach (Transform child in recipeButtonContainer.transform)
+    {
+        Destroy(child.gameObject);
+    }
+    recipeButtons.Clear();
+
     foreach (AlchemyRecipe recipe in recipes)
     {
         // Create the recipe button
@@ -152,6 +158,11 @@ public class AlchemyStationCrafting : MonoBehaviour
         if (!shiftHeldDown && inventoryManager.CraftItem(recipe))
         {
             Debug.Log("Successfully crafted: " + recipe.name);
+        }
+        if (recipe.name == "Attack Potion")
+        {
+            // Replace "brewAttackPotion" with the actual ID for this objective
+            ObjectiveManager.Instance.CompleteObjective("brewAttack");
         }
         soundManager.PlayBrewPotion();
         CheckRecipeAvailability(); // Update availability after crafting
