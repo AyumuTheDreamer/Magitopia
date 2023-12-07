@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject dialoguePanel;
     private Queue<string> sentences;
     private bool isDialogueActive = false;
+    public SoundManager soundManager;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class DialogueManager : MonoBehaviour
         if (isDialogueActive && Input.GetMouseButtonDown(0))
         {
             DisplayNextSentence();
+            soundManager.PlayPing();
         }
     }
 

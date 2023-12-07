@@ -63,14 +63,25 @@ public class CropInteraction : MonoBehaviour
         cropItem.itemName = crop.cropName;
         cropItem.id = "Crop_" + crop.cropName;
         cropItem.itemIcon = crop.itemIcon;
+        cropItem.isStackable = true;
+        cropItem.maxStackCount = 99;
 
-         if (IsFullyGrown())
+        if (IsFullyGrown())
         {
             cropItem.quantity = harvestedQuantity;
+
+            // Handle specific crop objectives
+            if (crop.cropName == "Heartfelt Berry")
+            {
+                ObjectiveManager.Instance.CompleteObjective("pickBerry");
+            }
+            else if (crop.cropName == "Drake Claw Plant")
+            {
+                ObjectiveManager.Instance.CompleteObjective("harvestClaw");
+            }
+
             // Reset the growth stage and day counter upon harvesting a fully grown crop.
             currentGrowthStage = 0;
-
-            // Deactivate the fully grown model and activate the immature model.
             foreach (var stage in growthStages)
             {
                 stage.model.SetActive(false);
@@ -81,31 +92,18 @@ public class CropInteraction : MonoBehaviour
             }
             Debug.Log("Harvesting fully grown crop. Quantity: " + harvestedQuantity);
         }
-         if (crop.cropName == "Heartfelt Berry")
-            {
-                // Replace "harvestHeartfeltBerry" with the actual ID for this objective
-                ObjectiveManager.Instance.CompleteObjective("pickBerry");
-            }
-            else if (crop.cropName == "Drake Claw Plant")
-            {
-                // Replace "harvestDrakeClawPlant" with the actual ID for this objective
-                ObjectiveManager.Instance.CompleteObjective("harvestClaw");
-            }
         else
         {
             cropItem.quantity = 0;
             Debug.Log("Harvesting immature crop. Quantity: 0");
         }
 
-        cropItem.isStackable = true;
-        cropItem.maxStackCount = 99;
-
         inventoryManager.Add(cropItem);
         inventoryManager.ListItems();
         SoundManager.Instance.PlayHarvestingSound();
-        
     }
 }
+
 
 private void UpdateCropModel()
     {

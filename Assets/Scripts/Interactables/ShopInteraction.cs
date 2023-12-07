@@ -82,7 +82,7 @@ public void SellShopItem(Item item)
     if (item.itemName == "Attack Potion")
         {
             // Replace "sellAttackPotion" with the actual ID for this objective
-            ObjectiveManager.Instance.CompleteObjective("sellAttackPotion");
+            ObjectiveManager.Instance.CompleteObjective("sellPotion");
         }
     // Remove the item from the player's inventory.
     inventoryManager.Remove(item);

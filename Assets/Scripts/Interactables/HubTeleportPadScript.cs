@@ -10,6 +10,7 @@ public class HubTeleportPadScript : MonoBehaviour
     private Renderer padRenderer; // Renderer of the teleport pad
     private int currentTargetIndex = 0; // Current target index
     public TeleportPadScript[] singleDestinationPads; // References to single destination pads
+    public SoundManager soundManager;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class HubTeleportPadScript : MonoBehaviour
     public void ChangeDestination()
     {
         currentTargetIndex = (currentTargetIndex + 1) % destinations.Length;
+        soundManager.PlayPing();
         if (padRenderer != null && destinationMaterials.Length > currentTargetIndex)
         {
             padRenderer.material = destinationMaterials[currentTargetIndex];
@@ -61,6 +63,7 @@ public class HubTeleportPadScript : MonoBehaviour
             {
                 teleportEffect.Play();
             }
+            soundManager.PlayTeleportSound();
         }
     }
 }

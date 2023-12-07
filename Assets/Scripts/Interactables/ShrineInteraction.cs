@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using Cinemachine;
+using UnityEngine.SceneManagement;
+
 public class ShrineInteraction : MonoBehaviour
 {
     public GameObject firstShrineModel;
@@ -56,5 +58,11 @@ public class ShrineInteraction : MonoBehaviour
     public void EndCutscene()
     {
         SwitchToMainCamera();
+        LoadEndScene();
     }
+    public void LoadEndScene()
+{
+    SceneManager.LoadScene("EndScreen");
+}
+
 }

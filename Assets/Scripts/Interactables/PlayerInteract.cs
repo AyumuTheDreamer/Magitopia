@@ -84,10 +84,6 @@ public class PlayerInteract : MonoBehaviour
             {
                 interactionPrompt.text = "E - Make an Offering";
             }
-            else if (nearestObject.CompareTag("Bookshelf"))
-            {
-                interactionPrompt.text = "E - Read Guides";
-            }
             else if (nearestObject.CompareTag("Thorns"))
             {
                 interactionPrompt.text = "E - Examine";
@@ -237,11 +233,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 HandleTeleportPadInteraction(nearestObject);
             }
-             else if (nearestObject.CompareTag("Bookshelf"))
-            {
-                // Handle interaction with the bookshelf
-                nearestObject.GetComponent<BookshelfInteract>().OpenBookList();
-            }
+            
             else if (nearestObject.CompareTag("Thorns"))
             {
                 nearestObject.GetComponent<ThornsScript>().Interact();
@@ -272,7 +264,7 @@ public class PlayerInteract : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell") || col.CompareTag("Bed") || col.CompareTag("Shop") || col.CompareTag("Info") || col.CompareTag("Shrine") || col.CompareTag("TeleportPad") || col.CompareTag("Bookshelf") || col.CompareTag("Thorns") || col.CompareTag("ThornsGuy"))
+            if (col.CompareTag("Interactable") || col.CompareTag("CropForPickup") || col.CompareTag("Plantable") || col.CompareTag("AlchemyStation") || col.CompareTag("ShopSell") || col.CompareTag("Bed") || col.CompareTag("Shop") || col.CompareTag("Info") || col.CompareTag("Shrine") || col.CompareTag("TeleportPad") || col.CompareTag("Thorns") || col.CompareTag("ThornsGuy"))
             {
                 interactableObjectList.Add(col.gameObject);
             }

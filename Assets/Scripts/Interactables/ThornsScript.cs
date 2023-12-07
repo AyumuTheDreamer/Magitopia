@@ -6,12 +6,13 @@ public class ThornsScript : MonoBehaviour
     public InventoryManager inventoryManager; // Assign this in the inspector
     public string requiredItemName = "Toxic Potion"; // Name of the required item
     public string messageForPlayer = "You need a strong poison to get rid of the thorns.";
-
+    public SoundManager soundManager;
     public void Interact()
     {
         if (inventoryManager.HasItem(requiredItemName))
         {
             ClearThorns();
+            soundManager.PlayDissolve();
         }
         else
         {

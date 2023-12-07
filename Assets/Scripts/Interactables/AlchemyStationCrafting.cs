@@ -108,22 +108,28 @@ public class AlchemyStationCrafting : MonoBehaviour
         recipeToCraft = recipe;
         Debug.Log("Selected Recipe To Craft: " + recipeToCraft.name);
     }
-    public void CheckRecipeAvailability()
-    {
-        for (int i = 0; i < recipes.Count; i++)
+   public void CheckRecipeAvailability()
+{
+    for (int i = 0; i < recipes.Count; i++)
     {
         AlchemyRecipe recipe = recipes[i];
-        Button correspondingButton = recipeButtons[i]; // Access the button from the list
 
-        if(correspondingButton.CompareTag("RecipeButton")) // Check if the button has the tag
+        // Check if the button still exists
+        if (recipeButtons[i] != null && recipeButtons[i].gameObject != null)
         {
-            bool canCraft = inventoryManager.CraftItem(recipe, true); // Simulate crafting
-            correspondingButton.interactable = canCraft; // Update the button's interactable state based on simulation result
+            Button correspondingButton = recipeButtons[i]; // Access the button from the list
 
-            // Your existing code to display ingredients
+            if(correspondingButton.CompareTag("RecipeButton")) // Check if the button has the tag
+            {
+                bool canCraft = inventoryManager.CraftItem(recipe, true); // Simulate crafting
+                correspondingButton.interactable = canCraft; // Update the button's interactable state based on simulation result
+
+                // Your existing code to display ingredients
+            }
         }
     }
-    }
+}
+
     private void OnDestroy()
     {
         // Unsubscribe to prevent memory leaks

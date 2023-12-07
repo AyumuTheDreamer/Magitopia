@@ -7,7 +7,7 @@ public class TeleportPadScript : MonoBehaviour
     private float unlockTimer = 0f;
     private const float unlockDuration = 0.5f; // Duration for double tap detection
     public ParticleSystem unlockEffect;
-
+    public SoundManager soundManager;
     void Update()
     {
         if (unlockTimer > 0)
@@ -46,6 +46,7 @@ public class TeleportPadScript : MonoBehaviour
             // Move only the player model
             other.transform.position = teleportDestination.position;
         }
+        soundManager.PlayTeleportSound();
     }
 }
 

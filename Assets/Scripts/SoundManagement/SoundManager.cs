@@ -10,6 +10,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip brewPotion;
     public AudioClip buySeed;
     public AudioClip sleepDing;
+    public AudioClip ping;
+    public AudioClip teleport;
+    public AudioClip thornsDissolve;
     public static SoundManager Instance { get; private set; }
       void Awake()
     {
@@ -52,6 +55,18 @@ public class SoundManager : MonoBehaviour
     public void PlaySleepDing()
     {
         effectSource.PlayOneShot(sleepDing);
+    }
+    public void PlayPing()
+    {
+        effectSource.PlayOneShot(ping);
+    }
+    public void PlayTeleportSound()
+    {
+        effectSource.PlayOneShot(teleport);
+    }
+    public void PlayDissolve()
+    {
+        effectSource.PlayOneShot(thornsDissolve);
     }
 }
 
