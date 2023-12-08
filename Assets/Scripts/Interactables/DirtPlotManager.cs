@@ -17,10 +17,14 @@ public class DirtPlotManager : MonoBehaviour
 
    public void PlantCrop()
     {
+        if (inventoryManager.cropToBePlanted == null)
+            {
+                return;
+            }
         if (IsPlantable())
         {
             GameObject cropPrefab = inventoryManager.cropToBePlanted;
-
+            if(cropPrefab != null){
             // Generate a random Y-axis rotation angle between 0 and 360 degrees.
             float randomYRotation = Random.Range(0f, 360f);
 
@@ -40,9 +44,7 @@ public class DirtPlotManager : MonoBehaviour
                 cropInteraction.animator = this.animator;
             }
 
-            if (inventoryManager.cropToBePlanted == null)
-            {
-                return;
+            
             }
         }
     }

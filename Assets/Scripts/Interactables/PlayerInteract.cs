@@ -86,7 +86,7 @@ public class PlayerInteract : MonoBehaviour
             }
             else if (nearestObject.CompareTag("Thorns"))
             {
-                interactionPrompt.text = "E - Examine";
+                interactionPrompt.text = "E - Use Toxic Potion";
             }
             else if (nearestObject.CompareTag("ThornsGuy"))
             {
